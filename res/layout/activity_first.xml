@@ -1,0 +1,60 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.example.walletforandroid.FirstActivity" >
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/showStateButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/showState" />
+
+        <Button
+            android:id="@+id/useMoney"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/useMoney" />
+
+        <Button
+            android:id="@+id/typeChange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/typeChage" />
+
+        <Button
+            android:id="@+id/debt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/debt" />
+
+        <Button
+            android:id="@+id/reasonSystemButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/reasonSystem" />
+
+        <Button
+            android:id="@+id/detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/detail" />
+
+        <Button
+            android:id="@+id/backup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/backup" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WalletForAndroid</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="showState">资金状态</string>
+    <string name="useMoney">使用资金</string>
+    <string name="typeChage">类型操作</string>
+    <string name="debt">债务系统</string>
+    <string name="detail">显示细节</string>
+    <string name="backup">撤销</string>
+    <string name="title_activity_show_state">ShowState</string>
+    <string name="allType">全部：</string>
+    <string name="title_activity_type">TypeActivity</string>
+    <string name="addType">添加类型</string>
+    <string name="delType">删除类型</string>
+    <string name="renameType">重命名类型</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_use">UseActivity</string>
+    <string name="inOrOut">收入或支出</string>
+    <string name="inputNumber">输入数目</string>
+    <string name="inputReason">选择理由</string>
+    <string name="submit">提交</string>
+    <string name="title_activity_debt">DebtActivity</string>
+    <string name="debtDetail">债务细节</string>
+    <string name="addDebt">添加债务</string>
+    <string name="repayDebt">偿还债务</string>
+    <string name="updateDebt">更新债务</string>
+    <string name="title_activity_debt_detail">DebtDetailActivity</string>
+    <string name="title_activity_debt_add">DebtAddActivity</string>
+    <string name="typeChoice">选择类型</string>
+    <string name="debteeInput">债主名称</string>
+    <string name="debtRate">输入利率</string>
+    <string name="rateTypeChoice">选择利息类型</string>
+    <string name="next">下一步</string>
+    <string name="deadline">截止日期(year-month-day)</string>
+    <string name="title_activity_repay_debt">RepayDebtActivity</string>
+    <string name="debtID">债务id</string>
+    <string name="inputUserName">用户名</string>
+    <string name="inputPassWord">密码</string>
+    <string name="loginButton">登陆</string>
+    <string name="registerButton">注册新用户</string>
+    <string name="title_activity_first">FirstActivity</string>
+    <string name="title_activity_debt_repay">DebtRepayActivity</string>
+    <string name="title_activity_state">StateActivity</string>
+    <string name="title_activity_reason">ReasonActivity</string>
+    <string name="addReason">添加原因</string>
+    <string name="renameReason">重命名原因</string>
+    <string name="removeReason">删除原因</string>
+    <string name="reasonStateButton">原因状态</string>
+    <string name="reasonSystem">原因操作</string>
+    <string name="title_activity_reason_state">ReasonStateActivity</string>
+
+</resources>
