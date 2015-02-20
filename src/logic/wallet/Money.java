@@ -23,6 +23,7 @@ public class Money extends Wallet {
 		allMoney.addElement(money);
 		new MoneyDB(username, passWord).addNewType(typeName);
 	}
+	
 	public void addType(String typeName,Calendar time){
 		MoneyType money = createType(typeName);
 		

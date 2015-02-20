@@ -2,7 +2,9 @@ package com.example.walletforandroid;
 
 import java.util.*;
 
+import logic.User;
 import logic.history.ReasonHistory;
+import logic.history.TreeReasonHistory;
 import logic.wallet.Cost;
 import logic.wallet.Money;
 import android.app.Activity;
@@ -80,11 +82,30 @@ public class UseActivity extends Activity {
 						Cost cost=new Cost();
 						if (ioAns.equals("income")){
 							cost.addChange(typeAns, -numAns, reasonAns);
-							new ReasonHistory().addIncome(reasonAns, numAns);
+							if (User.userReason.equals("normal")){
+								new ReasonHistory().addIncome(reasonAns, numAns);
+							}else{
+								new TreeReasonHistory().addIncome(reasonAns, numAns);
+							}
 						}
 						else{
+							if (!User.userReason.equals("normal")){
+								if (!new TreeReasonHistory().checkExpenditure(reasonAns, numAns)){
+									new AlertDialog.Builder(UseActivity.this)
+									.setTitle("消息")
+									.setMessage("已经超支")
+									.setPositiveButton("ok", null)
+									.show();
+									return ;
+								}
+							}
+							
 							cost.addChange(typeAns, numAns, reasonAns);
-							new ReasonHistory().addExpenditure(reasonAns, numAns);
+							if (!User.userReason.equals("normal")){
+								new TreeReasonHistory().addExpenditure(reasonAns, numAns);
+							}else{
+								new ReasonHistory().addExpenditure(reasonAns, numAns);
+							}
 						}
 						
 						new AlertDialog.Builder(UseActivity.this)

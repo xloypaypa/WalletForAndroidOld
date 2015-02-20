@@ -2,6 +2,7 @@ package database;
 
 import java.util.*;
 
+import type.ReasonTreeNodeType;
 import type.ReasonType;
 
 public class ReasonDB extends DataBase {
@@ -25,7 +26,14 @@ public class ReasonDB extends DataBase {
 		Vector <String> message=new Vector<String>();
 		for (int i=0;i<file.size();i++){
 			if (file.get(i).equals("[end]")){
-				ReasonType rt=new ReasonType();
+				ReasonType rt;
+				
+				if (getTypeMessage(message).equals("reason type")){
+					rt=new ReasonType();
+				}else{
+					rt=new ReasonTreeNodeType();
+				}
+				
 				rt.solveTypeMessage(message);
 				ans.add(rt);
 			}else if (file.get(i).equals("[begin]")){

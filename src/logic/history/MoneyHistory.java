@@ -3,11 +3,10 @@ package logic.history;
 import java.util.Calendar;
 import java.util.Vector;
 
-import logic.wallet.Detail;
-
 import org.afree.data.time.Second;
 import org.afree.data.time.TimeSeries;
 
+import logic.wallet.Detail;
 import type.MoneyHistoryType;
 
 public class MoneyHistory extends History {

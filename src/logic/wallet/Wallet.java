@@ -73,6 +73,13 @@ public class Wallet extends User {
 		return false;
 	}
 	
+	public double getMoney(String name){
+		for (int i=0;i<allMoney.size();i++){
+			if (allMoney.get(i).getType().equals(name)) return allMoney.get(i).getValue();
+		}
+		return 0;
+	}
+	
 	public void addDetail(DetailType dt){
 		allDetail.addElement(dt);
 		new DetailDB(username, passWord).addDetail(dt);

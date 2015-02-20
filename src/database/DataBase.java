@@ -46,4 +46,13 @@ public class DataBase {
 		}
 		return ans;
 	}
+	
+	protected static String getTypeMessage(Vector <String> message){
+		for (int i=0;i<message.size();i++){
+			if (message.get(i).equals("[type name]")){
+				return message.get(i+1);
+			}
+		}
+		return null;
+	}
 }

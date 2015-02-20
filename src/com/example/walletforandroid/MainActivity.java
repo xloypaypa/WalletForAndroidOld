@@ -21,12 +21,16 @@ import android.widget.EditText;
 public class MainActivity extends Activity {
 	Button login,register;
 	EditText name,pass;
+	
+	public static MainActivity show=null; 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		loadDB();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		show=this;
 		
 		loadItem();
 		loadAction();
@@ -73,54 +77,8 @@ public class MainActivity extends Activity {
 		register.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				String sname,spass;
-				sname=name.getText().toString();
-				spass=pass.getText().toString();
-				
-				if (sname.indexOf("[")>=0){
-					new AlertDialog.Builder(MainActivity.this)
-					.setTitle("message")
-					.setMessage("输入请不要包含[")
-					.setPositiveButton("ok", null)
-					.show();
-					return ;
-				}
-				if (spass.indexOf("[")>=0){
-					new AlertDialog.Builder(MainActivity.this)
-					.setTitle("message")
-					.setMessage("输入请不要包含[")
-					.setPositiveButton("ok", null)
-					.show();
-					return ;
-				}
-				if (sname.length()==0){
-					new AlertDialog.Builder(MainActivity.this)
-					.setTitle("message")
-					.setMessage("请输入名称")
-					.setPositiveButton("ok", null)
-					.show();
-					return ;
-				}
-				if (spass.length()==0){
-					new AlertDialog.Builder(MainActivity.this)
-					.setTitle("message")
-					.setMessage("请输入密码")
-					.setPositiveButton("ok", null)
-					.show();
-					return ;
-				}
-				
-				User user=new User();
-				if (!user.userExist(sname)){
-					user.addUser(sname, spass);
-					loginAction(sname, spass, user);
-				}else{
-					new AlertDialog.Builder(MainActivity.this)
-					.setTitle("message")
-					.setMessage("用户已存在")
-					.setPositiveButton("ok", null)
-					.show();
-				}
+				Intent next=new Intent(MainActivity.this,RegisterActivity.class);
+				startActivity(next);
 			}
 		});
 	}
@@ -140,6 +98,9 @@ public class MainActivity extends Activity {
 		History history=new History();
 		wallet.loadWallet();
 		history.loadHistory();
+		if (!User.userReason.equals("normal")){
+			history.build();
+		}
 		
 		Intent next=new Intent(MainActivity.this,FirstActivity.class);
 		startActivity(next);

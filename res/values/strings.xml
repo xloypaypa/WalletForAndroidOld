@@ -51,5 +51,16 @@
     <string name="reasonStateButton">原因状态</string>
     <string name="reasonSystem">原因操作</string>
     <string name="title_activity_reason_state">ReasonStateActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="InputRepeat">重复</string>
+    <string name="UserReasonTypeChoice">原因类型</string>
+    <string name="title_activity_reason_add">ReasonAddActivity</string>
+    <string name="FatherChoice">选择父原因</string>
+    <string name="addReasonName">名称</string>
+    <string name="addReasonMinValue">最小花费</string>
+    <string name="addReasonMax">最大花费</string>
+    <string name="addReasonRank">重要等级 0到5 5最高</string>
+    <string name="title_activity_reason_change">ReasonChangeActivity</string>
+    <string name="changeReasonChoice">选择类型</string>
 
 </resources>

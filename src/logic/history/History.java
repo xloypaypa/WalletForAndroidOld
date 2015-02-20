@@ -4,7 +4,6 @@ import java.util.*;
 
 import logic.User;
 import logic.wallet.Detail;
-
 import database.ReasonDB;
 import type.*;
 
@@ -15,6 +14,10 @@ public class History extends User {
 	public void loadHistory(){
 		moneyhistory=new Detail().getHistoricalType();
 		allReason=new ReasonDB(username, passWord).loadReason();
+	}
+	
+	public void build(){
+		TreeReasonHistory.buildTree();
 	}
 	
 	public Vector <MoneyHistoryType> getMoneyHistory(){
@@ -32,7 +35,7 @@ public class History extends User {
 		return false;
 	}
 	
-	public int findReasonIndex(String name){
+	public static int findReasonIndex(String name){
 		for (int i=0;i<allReason.size();i++){
 			if (allReason.get(i).getName().equals(name)) return i;
 		}

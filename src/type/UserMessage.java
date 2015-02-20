@@ -3,14 +3,16 @@ package type;
 import java.util.Vector;
 
 public class UserMessage extends Type implements TypeInterface {
-	String userName, passWord;
+	String userName, passWord, userReason;
 	public UserMessage(){
 		this.userName=new String();
 		this.passWord=new String();
+		this.userReason=new String();
 	}
-	public UserMessage(String userName, String passWord){
+	public UserMessage(String userName, String passWord, String userReason){
 		this.userName=new String(userName);
 		this.passWord=new String(passWord);
+		this.userReason=new String(userReason);
 	}
 	
 	public void setName(String name){
@@ -19,11 +21,17 @@ public class UserMessage extends Type implements TypeInterface {
 	public void setPassWord(String pass){
 		this.passWord=new String(pass);
 	}
+	public void setReason(String reason){
+		this.userReason=new String(reason);
+	}
 	public String getName(){
 		return this.userName;
 	}
 	public String getPassWord(){
 		return this.passWord;
+	}
+	public String getReason(){
+		return this.userReason;
 	}
 	
 	@Override
@@ -33,6 +41,8 @@ public class UserMessage extends Type implements TypeInterface {
 		ans+=this.userName+"\r\n";
 		ans+="[pass word]\r\n";
 		ans+=this.passWord+"\r\n";
+		ans+="[user reason type]\r\n";
+		ans+=this.userReason+"\r\n";
 		ans+=super.format();
 		return ans;
 	}
@@ -48,7 +58,7 @@ public class UserMessage extends Type implements TypeInterface {
 	}
 	@Override
 	public int getTypeNumber() {
-		return 2+super.getTypeNumber();
+		return 3+super.getTypeNumber();
 	}
 	@Override
 	public void solveTypeMessage(Vector <String> message) {
@@ -59,6 +69,8 @@ public class UserMessage extends Type implements TypeInterface {
 				this.userName=body;
 			}else if (title.equals("[pass word]")){
 				this.passWord=body;
+			}else if (title.equals("[user reason type]")){
+				this.userReason=body;
 			}
 		}
 		super.solveTypeMessage(message);

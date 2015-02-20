@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import type.ReasonTreeNodeType;
 import type.ReasonType;
+import logic.User;
 import logic.history.ReasonHistory;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -54,9 +56,16 @@ public class ReasonStateActivity extends Activity {
 		Vector <ReasonType> a=rh.getReasonType();
 		data=new ArrayList<String>();
 		for (int i=0;i<a.size();i++){
-			ReasonType now=a.get(i);
-			DecimalFormat df = new DecimalFormat("0.00");
-			data.add(now.getName()+" income:"+ df.format(now.getIncome())+" expenditure:"+df.format(now.getExpenditure()));
+			
+			if (User.userReason.equals("normal")){
+				ReasonType now=a.get(i);
+				DecimalFormat df = new DecimalFormat("0.00");
+				data.add(now.getName()+" income:"+ df.format(now.getIncome())+" expenditure:"+df.format(now.getExpenditure()));
+			}else{
+				ReasonTreeNodeType now=(ReasonTreeNodeType) a.get(i);
+				DecimalFormat df = new DecimalFormat("0.00");
+				data.add(now.getName()+" income:"+ df.format(now.getIncome())+" expenditure:"+df.format(now.getExpenditure())+" father: "+now.getFather()+" rank: "+now.getRank()+" min: "+now.getMin()+" max: "+now.getMax());
+			}
 		}
 		return data;
 	}

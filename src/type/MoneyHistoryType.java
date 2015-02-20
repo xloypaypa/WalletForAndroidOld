@@ -3,7 +3,8 @@ package type;
 import java.text.DecimalFormat;
 import java.util.*;
 
-import org.afree.data.time.*;
+import org.afree.data.time.Second;
+import org.afree.data.time.TimeSeries;
 
 public class MoneyHistoryType extends Type {
 	String name; double value;

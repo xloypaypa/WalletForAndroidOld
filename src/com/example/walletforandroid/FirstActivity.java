@@ -20,6 +20,7 @@ public class FirstActivity extends Activity {
 		
 		loadItem();
 		loadAction();
+		MainActivity.show.finish();
 	}
 
 	private void loadAction() {
