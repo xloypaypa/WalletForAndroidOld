@@ -37,15 +37,15 @@ public class MainActivity extends Activity {
 	}
 
 	private void loadDB() {
-		if (!HHD.folderExiste("/storage/sdcard0/Bank/")){
-			HHD.createFolder("/storage/sdcard0/", "Bank");
+		if (!HHD.folderExiste("/storage/sdcard0/Wallet/")){
+			HHD.createFolder("/storage/sdcard0/", "Wallet");
 		}
-		if (!HHD.fileExiste("/storage/sdcard0/Bank/bank root file.txt")){
-			HHD.createFile("/storage/sdcard0/Bank/", "bank root file.txt");
-			HHD.writeFile("/storage/sdcard0/Bank/bank root file.txt", "/storage/sdcard0/Bank/");
+		if (!HHD.fileExiste("/storage/sdcard0/Wallet/wallet root file.txt")){
+			HHD.createFile("/storage/sdcard0/Wallet/", "wallet root file.txt");
+			HHD.writeFile("/storage/sdcard0/Wallet/wallet root file.txt", "/storage/sdcard0/Wallet/");
 		}
 		
-		Vector <String> root=HHD.readFile("/storage/sdcard0/Bank/bank root file.txt");
+		Vector <String> root=HHD.readFile("/storage/sdcard0/Wallet/wallet root file.txt");
 		DataBase.Root=root.get(0);
 		
 		User user=new User();
