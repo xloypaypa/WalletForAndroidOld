@@ -1704,6 +1704,7 @@ containing a value of this type.
         public static final int loginv1=0x7f090063;
         public static final int loginv2=0x7f090065;
         public static final int middle=0x7f09001d;
+        public static final int myIP=0x7f090045;
         public static final int never=0x7f090017;
         public static final int newUserNameInput=0x7f09007b;
         public static final int newUserPasswordInput=0x7f09007c;
@@ -1754,7 +1755,6 @@ containing a value of this type.
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
         public static final int textView1=0x7f090043;
-        public static final int textView2=0x7f090045;
         public static final int textView3=0x7f090047;
         public static final int textView4=0x7f090049;
         public static final int textView5=0x7f09004b;
@@ -1971,10 +1971,15 @@ containing a value of this type.
         public static final int title_activity_state=0x7f0a003a;
         public static final int title_activity_type=0x7f0a001b;
         public static final int title_activity_use=0x7f0a0020;
+        public static final int title_activity_web=0x7f0a004d;
+        public static final int toWeb=0x7f0a0051;
         public static final int typeChage=0x7f0a0015;
         public static final int typeChoice=0x7f0a002c;
         public static final int updateDebt=0x7f0a0029;
         public static final int useMoney=0x7f0a0014;
+        public static final int webOFF=0x7f0a0050;
+        public static final int webON=0x7f0a004f;
+        public static final int webOpen=0x7f0a004e;
     }
     public static final class style {
         /** 

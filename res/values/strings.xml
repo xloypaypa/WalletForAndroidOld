@@ -62,5 +62,10 @@
     <string name="addReasonRank">重要等级 0到5 5最高</string>
     <string name="title_activity_reason_change">ReasonChangeActivity</string>
     <string name="changeReasonChoice">选择类型</string>
+    <string name="title_activity_web">WebActivity</string>
+    <string name="webOpen">网络同步开关</string>
+    <string name="webON">网络开启</string>
+    <string name="webOFF">网络关闭</string>
+    <string name="toWeb">同步</string>
 
 </resources>

@@ -403,6 +403,7 @@ int id loginButton 0x7f090067
 int id loginv1 0x7f090063
 int id loginv2 0x7f090065
 int id middle 0x7f09001d
+int id myIP 0x7f090045
 int id never 0x7f090017
 int id newUserNameInput 0x7f09007b
 int id newUserPasswordInput 0x7f09007c
@@ -453,7 +454,6 @@ int id submitForRepay 0x7f09005a
 int id submit_area 0x7f09003c
 int id tabMode 0x7f09000c
 int id textView1 0x7f090043
-int id textView2 0x7f090045
 int id textView3 0x7f090047
 int id textView4 0x7f090049
 int id textView5 0x7f09004b
@@ -600,10 +600,15 @@ int string title_activity_show_state 0x7f0a0019
 int string title_activity_state 0x7f0a003a
 int string title_activity_type 0x7f0a001b
 int string title_activity_use 0x7f0a0020
+int string title_activity_web 0x7f0a004d
+int string toWeb 0x7f0a0051
 int string typeChage 0x7f0a0015
 int string typeChoice 0x7f0a002c
 int string updateDebt 0x7f0a0029
 int string useMoney 0x7f0a0014
+int string webOFF 0x7f0a0050
+int string webON 0x7f0a004f
+int string webOpen 0x7f0a004e
 int style AppBaseTheme 0x7f0b00eb
 int style AppTheme 0x7f0b00ec
 int style Base_TextAppearance_AppCompat 0x7f0b0098

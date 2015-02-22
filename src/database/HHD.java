@@ -134,6 +134,36 @@ public class HHD {
 		}
 	}
 	
+	public static byte[] readByte(String path, long from, int length){
+		
+		if (!HHD.fileExiste(path)){
+			String d=new String(),f=new String();
+			int len=path.length(),pos=0;
+			for (pos=len-1;pos>=0;pos--){
+				if (path.toCharArray()[pos]=='/') break;
+			}
+			
+			for (int i=0;i<=pos;i++) d+=path.toCharArray()[i];
+			for (int i=pos+1;i<len;i++) f+=path.toCharArray()[i];
+			
+			HHD.createFile(d, f);
+		}
+		
+		File file=new File(path);
+		try {
+			RandomAccessFile  raf=new RandomAccessFile(file, "r");
+			raf.seek(from);
+			byte[] ans=new byte[length];
+			for (int i=0;i<length;i++){
+				ans[i]=raf.readByte();
+			}
+			raf.close();
+			return ans;
+		} catch (IOException e) {
+			return null;
+		}
+	}
+	
 	public static void writeByte(String path, byte[] message){
 		File file=new File(path);
 		FileOutputStream fos;
@@ -177,5 +207,22 @@ public class HHD {
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public static void addByte(String path,byte[] message){
+		File file=new File(path);
+		FileOutputStream fos;
+		try {
+			fos=new FileOutputStream(file,true);
+			fos.write(message);
+			fos.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static long getFileLength(String path){
+		File file=new File(path);
+		return file.length();
 	}
 }
