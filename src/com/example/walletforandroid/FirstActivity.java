@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class FirstActivity extends Activity {
-	Button showState,typeChange,backup,showDetail,useMoney,debt,reason;
+	Button showState,typeChange,backup,showDetail,useMoney,debt,reason,webb;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -89,6 +89,14 @@ public class FirstActivity extends Activity {
 				startActivity(next);
 			}
 		});
+		
+		webb.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent next=new Intent(FirstActivity.this,WebActivity.class);
+				startActivity(next);
+			}
+		});
 	}
 
 	private void loadItem() {
@@ -99,5 +107,6 @@ public class FirstActivity extends Activity {
 		useMoney=(Button) this.findViewById(R.id.useMoney);
 		debt=(Button) this.findViewById(R.id.debt);
 		reason=(Button) this.findViewById(R.id.reasonSystemButton);
+		webb=(Button) this.findViewById(R.id.webButton);
 	}
 }
