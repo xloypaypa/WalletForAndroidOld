@@ -1648,7 +1648,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f09002e;
         public static final int action_mode_bar_stub=0x7f09002d;
         public static final int action_mode_close_button=0x7f090020;
-        public static final int action_settings=0x7f09008c;
+        public static final int action_settings=0x7f090093;
         public static final int activity_chooser_view_content=0x7f090021;
         public static final int addDebt=0x7f090040;
         public static final int addReasonButton=0x7f09006b;
@@ -1658,7 +1658,8 @@ containing a value of this type.
         public static final int addReasonName=0x7f09006f;
         public static final int addReasonRank=0x7f090072;
         public static final int addReasonSubmit=0x7f090073;
-        public static final int addType=0x7f090082;
+        public static final int addType=0x7f090088;
+        public static final int aimType=0x7f090085;
         public static final int always=0x7f090014;
         public static final int backup=0x7f090062;
         public static final int beginning=0x7f09001b;
@@ -1682,7 +1683,7 @@ containing a value of this type.
         public static final int debteeInput=0x7f090046;
         public static final int decor_content_parent=0x7f09002f;
         public static final int default_activity_button=0x7f090024;
-        public static final int delType=0x7f090083;
+        public static final int delType=0x7f090089;
         public static final int detail=0x7f090061;
         public static final int detailList=0x7f09005b;
         public static final int dialog=0x7f090019;
@@ -1692,12 +1693,13 @@ containing a value of this type.
         public static final int end=0x7f09001c;
         public static final int expand_activities_button=0x7f090022;
         public static final int expanded_menu=0x7f090028;
+        public static final int fromtype=0x7f090083;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000e;
         public static final int icon=0x7f090026;
         public static final int ifRoom=0x7f090016;
         public static final int image=0x7f090023;
-        public static final int inOutChoice=0x7f090086;
+        public static final int inOutChoice=0x7f09008d;
         public static final int listMode=0x7f09000a;
         public static final int list_item=0x7f090025;
         public static final int loginButton=0x7f090068;
@@ -1713,7 +1715,7 @@ containing a value of this type.
         public static final int newUserRegister=0x7f090080;
         public static final int none=0x7f09000f;
         public static final int normal=0x7f09000b;
-        public static final int numberInput=0x7f090087;
+        public static final int numberInput=0x7f09008e;
         public static final int numberInputForDebt=0x7f090048;
         public static final int numberInputForRepay=0x7f090059;
         public static final int passwordInput=0x7f090067;
@@ -1723,14 +1725,14 @@ containing a value of this type.
         public static final int rate=0x7f090055;
         public static final int rateInput=0x7f09004a;
         public static final int rateType=0x7f09004c;
-        public static final int reasonChoice=0x7f090088;
+        public static final int reasonChoice=0x7f09008f;
         public static final int reasonStateButton=0x7f09006a;
         public static final int reasonStateList=0x7f09007b;
         public static final int reasonSystemButton=0x7f090060;
         public static final int registerButton=0x7f090069;
         public static final int removeReasonButton=0x7f09006d;
         public static final int renameReasonButton=0x7f09006c;
-        public static final int renameType=0x7f090084;
+        public static final int renameType=0x7f09008b;
         public static final int repayDebt=0x7f090041;
         public static final int search_badge=0x7f090035;
         public static final int search_bar=0x7f090034;
@@ -1750,18 +1752,23 @@ containing a value of this type.
         public static final int split_action_bar=0x7f090004;
         public static final int startingTime=0x7f090053;
         public static final int stateList=0x7f090081;
-        public static final int submit=0x7f090089;
+        public static final int submit=0x7f090090;
         public static final int submitForRepay=0x7f09005a;
         public static final int submit_area=0x7f09003c;
         public static final int tabMode=0x7f09000c;
+        public static final int textView1=0x7f090082;
+        public static final int textView2=0x7f090084;
         public static final int textView3=0x7f090047;
         public static final int textView4=0x7f090049;
         public static final int textView5=0x7f09004b;
         public static final int textView6=0x7f09004d;
         public static final int title=0x7f090027;
+        public static final int transfer=0x7f09008a;
+        public static final int transferNumber=0x7f090086;
+        public static final int transferSubmit=0x7f090087;
         public static final int type=0x7f090056;
         public static final int typeChange=0x7f09005e;
-        public static final int typeChoice=0x7f090085;
+        public static final int typeChoice=0x7f09008c;
         public static final int typeChoiceForDebt=0x7f090044;
         public static final int typeChoiceForRepay=0x7f090057;
         public static final int up=0x7f090001;
@@ -1772,8 +1779,8 @@ containing a value of this type.
         public static final int value=0x7f090052;
         public static final int webButton=0x7f090063;
         public static final int webIP=0x7f090043;
-        public static final int webPort=0x7f09008a;
-        public static final int webSwitch1=0x7f09008b;
+        public static final int webPort=0x7f090091;
+        public static final int webSwitch1=0x7f090092;
         public static final int withText=0x7f090018;
         public static final int wrap_content=0x7f090009;
     }
@@ -1839,10 +1846,11 @@ containing a value of this type.
         public static final int activity_reason_state=0x7f030021;
         public static final int activity_register=0x7f030022;
         public static final int activity_state=0x7f030023;
-        public static final int activity_type=0x7f030024;
-        public static final int activity_use=0x7f030025;
-        public static final int activity_web=0x7f030026;
-        public static final int support_simple_spinner_dropdown_item=0x7f030027;
+        public static final int activity_transfer=0x7f030024;
+        public static final int activity_type=0x7f030025;
+        public static final int activity_use=0x7f030026;
+        public static final int activity_web=0x7f030027;
+        public static final int support_simple_spinner_dropdown_item=0x7f030028;
     }
     public static final class menu {
         public static final int debt=0x7f0c0000;
@@ -1858,9 +1866,10 @@ containing a value of this type.
         public static final int reason_state=0x7f0c000a;
         public static final int register=0x7f0c000b;
         public static final int state=0x7f0c000c;
-        public static final int type=0x7f0c000d;
-        public static final int use=0x7f0c000e;
-        public static final int web=0x7f0c000f;
+        public static final int transfer=0x7f0c000d;
+        public static final int type=0x7f0c000e;
+        public static final int use=0x7f0c000f;
+        public static final int web=0x7f0c0010;
     }
     public static final class string {
         public static final int FatherChoice=0x7f0a0046;
@@ -1930,6 +1939,7 @@ containing a value of this type.
         public static final int addReasonName=0x7f0a0047;
         public static final int addReasonRank=0x7f0a004a;
         public static final int addType=0x7f0a001c;
+        public static final int aimtype=0x7f0a0055;
         public static final int allType=0x7f0a001a;
         public static final int app_name=0x7f0a0010;
         public static final int backup=0x7f0a0018;
@@ -1942,6 +1952,7 @@ containing a value of this type.
         public static final int debteeInput=0x7f0a002d;
         public static final int delType=0x7f0a001d;
         public static final int detail=0x7f0a0017;
+        public static final int from=0x7f0a0054;
         public static final int hello_world=0x7f0a0011;
         public static final int inOrOut=0x7f0a0021;
         public static final int inputNumber=0x7f0a0022;
@@ -1950,6 +1961,7 @@ containing a value of this type.
         public static final int inputUserName=0x7f0a0034;
         public static final int loginButton=0x7f0a0036;
         public static final int next=0x7f0a0030;
+        public static final int number=0x7f0a0056;
         public static final int rateTypeChoice=0x7f0a002f;
         public static final int reasonStateButton=0x7f0a003f;
         public static final int reasonSystem=0x7f0a0040;
@@ -1974,10 +1986,12 @@ containing a value of this type.
         public static final int title_activity_repay_debt=0x7f0a0032;
         public static final int title_activity_show_state=0x7f0a0019;
         public static final int title_activity_state=0x7f0a003a;
+        public static final int title_activity_transfer=0x7f0a0053;
         public static final int title_activity_type=0x7f0a001b;
         public static final int title_activity_use=0x7f0a0020;
         public static final int title_activity_web=0x7f0a004d;
         public static final int toWeb=0x7f0a0051;
+        public static final int transfer=0x7f0a0052;
         public static final int typeChage=0x7f0a0015;
         public static final int typeChoice=0x7f0a002c;
         public static final int updateDebt=0x7f0a0029;

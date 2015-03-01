@@ -67,5 +67,10 @@
     <string name="webON">网络开启</string>
     <string name="webOFF">网络关闭</string>
     <string name="toWeb">同步</string>
+    <string name="transfer">转移资金</string>
+    <string name="title_activity_transfer">TransferActivity</string>
+    <string name="from">来源类型</string>
+    <string name="aimtype">目标类型</string>
+    <string name="number">数目</string>
 
 </resources>

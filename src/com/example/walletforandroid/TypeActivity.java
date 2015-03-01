@@ -4,6 +4,7 @@ import logic.wallet.Money;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -12,7 +13,7 @@ import android.widget.EditText;
 
 public class TypeActivity extends Activity {
 
-	Button add,del,rename;
+	Button add,del,tran,rename;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -146,11 +147,20 @@ public class TypeActivity extends Activity {
 			    .show();
 			}
 		});
+		
+		tran.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent next=new Intent(TypeActivity.this,TransferActivity.class);
+				startActivity(next);
+			}
+		});
 	}
 
 	private void loadItem() {
 		add=(Button) this.findViewById(R.id.addType);
 		del=(Button) this.findViewById(R.id.delType);
+		tran=(Button) this.findViewById(R.id.transfer);
 		rename=(Button) this.findViewById(R.id.renameType);
 	}
 }

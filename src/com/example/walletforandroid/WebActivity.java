@@ -14,7 +14,6 @@ import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class WebActivity extends Activity {
 	
@@ -56,7 +55,8 @@ public class WebActivity extends Activity {
 	private String getIP(){
 		WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE); 
         WifiInfo info = wifiManager.getConnectionInfo();
-        String ans = Formatter.formatIpAddress(info.getIpAddress());
+        @SuppressWarnings("deprecation")
+		String ans = Formatter.formatIpAddress(info.getIpAddress());
         return ans;
 	}
 
