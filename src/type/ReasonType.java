@@ -36,7 +36,7 @@ public class ReasonType extends Type implements TypeInterface {
 	}
 	
 	public String getName(){
-		return this.name;
+		return new String(this.name);
 	}
 	
 	public double getIncome(){

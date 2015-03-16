@@ -90,9 +90,8 @@ public class RegisterActivity extends Activity {
 					return ;
 				}
 				
-				User user=new User();
-				if (!user.userExist(sname)){
-					user.addUser(sname, spass,tp);
+				if (!User.userExist(sname)){
+					User.addUser(sname, spass,tp);
 					new AlertDialog.Builder(RegisterActivity.this)
 					.setTitle("message")
 					.setMessage("ÓÃ»§ÒÑ×¢²á")

@@ -20,10 +20,10 @@ public class ExtraType implements TypeInterface {
 		this.message=message;
 	}
 	public String getTitle(){
-		return this.title;
+		return new String(this.title);
 	}
 	public String getMessage(){
-		return this.message;
+		return new String(this.message);
 	}
 
 	@Override

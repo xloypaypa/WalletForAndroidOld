@@ -3,7 +3,7 @@ package com.example.walletforandroid;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Vector;
@@ -81,11 +81,11 @@ public class DebtAddActivity extends Activity {
 				.setPositiveButton("х╥хо", new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
-						Calendar c=Calendar.getInstance();
+						Date c=new Date();
 						try {
 							SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
 							
-							c.setTime(df.parse(deadlinePreAns));
+							c.setTime(df.parse(deadlinePreAns).getTime());
 						} catch (ParseException e) {
 							new AlertDialog.Builder(DebtAddActivity.this)
 							.setTitle("error")

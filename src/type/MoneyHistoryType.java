@@ -3,9 +3,6 @@ package type;
 import java.text.DecimalFormat;
 import java.util.*;
 
-import org.afree.data.time.Second;
-import org.afree.data.time.TimeSeries;
-
 public class MoneyHistoryType extends Type {
 	String name; double value;
 	Vector <DetailType> history; 
@@ -38,16 +35,7 @@ public class MoneyHistoryType extends Type {
 		this.history.addElement(detail);
 	}
 	
-	public TimeSeries getMessage(){
-		TimeSeries ans=new TimeSeries(this.name);
-		for (int i=0;i<history.size();i++){
-			DetailType now=history.get(i);
-			ans.add(new Second(now.getTime().getTime()), Double.valueOf(now.getExtraMessage("history value")));
-		}
-		return ans;
-	}
-	
-	public double getValueBeforTime(Calendar time){
+	public double getValueBeforTime(Date time){
 		double ans=0;
 		for (int i=0;i<this.history.size();i++){
 			DetailType now=this.history.get(i);
@@ -57,12 +45,16 @@ public class MoneyHistoryType extends Type {
 		return ans;
 	}
 	
-	public Calendar getFisrtUse(){
-		return this.history.get(0).getTime();
+	public Date getFisrtUse(){
+		Date ans=new Date();
+		ans.setTime(this.history.get(0).getTime().getTime());
+		return ans;
 	}
 	
-	public Calendar getLastUse(){
-		return this.history.get(this.history.size()-1).getTime();
+	public Date getLastUse(){
+		Date ans=new Date();
+		ans.setTime(this.history.lastElement().getTime().getTime());
+		return ans;
 	}
 
 	private void changeAndSetValue(DetailType detail) {

@@ -14,7 +14,7 @@ public class Cost extends Wallet {
 		super.addDetail(dt);
 		typeAddValue(name, -val);
 	}
-	public void addChange(String name,double val,String reason,Calendar time){
+	public void addChange(String name,double val,String reason,Date time){
 		if (val==0) return ;
 		
 		DetailType dt = changeValueDetail(name, val, reason);
@@ -34,7 +34,7 @@ public class Cost extends Wallet {
 		typeAddValue(from, -val);
 		typeAddValue(to, val);
 	}
-	public void transfer(String from,String to,double val,Calendar time){
+	public void transfer(String from,String to,double val,Date time){
 		if (val==0) return ;
 		
 		DetailType dt = transferDetail(from, to, val);
@@ -53,6 +53,16 @@ public class Cost extends Wallet {
 		}else if (last.getEvent().equals("transfer")){
 			super.typeAddValue(last.getType(), -last.getValue());
 			super.typeAddValue(last.getExtraMessage("from type"), last.getValue());
+		}
+	}
+	
+	public void doDetail(DetailType now){
+		if (now.getEvent().equals("income")){
+			addChange(now.getType(), -now.getValue(), now.getReason(), now.getTime());
+		}else if (now.getEvent().equals("expenditure")){
+			addChange(now.getType(), now.getValue(), now.getReason(), now.getTime());
+		}else if (now.getEvent().equals("transfer")){
+			transfer(now.getExtraMessage("from type"), now.getType(), now.getValue(), now.getTime());
 		}
 	}
 	

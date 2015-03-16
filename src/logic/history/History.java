@@ -20,6 +20,11 @@ public class History extends User {
 		TreeReasonHistory.buildTree();
 	}
 	
+	public void releaseHistory(){
+		moneyhistory=new Vector<MoneyHistoryType>();
+		allReason=new Vector<ReasonType>();
+	}
+	
 	public Vector <MoneyHistoryType> getMoneyHistory(){
 		return moneyhistory;
 	}

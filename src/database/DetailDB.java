@@ -11,25 +11,11 @@ public class DetailDB extends DataBase {
 	}
 	public Vector <DetailType> loadDetail(){
 		Vector <DetailType> ans=new Vector <DetailType>();
-		
-		Vector <String> file=new Vector<String>();
-		file=HHD.readFile(aimPath, passWord);
-		
-		return solveDetail(ans, file);
-	}
-	public static Vector<DetailType> solveDetail(Vector<DetailType> ans,
-			Vector<String> file) {
-		Vector <String> message=new Vector<String>();
-		for (int i=0;i<file.size();i++){
-			if (file.get(i).equals("[end]")){
-				DetailType dt=new DetailType();
-				dt.solveTypeMessage(message);
-				ans.add(dt);
-			}else if (file.get(i).equals("[begin]")){
-				message=new Vector<String>();
-			}else{
-				message.add(file.get(i));
-			}
+		Vector <Vector <String>> all=this.loadFile();
+		for (int i=0;i<all.size();i++){
+			DetailType now=new DetailType();
+			now.solveTypeMessage(all.get(i));
+			ans.add(now);
 		}
 		return ans;
 	}

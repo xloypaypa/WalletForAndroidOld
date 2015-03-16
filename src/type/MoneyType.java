@@ -23,7 +23,7 @@ public class MoneyType extends Type implements TypeInterface {
 	}
 	
 	public String getType(){
-		return this.type;
+		return new String(this.type);
 	}
 	public double getValue(){
 		return this.value;

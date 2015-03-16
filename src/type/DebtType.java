@@ -9,47 +9,49 @@ public class DebtType extends Type implements TypeInterface {
 	protected int debtID;
 	protected String creditor;
 	protected double value;
-	protected Calendar deadline,startingTime,lastUpdateTime;
+	protected Date deadline,startingTime,lastUpdateTime;
 	protected RateType rate;
 	public DebtType(){
 		this.debtID=-1;
 		this.creditor=new String("null");
 		this.value=0;
-		this.deadline=null;
+		this.deadline=new Date();
 		this.rate=new RateType();
-		this.startingTime=Calendar.getInstance();
-		this.lastUpdateTime=Calendar.getInstance();
+		this.startingTime=new Date();
+		this.lastUpdateTime=new Date();
 	}
 	public DebtType(String debtee,double val){
 		this.debtID=-1;
 		this.creditor=new String(debtee);
 		this.value=val; this.rate=new RateType();
-		this.deadline=null;
-		this.startingTime=Calendar.getInstance();
-		this.lastUpdateTime=Calendar.getInstance();
+		this.deadline=new Date();
+		this.startingTime=new Date();
+		this.lastUpdateTime=new Date();
 	}
-	public DebtType(String debtee,double val,Calendar deadline){
+	public DebtType(String debtee,double val,Date deadline){
 		this.debtID=-1;
 		this.creditor=new String(debtee);
 		this.value=val; this.rate=new RateType();
-		this.deadline=deadline;
-		this.startingTime=Calendar.getInstance();
-		this.lastUpdateTime=Calendar.getInstance();
+		this.deadline=new Date();
+		this.deadline.setTime(deadline.getTime());
+		this.startingTime=new Date();
+		this.lastUpdateTime=new Date();
 	}
-	public DebtType(String debtee,double val,Calendar deadline,String type,double rate){
+	public DebtType(String debtee,double val,Date deadline,String type,double rate){
 		this.debtID=-1;
 		this.creditor=new String(debtee);
 		this.value=val; this.rate=new RateType(type, rate);
-		this.deadline=deadline;
-		this.startingTime=Calendar.getInstance();
-		this.lastUpdateTime=Calendar.getInstance();
+		this.deadline=new Date();
+		this.deadline.setTime(deadline.getTime());
+		this.startingTime=new Date();
+		this.lastUpdateTime=new Date();
 	}
 	
 	public void setRate(String type,double rate){
 		this.rate=new RateType(type, rate);
 	}
-	public void setDeadline(Calendar deadline){
-		this.deadline=deadline;
+	public void setDeadline(Date deadline){
+		this.deadline.setTime(deadline.getTime());
 	}
 	public void setValue(double val){
 		this.value=val;
@@ -61,13 +63,13 @@ public class DebtType extends Type implements TypeInterface {
 		this.debtID=id;
 	}
 	public void updateLastUpdateTime(){
-		this.lastUpdateTime=Calendar.getInstance();;
+		this.lastUpdateTime=new Date();
 	}
-	public void setLastUpdateTime(Calendar time){
-		this.lastUpdateTime=time;
+	public void setLastUpdateTime(Date time){
+		this.lastUpdateTime.setTime(time.getTime());
 	}
-	public void setStartingTime(Calendar val){
-		this.startingTime=val;
+	public void setStartingTime(Date val){
+		this.startingTime.setTime(val.getTime());
 	}
 	public String getCreditor(){
 		return this.creditor;
@@ -78,14 +80,20 @@ public class DebtType extends Type implements TypeInterface {
 	public double getValue(){
 		return this.value;
 	}
-	public Calendar getDeadline(){
-		return this.deadline;
+	public Date getDeadline(){
+		Date ans=new Date();
+		ans.setTime(this.deadline.getTime());
+		return ans;
 	}
-	public Calendar getStartingTime(){
-		return this.startingTime;
+	public Date getStartingTime(){
+		Date ans=new Date();
+		ans.setTime(this.startingTime.getTime());
+		return ans;
 	}
-	public Calendar getLastUpdateTime(){
-		return this.lastUpdateTime;
+	public Date getLastUpdateTime(){
+		Date ans=new Date();
+		ans.setTime(this.lastUpdateTime.getTime());
+		return ans;
 	}
 	public int getID(){
 		return this.debtID;
@@ -98,11 +106,10 @@ public class DebtType extends Type implements TypeInterface {
 		else return false;
 	}
 	public void repayment(double val){
-		Calendar now=Calendar.getInstance();
-		this.value=this.value*rate.finalRate(this.lastUpdateTime, now)-val;
+		this.value=this.value*rate.finalRate(this.lastUpdateTime, new Date())-val;
 		this.updateLastUpdateTime();
 	}
-	public void repayment(double val,Calendar time){
+	public void repayment(double val,Date time){
 		this.value=this.value*rate.finalRate(this.lastUpdateTime, time)-val;
 		this.setLastUpdateTime(time);
 	}
@@ -111,8 +118,7 @@ public class DebtType extends Type implements TypeInterface {
 		return this.value;
 	}
 	public void updateValue(){
-		Calendar now=Calendar.getInstance();
-		this.value=this.value*rate.finalRate(this.lastUpdateTime, now);
+		this.value=this.value*rate.finalRate(this.lastUpdateTime, new Date());
 		this.updateLastUpdateTime();
 	}
 	
@@ -160,9 +166,8 @@ public class DebtType extends Type implements TypeInterface {
 				try {
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					Date date=new Date();
-					this.startingTime=Calendar.getInstance();
 					date=sdf.parse(body);
-					this.startingTime.setTime(date);
+					this.startingTime.setTime(date.getTime());
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -170,9 +175,8 @@ public class DebtType extends Type implements TypeInterface {
 				try {
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					Date date=new Date();
-					this.lastUpdateTime=Calendar.getInstance();
 					date=sdf.parse(body);
-					this.lastUpdateTime.setTime(date);
+					this.lastUpdateTime.setTime(date.getTime());
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}
@@ -180,9 +184,8 @@ public class DebtType extends Type implements TypeInterface {
 				try {
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 					Date date=new Date();
-					this.deadline=Calendar.getInstance();
 					date=sdf.parse(body);
-					this.deadline.setTime(date);
+					this.deadline.setTime(date.getTime());
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}

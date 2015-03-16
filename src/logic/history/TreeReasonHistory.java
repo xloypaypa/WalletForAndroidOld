@@ -2,7 +2,6 @@ package logic.history;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Vector;
@@ -116,8 +115,43 @@ public class TreeReasonHistory extends ReasonHistory {
 		int pos=super.findReasonIndex(reason);
 		ReasonTreeNodeType rt=(ReasonTreeNodeType) allReason.get(pos);
 		
-		DetailType dt = getChangeDetail(rt, father, name);
+		DetailType dt = getChangeDetail(rt, name);
 		changeFather(reason, name,dt);
+		
+		dt.addExtra("to father", father);
+		dt.addExtra("to min", min+"");
+		dt.addExtra("to max", max+"");
+		dt.addExtra("to rank", rank+"");
+		
+		rt.setName(name);
+		rt.setFatherName(father);
+		rt.setMin(min);
+		rt.setMax(max);
+		rt.setRank(rank);
+		
+		
+		allDetail.addElement(dt);
+		new ReasonDB(username, passWord).updateReason(reason, rt);
+		new DetailDB(username, passWord).addDetail(dt);
+		
+		buildTree();
+	}
+	
+	public void changeReason(String reason, String father, String name, double min, double max, int rank,Date time){
+		if (!super.reasonExist(reason)) return ;
+		
+		int pos=super.findReasonIndex(reason);
+		ReasonTreeNodeType rt=(ReasonTreeNodeType) allReason.get(pos);
+		
+		DetailType dt = getChangeDetail(rt, name);
+		changeFather(reason, name,dt);
+		
+		dt.addExtra("to father", father);
+		dt.addExtra("to min", min+"");
+		dt.addExtra("to max", max+"");
+		dt.addExtra("to rank", rank+"");
+		
+		setDetailTime(time, dt);
 		
 		rt.setName(name);
 		rt.setFatherName(father);
@@ -156,12 +190,34 @@ public class TreeReasonHistory extends ReasonHistory {
 		rt.setFatherName(father);
 		rt.update();
 		
-		DetailType dt = getAddDetail(father, name, min, max);
+		DetailType dt = getAddDetail(rt);
 		
 		allDetail.addElement(dt);
 		allReason.addElement(rt);
 		new ReasonDB(username, passWord).addReason(rt);
 		new DetailDB(username, passWord).addDetail(dt);
+		
+		buildTree();
+	}
+	
+	public void addReason(String father, String name,double min, double max, int rank,Date time){
+		ReasonTreeNodeType rt=new ReasonTreeNodeType();
+		rt.setName(name);
+		rt.setMin(min);
+		rt.setMax(max);
+		rt.setRank(rank);
+		rt.setFatherName(father);
+		rt.update();
+		
+		DetailType dt = getAddDetail(rt);
+		setDetailTime(time, dt);
+		
+		allDetail.addElement(dt);
+		allReason.addElement(rt);
+		new ReasonDB(username, passWord).addReason(rt);
+		new DetailDB(username, passWord).addDetail(dt);
+		
+		buildTree();
 	}
 	
 	@Override
@@ -185,9 +241,26 @@ public class TreeReasonHistory extends ReasonHistory {
 			new ReasonDB(username, passWord).updateReason(last.getReason(), node);
 			solve(last,node.getName());
 		}else if (last.getEvent().equals("income")){
-			addExpenditure(last.getReason(), last.getValue());
+			addIncome(last.getReason(), -last.getValue());
 		}else if (last.getEvent().equals("expenditure")){
-			addExpenditure(last.getReason(), last.getValue());
+			addExpenditure(last.getReason(), -last.getValue());
+		}
+	}
+	
+	public void doDetail(DetailType now){
+		if (now.getEvent().equals("add reason tree node")){
+			addReason(now.getExtraMessage("past father"), now.getReason(), 
+					Double.valueOf(now.getExtraMessage("past min")), 
+					Double.valueOf(now.getExtraMessage("past max")), 
+					Integer.valueOf(now.getExtraMessage("past rank")),now.getTime());
+		}else if (now.getEvent().equals("delete reason")){
+			removeReason(now.getReason());
+		}else if (now.getEvent().equals("rename reason")){
+			changeReason(now.getExtraMessage("past name"), now.getExtraMessage("to father"), now.getReason(), Double.valueOf(now.getExtraMessage("to min")), Double.valueOf(now.getExtraMessage("to max")), Integer.valueOf(now.getExtraMessage("to rank")), now.getTime());
+		}else if (now.getEvent().equals("income")){
+			addIncome(now.getReason(), now.getValue());
+		}else if (now.getEvent().equals("expenditure")){
+			addExpenditure(now.getReason(), now.getValue());
 		}
 	}
 	
@@ -199,22 +272,19 @@ public class TreeReasonHistory extends ReasonHistory {
 			}
 		}
 	}
-
-	private DetailType getAddDetail(String father, String name, double min,
-			double max) {
+	
+	private DetailType getAddDetail(ReasonTreeNodeType rt) {
 		DetailType dt=new DetailType();
 		dt.setEvent("add reason tree node");
-		dt.setReason(name);
+		dt.setReason(rt.getName());
 		dt.setTime(new Date());
 		dt.setType("");
 		dt.setValue(0);
-		dt.addExtra("father", father);
-		dt.addExtra("min", min+"");
-		dt.addExtra("max", max+"");
+		saveTreeNode(rt, dt);
 		return dt;
 	}
 	
-	private DetailType getChangeDetail(ReasonTreeNodeType now, String father,
+	private DetailType getChangeDetail(ReasonTreeNodeType now,
 			String name) {
 		DetailType dt=new DetailType();
 		dt.setEvent("change reason tree node");
@@ -271,9 +341,9 @@ public class TreeReasonHistory extends ReasonHistory {
 		double min=Double.valueOf(last.getExtraMessage("past min"));
 		double max=Double.valueOf(last.getExtraMessage("past max"));
 		int rank=Integer.valueOf(last.getExtraMessage("past rank"));
-		Calendar update=Calendar.getInstance();
+		Date update=new Date();
 		try {
-			update.setTime(sdf.parse(last.getExtraMessage("past update")));
+			update.setTime(sdf.parse(last.getExtraMessage("past update")).getTime());
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

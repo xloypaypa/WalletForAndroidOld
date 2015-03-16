@@ -11,21 +11,11 @@ public class DebtDB extends DataBase {
 	}
 	public Vector <DebtType> loadDebt(){
 		Vector <DebtType> ans=new Vector<DebtType>();
-		
-		Vector <String> file=new Vector<String>();
-		file=HHD.readFile(aimPath, passWord);
-		
-		Vector <String> message=new Vector<String>();
-		for (int i=0;i<file.size();i++){
-			if (file.get(i).equals("[end]")){
-				DebtType now=new DebtType();
-				now.solveTypeMessage(message);
-				ans.add(now);
-			}else if (file.get(i).equals("[begin]")){
-				message=new Vector<String>();
-			}else{
-				message.add(file.get(i));
-			}
+		Vector <Vector<String>> all=this.loadFile();
+		for (int i=0;i<all.size();i++){
+			DebtType now=new DebtType();
+			now.solveTypeMessage(all.get(i));
+			ans.add(now);
 		}
 		return ans;
 	}

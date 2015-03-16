@@ -22,22 +22,48 @@ public class DataBase {
 		return this.aimPath;
 	}
 	
+	public Vector < Vector<String> > loadFile(){
+		Vector <String> file=HHD.readFile(aimPath, passWord);
+		return solveFile(file);
+	}
+	
+	public Vector < Vector<String> > loadNotEncryptedFile(){
+		Vector <String> file=HHD.readFile(aimPath);
+		return solveFile(file);
+	}
+	
 	public void addUser(UserMessage um){
 		HHD.addWriteFile(aimPath, um.getAllMessage());
 	}
 	
 	public Vector <UserMessage> loadAllUser(){
 		Vector <UserMessage> ans=new Vector <UserMessage>();
+		Vector <Vector <String>> file=this.loadNotEncryptedFile();
 		
-		Vector <String> file=new Vector<String>();
-		file=HHD.readFile(aimPath);
-		
+		for (int i=0;i<file.size();i++){
+			UserMessage mu=new UserMessage();
+			mu.solveTypeMessage(file.get(i));
+			ans.add(mu);
+		}
+		return ans;
+	}
+	
+	public static String getTypeMessage(Vector <String> message){
+		for (int i=0;i<message.size();i++){
+			if (message.get(i).equals("[type name]")){
+				return message.get(i+1);
+			}
+		}
+		return null;
+	}
+	
+	public Vector<Vector<String>> solveFile(Vector<String> file) {
+		Vector < Vector <String> > ans=new Vector<Vector<String>>();
 		Vector <String> message=new Vector<String>();
 		for (int i=0;i<file.size();i++){
 			if (file.get(i).equals("[end]")){
-				UserMessage mu=new UserMessage();
-				mu.solveTypeMessage(message);
-				ans.add(mu);
+				ans.add(message);
+				message=new Vector<String>();
 			}else if (file.get(i).equals("[begin]")){
 				message=new Vector<String>();
 			}else{
@@ -47,12 +73,7 @@ public class DataBase {
 		return ans;
 	}
 	
-	protected static String getTypeMessage(Vector <String> message){
-		for (int i=0;i<message.size();i++){
-			if (message.get(i).equals("[type name]")){
-				return message.get(i+1);
-			}
-		}
-		return null;
+	public void clean(){
+		HHD.cleanFile(aimPath);
 	}
 }

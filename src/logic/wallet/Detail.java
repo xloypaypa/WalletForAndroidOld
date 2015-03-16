@@ -39,13 +39,13 @@ public class Detail extends Wallet {
 				int pos=getAimType(now.getType(), ans);
 				DetailType tod=new DetailType();
 				tod.setEvent("transfer in"); tod.setValue(now.getValue()); tod.setType(now.getType());
-				tod.setTime(now.getTime().getTime());
+				tod.setTime(now.getTime());
 				ans.get(pos).addHistory(tod);
 				
 				DetailType fromd=new DetailType();
 				pos=getAimType(now.getExtraMessage("from type"), ans);
 				fromd.setEvent("transfer out"); fromd.setValue(now.getValue()); fromd.setType(now.getType());
-				fromd.setTime(now.getTime().getTime());
+				fromd.setTime(now.getTime());
 				ans.get(pos).addHistory(fromd);
 			}else{
 				int pos=getAimType(now.getType(),ans); if (pos==-1) continue;
@@ -58,6 +58,20 @@ public class Detail extends Wallet {
 	public void export(String path){
 		new DetailDB(username, passWord).exportTxt(path);
 	}
+	
+	public void importDetail(String path){
+		Vector <String> file=HHD.readFile(path);
+		Vector <DetailType> details=new Vector<DetailType>();
+		Vector <Vector <String>> message=new DataBase(username, passWord).solveFile(file);
+		for (int i=0;i<message.size();i++){
+			DetailType dt=new DetailType();
+			dt.solveTypeMessage(message.get(i));
+			details.addElement(dt);
+		}
+		solveDetail(details);
+	}
+	
+	
 	
 	public void pack(){
 		HHD.cleanFile(new DetailDB(username, passWord).getAimPath());
@@ -77,10 +91,27 @@ public class Detail extends Wallet {
 			now.setEvent("pack debt");
 			now.setType("");
 			now.setValue(allDebt.get(i).getValue());
-			now.setTime(allDebt.get(i).getLastUpdateTime().getTime());
+			now.setTime(allDebt.get(i).getLastUpdateTime());
 			now.addExtra("pack rate", allDebt.get(i).getRate().getRate()+"");
 			now.addExtra("pack rate type", allDebt.get(i).getRate().getType());
 			super.addDetail(now);
+		}
+	}
+	
+	public void sort(){
+		DetailType[] a = new DetailType[allDetail.size()];
+		allDetail.toArray(a);
+		Arrays.sort(a, 0, a.length, new Comparator<DetailType>(){
+			@Override
+			public int compare(DetailType o1, DetailType o2) {
+				if (o1.getTime().before(o2.getTime())) return -1;
+				else if (o1.getTime().after(o2.getTime())) return 1;
+				else return 0;
+			}
+		});
+		allDetail.removeAllElements();
+		for (int i=0;i<a.length;i++){
+			allDetail.addElement(a[i]);
 		}
 	}
 	

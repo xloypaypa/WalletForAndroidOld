@@ -7,7 +7,7 @@ public class Type implements TypeInterface {
 	Vector <ExtraType> extra=new Vector<ExtraType>();
 	
 	public Vector <ExtraType> getExtra(){
-		return extra;
+		return new Vector <ExtraType>(extra);
 	}
 	
 	public void addExtra(String title,String message){

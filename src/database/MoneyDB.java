@@ -12,21 +12,11 @@ public class MoneyDB extends DataBase {
 	
 	public Vector<MoneyType> loadUser(){
 		Vector <MoneyType> ans=new Vector <MoneyType>();
-		
-		Vector <String> file=new Vector<String>();
-		file=HHD.readFile(aimPath, passWord);
-		
-		Vector <String> message=new Vector<String>();
-		for (int i=0;i<file.size();i++){
-			if (file.get(i).equals("[end]")){
-				MoneyType mt=new MoneyType();
-				mt.solveTypeMessage(message);
-				ans.add(mt);
-			}else if (file.get(i).equals("[begin]")){
-				message=new Vector<String>();
-			}else{
-				message.add(file.get(i));
-			}
+		Vector <Vector <String>> all=this.loadFile();
+		for (int i=0;i<all.size();i++){
+			MoneyType now=new MoneyType();
+			now.solveTypeMessage(all.get(i));
+			ans.add(now);
 		}
 		return ans;
 	}

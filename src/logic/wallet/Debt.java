@@ -35,25 +35,24 @@ public class Debt extends Wallet {
 		}
 		return ans;
 	}
-	public void addDebt(String creditor,double value, Calendar deadline, String rateType, double rate, String moneyType){
+	public void addDebt(String creditor,double value, Date deadline, String rateType, double rate, String moneyType){
 		DebtType debt = addDebtWithoutStartingTime(creditor, value, deadline,rateType, rate);
-		DetailType detail = addDebtDetail(value, moneyType, rate, rateType, debt);
 		
-		Calendar nowTime=Calendar.getInstance(); nowTime.setTime(new Date());
+		debt.setStartingTime(new Date());
 		
-		debt.setStartingTime(nowTime);
-		super.setDetailTime(nowTime, detail);
+		DetailType detail = addDebtDetail(value, moneyType, debt);
+		super.setDetailTime(new Date(), detail);
 		
 		new DebtDB(username, passWord).addDebt(debt);
 		allDebt.addElement(debt);
 		super.addDetail(detail);
 		super.typeAddValue(moneyType, value);
 	}
-	public void addDebt(String creditor,double value, Calendar deadline, String rateType, double rate, String moneyType, Calendar time){
+	public void addDebt(String creditor,double value, Date deadline, String rateType, double rate, String moneyType, Date time){
 		DebtType debt = addDebtWithoutStartingTime(creditor, value, deadline,rateType, rate);
-		DetailType detail = addDebtDetail(value, moneyType, rate, rateType, debt);
-		
 		debt.setStartingTime(time);
+		
+		DetailType detail = addDebtDetail(value, moneyType, debt);
 		super.setDetailTime(time, detail);
 		
 		new DebtDB(username, passWord).addDebt(debt);
@@ -73,7 +72,7 @@ public class Debt extends Wallet {
 		super.addDetail(detail);
 		super.typeAddValue(typeName, -value);
 	}
-	public void repay(int debtID,double value,String typeName,Calendar time){
+	public void repay(int debtID,double value,String typeName,Date time){
 		DebtType debt=allDebt.get(super.findDebtIndex(debtID));
 		DetailType detail = repayDebtDetail(value, typeName, debt);
 		
@@ -93,7 +92,7 @@ public class Debt extends Wallet {
 		new DebtDB(username, passWord).deleteDebt(debtID);
 		allDebt.remove(super.findDebtIndex(debtID));
 	}
-	public void delete(int debtID,String reason,Calendar time){
+	public void delete(int debtID,String reason,Date time){
 		DetailType detail = deleteDebtDetail(debtID, reason);
 		
 		super.setDetailTime(time,detail);
@@ -112,7 +111,7 @@ public class Debt extends Wallet {
 	public void backup(DetailType last){
 		if (last.getEvent().equals("add debt")){
 			super.typeAddValue(last.getType(), -last.getValue());
-			int id=Integer.valueOf(last.getExtraMessage("debt id"));
+			int id=Integer.valueOf(last.getExtraMessage("past id"));
 			new DebtDB(username, passWord).deleteDebt(id);
 			allDebt.remove(super.findDebtIndex(id));
 		}else if (last.getEvent().equals("repay debt")){
@@ -131,9 +130,30 @@ public class Debt extends Wallet {
 			new DebtDB(username, passWord).addDebt(debt);
 		}
 	}
+	
+	public void doDetail(DetailType now){
+		if (now.getEvent().equals("add debt")){
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+			Calendar c=Calendar.getInstance();
+			try {
+				c.setTime(sdf.parse(now.getExtraMessage("past deadline")));
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
+			
+			new Debt().addDebt(now.getExtraMessage("past creditor"), now.getValue(), 
+					c.getTime(), now.getExtraMessage("past rate type"), 
+					Double.valueOf(now.getExtraMessage("past rate")), now.getType(), now.getTime());
+		}else if (now.getEvent().equals("repay debt")){
+			new Debt().repay(Integer.valueOf(now.getExtraMessage("past id")), now.getValue(), now.getType(), now.getTime());
+		}else if (now.getEvent().equals("delete debt")){
+			new Debt().delete(Integer.valueOf(now.getExtraMessage("past id")), now.getReason(), now.getTime());
+		}
+	}
+	
 	private DebtType solvePastDetail(DetailType last) {
 		DebtType debt=new DebtType();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
 		debt.setID(Integer.valueOf(last.getExtraMessage("past id")));
 		debt.setCreditor(last.getExtraMessage("past creditor"));
 		Calendar deadline=Calendar.getInstance();
@@ -146,27 +166,16 @@ public class Debt extends Wallet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		debt.setDeadline(deadline);
-		debt.setLastUpdateTime(lastUpdate);
+		debt.setDeadline(deadline.getTime());
+		debt.setLastUpdateTime(lastUpdate.getTime());
 		debt.setRate(last.getExtraMessage("past rate type"), Double.valueOf(last.getExtraMessage("past rate")));
-		debt.setStartingTime(starting);
+		debt.setStartingTime(starting.getTime());
 		debt.setValue(Double.valueOf(last.getExtraMessage("past value")));
 		return debt;
 	}
 	
-	private DetailType repayDebtDetail(double value, String typeName,
-			DebtType debt) {
-		DetailType detail=new DetailType();
-		
-		detail.setEvent("repay debt");
-		detail.setReason("");
-		detail.setType(typeName);
-		detail.setValue(value);
-		detailSaveDebt(debt, detail);
-		return detail;
-	}
 	private void detailSaveDebt(DebtType debt, DetailType detail) {
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
 		detail.addExtra("past id", debt.getID()+"");
 		detail.addExtra("past creditor", debt.getCreditor());
 		detail.addExtra("past value", debt.getValue()+"");
@@ -187,7 +196,7 @@ public class Debt extends Wallet {
 		return ans;
 	}
 	private DebtType addDebtWithoutStartingTime(String creditor, double value,
-			Calendar deadline, String rateType, double rate) {
+			Date deadline, String rateType, double rate) {
 		DebtType debt=new DebtType();
 		debt.setCreditor(creditor);
 		debt.setDeadline(deadline);
@@ -196,18 +205,28 @@ public class Debt extends Wallet {
 		debt.setValue(value);
 		return debt;
 	}
-	private DetailType addDebtDetail(double value, String moneyType, double rate, String rateType,
-			DebtType debt) {
+	
+	private DetailType addDebtDetail(double value, String moneyType, DebtType debt) {
 		DetailType detail=new DetailType();
 		detail.setEvent("add debt");
 		detail.setReason("");
 		detail.setType(moneyType);
 		detail.setValue(value);
-		detail.addExtra("debt id", debt.getID()+"");
-		detail.addExtra("debt rate", rate+"");
-		detail.addExtra("debt rate type", rateType);
+		detailSaveDebt(debt, detail);
 		return detail;
 	}
+	private DetailType repayDebtDetail(double value, String typeName,
+			DebtType debt) {
+		DetailType detail=new DetailType();
+		
+		detail.setEvent("repay debt");
+		detail.setReason("");
+		detail.setType(typeName);
+		detail.setValue(value);
+		detailSaveDebt(debt, detail);
+		return detail;
+	}
+	
 	private DetailType deleteDebtDetail(int debtID, String reason) {
 		DebtType debt=allDebt.get(super.findDebtIndex(debtID));
 		DetailType detail=new DetailType();

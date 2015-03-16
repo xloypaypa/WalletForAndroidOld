@@ -14,15 +14,14 @@ public class ReasonTreeNodeType extends ReasonType {
 	String fatherName;
 	int rank;
 	double dayMin,dayMax;
-	Calendar lastUpdateTime;
+	Date lastUpdateTime;
 	
 	public ReasonTreeNodeType(){
 		super();
 		this.fatherName=new String("root");
 		this.rank=0;
 		this.dayMin=0; this.dayMax=0;
-		this.lastUpdateTime=Calendar.getInstance();
-		
+		this.lastUpdateTime=new Date();
 		this.fatherPos=-1;
 		this.kidPos=new Vector<Integer>();
 	}
@@ -40,7 +39,7 @@ public class ReasonTreeNodeType extends ReasonType {
 		this.kidPos.removeAllElements();
 	}
 	public Vector <Integer> getKid(){
-		return this.kidPos;
+		return new Vector <Integer>(this.kidPos);
 	}
 	
 	public void setFatherName(String name){
@@ -55,11 +54,11 @@ public class ReasonTreeNodeType extends ReasonType {
 	public void setMax(double value){
 		this.dayMax=value;
 	}
-	public void setUpdateTime(Calendar time){
+	public void setUpdateTime(Date time){
 		this.lastUpdateTime.setTime(time.getTime());
 	}
 	public String getFather(){
-		return this.fatherName;
+		return new String(this.fatherName);
 	}
 	public int getRank(){
 		return this.rank;
@@ -70,19 +69,22 @@ public class ReasonTreeNodeType extends ReasonType {
 	public double getMax(){
 		return this.dayMax;
 	}
-	public Calendar getUpdateTime(){
-		return this.lastUpdateTime;
+	public Date getUpdateTime(){
+		Date ans=new Date();
+		ans.setTime(this.lastUpdateTime.getTime());
+		return ans;
 	}
 	
 	public void update(){
 		Calendar now=Calendar.getInstance();
-		now.setTime(new Date());
-		if(now.get(Calendar.YEAR)!=this.lastUpdateTime.get(Calendar.YEAR)){
+		Calendar last=Calendar.getInstance();
+		now.setTime(new Date()); last.setTime(lastUpdateTime);
+		if(now.get(Calendar.YEAR)!=last.get(Calendar.YEAR)){
 			this.expenditure=0;
-			this.lastUpdateTime=now;
-		}else if(now.get(Calendar.MONTH)!=this.lastUpdateTime.get(Calendar.MONTH)){
+			this.lastUpdateTime.setTime(now.getTime().getTime());
+		}else if(now.get(Calendar.MONTH)!=last.get(Calendar.MONTH)){
 			this.expenditure=0;
-			this.lastUpdateTime=now;
+			this.lastUpdateTime.setTime(now.getTime().getTime());
 		}
 	}
 	
@@ -123,7 +125,7 @@ public class ReasonTreeNodeType extends ReasonType {
 				this.fatherName=body;
 			}else if (title.equals("[node last update time]")){
 				try {
-					this.lastUpdateTime.setTime(sdf.parse(body));
+					this.lastUpdateTime.setTime(sdf.parse(body).getTime());
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}

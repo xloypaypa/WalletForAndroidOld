@@ -4,19 +4,19 @@ import java.text.*;
 import java.util.*;
 
 public class DetailType extends Type implements TypeInterface {
-	Calendar time;
+	Date time;
 	String event,reason,type;
 	double value;
 	
 	public DetailType() {
-		time = Calendar.getInstance();
+		time = new Date();
 		event = new String();
 		reason = new String();
 		type = new String();
 		value = 0;
 	}
 	public DetailType(DetailType other){
-		time = Calendar.getInstance();
+		time = new Date();
 		time.setTime(other.getTime().getTime());
 		event = new String(other.getEvent());
 		reason = new String(other.getReason());
@@ -25,7 +25,7 @@ public class DetailType extends Type implements TypeInterface {
 	}
 	
 	public void setTime(Date date){
-		time.setTime(date);
+		time.setTime(date.getTime());
 	}
 	public void setEvent(String event){
 		this.event = event;
@@ -39,17 +39,19 @@ public class DetailType extends Type implements TypeInterface {
 	public void setValue(double value){
 		this.value = value;
 	}
-	public Calendar getTime(){
-		return this.time;
+	public Date getTime(){
+		Date ans=new Date();
+		ans.setTime(this.time.getTime());
+		return ans;
 	}
 	public String getEvent(){
-		return this.event;
+		return new String(this.event);
 	}
 	public String getReason(){
-		return this.reason;
+		return new String(this.reason);
 	}
 	public String getType(){
-		return this.type;
+		return new String(this.type);
 	}
 	public double getValue(){
 		return this.value;
@@ -99,7 +101,7 @@ public class DetailType extends Type implements TypeInterface {
 			if (title.equals("[detail time]")){
 				try {
 					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					time.setTime(sdf.parse(body));
+					time.setTime(sdf.parse(body).getTime());
 				} catch (ParseException e) {
 					e.printStackTrace();
 				}

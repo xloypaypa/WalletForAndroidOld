@@ -91,10 +91,4 @@ public class Wallet extends User {
 		allMoney.get(index).setValue(allMoney.get(index).getValue()+val);
 		new MoneyDB(username, passWord).changeTypeVal(allMoney.get(index));
 	}
-	protected void setDetailTime(DetailType dt) {
-		dt.setTime(new Date());
-	}
-	protected void setDetailTime(Calendar time, DetailType dt) {
-		dt.setTime(time.getTime());
-	}
 }

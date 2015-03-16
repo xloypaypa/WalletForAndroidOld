@@ -27,13 +27,13 @@ public class RateType implements TypeInterface {
 	}
 	public String getType(){
 		if (type==null) return "null";
-		return type;
+		return new String(type);
 	}
 	public double getRate(){
 		return rate;
 	}
 	
-	public double finalRate(Calendar startingTime,Calendar terminalTime){
+	public double finalRate(Date st,Date tt){
 		if (type==null||type.equals("null")){
 			double ans=1+rate;
 			rate=0;
@@ -41,6 +41,9 @@ public class RateType implements TypeInterface {
 		}
 		int sy,ey,sm,em;
 		int dy,dm;
+		Calendar startingTime,terminalTime;
+		startingTime=Calendar.getInstance(); startingTime.setTime(st);
+		terminalTime=Calendar.getInstance(); terminalTime.setTime(tt);
 		sy=startingTime.get(Calendar.YEAR);
 		ey=terminalTime.get(Calendar.YEAR);
 		sm=startingTime.get(Calendar.MONTH);

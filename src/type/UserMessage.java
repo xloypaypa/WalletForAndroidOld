@@ -7,7 +7,7 @@ public class UserMessage extends Type implements TypeInterface {
 	public UserMessage(){
 		this.userName=new String();
 		this.passWord=new String();
-		this.userReason=new String();
+		this.userReason=new String("normal");
 	}
 	public UserMessage(String userName, String passWord, String userReason){
 		this.userName=new String(userName);
@@ -25,13 +25,13 @@ public class UserMessage extends Type implements TypeInterface {
 		this.userReason=new String(reason);
 	}
 	public String getName(){
-		return this.userName;
+		return new String(this.userName);
 	}
 	public String getPassWord(){
-		return this.passWord;
+		return new String(this.passWord);
 	}
 	public String getReason(){
-		return this.userReason;
+		return new String(this.userReason);
 	}
 	
 	@Override

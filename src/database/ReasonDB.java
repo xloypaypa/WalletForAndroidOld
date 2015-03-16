@@ -14,33 +14,16 @@ public class ReasonDB extends DataBase {
 	
 	public Vector <ReasonType> loadReason(){
 		Vector <ReasonType> ans=new Vector<ReasonType>();
-		
-		Vector <String> file=new Vector<String>();
-		file=HHD.readFile(aimPath, passWord);
-		
-		return solveReason(ans, file);
-	}
-	
-	public static Vector<ReasonType> solveReason(Vector<ReasonType> ans,
-			Vector<String> file) {
-		Vector <String> message=new Vector<String>();
-		for (int i=0;i<file.size();i++){
-			if (file.get(i).equals("[end]")){
-				ReasonType rt;
-				
-				if (getTypeMessage(message).equals("reason type")){
-					rt=new ReasonType();
-				}else{
-					rt=new ReasonTreeNodeType();
-				}
-				
-				rt.solveTypeMessage(message);
-				ans.add(rt);
-			}else if (file.get(i).equals("[begin]")){
-				message=new Vector<String>();
+		Vector <Vector <String>> all=this.loadFile();
+		for (int i=0;i<all.size();i++){
+			ReasonType rt;
+			if (getTypeMessage(all.get(i)).equals("reason type")){
+				rt=new ReasonType();
 			}else{
-				message.add(file.get(i));
+				rt=new ReasonTreeNodeType();
 			}
+			rt.solveTypeMessage(all.get(i));
+			ans.add(rt);
 		}
 		return ans;
 	}

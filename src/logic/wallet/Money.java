@@ -24,7 +24,7 @@ public class Money extends Wallet {
 		new MoneyDB(username, passWord).addNewType(typeName);
 	}
 	
-	public void addType(String typeName,Calendar time){
+	public void addType(String typeName,Date time){
 		MoneyType money = createType(typeName);
 		
 		DetailType detail = addTypeDetail(typeName);
@@ -46,7 +46,7 @@ public class Money extends Wallet {
 		super.addDetail(detail);
 		new MoneyDB(username, passWord).changeTypeName(pastName, newName);
 	}
-	public void renameType(String pastName,String newName,Calendar time){
+	public void renameType(String pastName,String newName,Date time){
 		int index=super.findMoneyIndex(pastName);
 		MoneyType money=allMoney.get(index);
 		money.setType(newName);
@@ -67,7 +67,7 @@ public class Money extends Wallet {
 		allMoney.remove(super.findMoneyIndex(typeName));
 		new MoneyDB(username, passWord).removeType(typeName);
 	}
-	public void removeType(String typeName,Calendar time){
+	public void removeType(String typeName,Date time){
 		DetailType detail = removeTypeDetail(typeName,allMoney.get(super.findMoneyIndex(typeName)).getValue());
 		
 		super.setDetailTime(time,detail);
@@ -92,6 +92,16 @@ public class Money extends Wallet {
 		}else if (last.getEvent().equals("add money type")){
 			allMoney.remove(super.findMoneyIndex(last.getType()));
 			new MoneyDB(username, passWord).removeType(last.getType());
+		}
+	}
+	
+	public void doDetail(DetailType now){
+		if (now.getEvent().equals("add money type")){
+			new Money().addType(now.getType(), now.getTime());
+		}else if (now.getEvent().equals("rename type")){
+			new Money().renameType(now.getExtraMessage("past name"), now.getType(), now.getTime());
+		}else if (now.getEvent().equals("remvoe type")){
+			new Money().removeType(now.getType(), now.getTime());
 		}
 	}
 	

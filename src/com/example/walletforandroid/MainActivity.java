@@ -48,8 +48,7 @@ public class MainActivity extends Activity {
 		Vector <String> root=HHD.readFile("/storage/sdcard0/Wallet/wallet root file.txt");
 		DataBase.Root=root.get(0);
 		
-		User user=new User();
-		user.loadUser();
+		User.loadUser();
 	}
 
 	private void loadAction() {
@@ -60,9 +59,8 @@ public class MainActivity extends Activity {
 				sname=name.getText().toString();
 				spass=pass.getText().toString();
 				
-				User user=new User();
-				if (user.checkUser(sname, spass)){
-					loginAction(sname, spass, user);
+				if (User.checkUser(sname, spass)){
+					loginAction(sname, spass);
 				}else{
 					new AlertDialog.Builder(MainActivity.this)
 					.setTitle("message")
@@ -91,8 +89,8 @@ public class MainActivity extends Activity {
 		pass=(EditText) this.findViewById(R.id.passwordInput);
 	}
 	
-	public void loginAction(String name, String pass, User user) {
-		user.login(name, pass);
+	public void loginAction(String name, String pass) {
+		User.login(name, pass);
 		
 		Wallet wallet=new Wallet();
 		History history=new History();
