@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <Switch
+        android:id="@+id/setting_action_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/web_switch"
+        android:textOff="@string/web_off"
+        android:textOn="@string/web_on" />
+
+    <TextView
+        android:id="@+id/web_ip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/web_ip" />
+
+    <TextView
+        android:id="@+id/web_port"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/web_port" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/setting_type" />
+
+    <Button
+        android:id="@+id/setting_action_add"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="@string/type_action_add_type" />
+
+    <Button
+        android:id="@+id/setting_action_rename"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="@string/type_action_rename_type" />
+
+    <Button
+        android:id="@+id/setting_action_remove"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="@string/type_action_rename_type" />
+
+</LinearLayout>

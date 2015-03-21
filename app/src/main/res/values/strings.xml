@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">WalletForAndroid</string>
+
+    <string name="title_name">Wallet</string>
+    <string name="title_status">status</string>
+    <string name="title_debt">debt</string>
+    <string name="title_detail">detail</string>
+    <string name="title_reason">reason</string>
+    <string name="title_setting">setting</string>
+
+    <string name="user_name">user name</string>
+    <string name="user_password">password</string>
+    <string name="user_repeat_password">repeat</string>
+
+    <string name="user_login">login</string>
+    <string name="user_register">register</string>
+    <string name="user_type">user type</string>
+    <string name="user_cancel">back</string>
+
+    <string name="back_up">back up</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="status_type">money type</string>
+    <string name="status_type_value">value</string>
+
+    <string name="status_action_use">use money</string>
+    <string name="status_action_transfer">transfer money</string>
+
+    <string name="type_action_add_type">add money type</string>
+    <string name="type_action_rename_type">rename money type</string>
+    <string name="type_action_remove_type">remove money type</string>
+
+    <string name="type_name">name</string>
+    <string name="type_new_name">new name</string>
+
+    <string name="debt_id">id</string>
+    <string name="debt_creditor">creditor</string>
+    <string name="debt_value">value</string>
+    <string name="debt_deadline">deadline</string>
+
+    <string name="debt_action_add">add debt</string>
+    <string name="debt_action_repay">repay</string>
+
+    <string name="detail_time">time</string>
+    <string name="detail_event">event</string>
+    <string name="detail_type">type</string>
+    <string name="detail_value">value</string>
+    <string name="detail_reason">reason</string>
+
+    <string name="reason_name">name</string>
+    <string name="reason_income">income</string>
+    <string name="reason_expenditure">expenditure</string>
+
+    <string name="reason_father">father</string>
+    <string name="reason_min">min</string>
+    <string name="reason_max">max</string>
+    <string name="reason_rank">rank</string>
+
+    <string name="reason_action_add">add</string>
+    <string name="reason_action_rename">rename</string>
+    <string name="reason_action_remove">remove</string>
+
+    <string name="use_action_type">money type</string>
+    <string name="use_action_income">income</string>
+    <string name="use_action_expenditure">expenditure</string>
+    <string name="use_action_value">value</string>
+    <string name="use_action_reason">reason</string>
+    <string name="use_action_in_out">income/expenditure</string>
+
+    <string name="transfer_from_type">from type</string>
+    <string name="transfer_to_type">to type</string>
+    <string name="transfer_value">value</string>
+
+    <string name="add_debt_type">money type</string>
+    <string name="add_debt_creditor">creditor</string>
+    <string name="add_debt_value">value</string>
+    <string name="add_debt_deadline">deadline</string>
+    <string name="add_debt_rate">rate</string>
+    <string name="add_debt_rate_type">rate type</string>
+
+    <string name="repay_debt_type">type</string>
+    <string name="repay_debt_id">id</string>
+    <string name="repay_debt_value">value</string>
+
+    <string name="tree_reason_father">father</string>
+    <string name="tree_reason_name">name</string>
+    <string name="tree_reason_new_name">new name</string>
+    <string name="tree_reason_min">min expenditure</string>
+    <string name="tree_reason_max">max expenditure</string>
+    <string name="tree_reason_rank">rank</string>
+
+    <string name="web_switch">web switch</string>
+    <string name="web_on">web on</string>
+    <string name="web_off">web off</string>
+    <string name="web_ip">ip</string>
+    <string name="web_port">port</string>
+    <string name="setting_type">type setting</string>
+</resources>
