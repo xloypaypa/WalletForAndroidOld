@@ -16,10 +16,13 @@ import android.widget.TextView;
 
 import java.util.Vector;
 
+import Action.ReasonAddAction;
 import Action.ReasonRemoveAction;
+import Action.ReasonRenameAction;
 import Action.TreeReasonAddAction;
 import Action.TreeReasonRenameAction;
 import interfaceTool.DataLoader;
+import logic.User;
 import logic.history.ReasonHistory;
 import type.ReasonType;
 
@@ -37,7 +40,12 @@ public class ReasonFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		loadItem();
-		loadTreeAction();
+        if (User.userReason.equals("tree")){
+            loadTreeAction();
+        }else{
+            loadNormalAction();
+        }
+
 		loadData();
 	}
 
@@ -55,8 +63,10 @@ public class ReasonFragment extends Fragment {
 
             normal.addView(row);
         }
-		
-		loadTree();
+
+        if (User.userReason.equals("tree")){
+            loadTree();
+        }
 	}
 	
 	private void loadTree(){
@@ -64,6 +74,66 @@ public class ReasonFragment extends Fragment {
 		fragmentManager.beginTransaction()
 		.replace(R.id.reason_tree_container, new ReasonTreeFragment()).commit();
 	}
+
+    private void loadNormalAction(){
+        add.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActionDialog ad=new ActionDialog();
+                ad.setActivity(ReasonFragment.this.getActivity());
+                ad.setLayout(R.layout.add_reason_action_layout);
+                ad.setTitle("add reason");
+                ad.build();
+
+                EditText name= (EditText) ad.getView().findViewById(R.id.add_reason_action_name);
+
+                ad.setPositiveButton("submit", new ReasonAddAction(ad.getView().getContext(),name));
+                ad.setNegativeButton("cancel", null);
+                ad.create();
+                ad.show();
+            }
+        });
+        rename.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActionDialog ad=new ActionDialog();
+                ad.setActivity(ReasonFragment.this.getActivity());
+                ad.setLayout(R.layout.rename_reason_action);
+                ad.setTitle("rename reason");
+                ad.build();
+
+                Spinner past= (Spinner) ad.getView().findViewById(R.id.rename_reason_action_type);
+                EditText name= (EditText) ad.getView().findViewById(R.id.rename_reason_action_name);
+
+                DataLoader.loadAllReason(ad.getView().getContext(), past);
+
+                ad.setPositiveButton("submit", new ReasonRenameAction(ad.getView().getContext(),past,name));
+                ad.setNegativeButton("cancel", null);
+                ad.create();
+                ad.show();
+            }
+        });
+
+        remove.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ActionDialog ad=new ActionDialog();
+                ad.setActivity(ReasonFragment.this.getActivity());
+                ad.setLayout(R.layout.remove_tree_reason_action_layout);
+                ad.setTitle("remove reason");
+                ad.build();
+
+                Spinner name= (Spinner) ad.getView().findViewById(R.id.remove_tree_reason_action_name);
+
+                DataLoader.loadAllReason(ad.getView().getContext(),name);
+
+                ad.setPositiveButton("submit", new ReasonRemoveAction(ad.getView().getContext(),name));
+                ad.setNegativeButton("cancel", null);
+                ad.create();
+                ad.show();
+            }
+        });
+    }
 
 	private void loadTreeAction() {
 		add.setOnClickListener(new OnClickListener() {
@@ -98,7 +168,7 @@ public class ReasonFragment extends Fragment {
 				ad.setTitle("rename reason");
 				ad.build();
 
-                Spinner past= (Spinner) ad.getView().findViewById(R.id.rename_type_action_name);
+                Spinner past= (Spinner) ad.getView().findViewById(R.id.rename_tree_reason_action_name);
                 Spinner father= (Spinner) ad.getView().findViewById(R.id.rename_tree_reason_action_father);
                 EditText name= (EditText) ad.getView().findViewById(R.id.rename_tree_reason_action_new_name);
                 EditText min= (EditText) ad.getView().findViewById(R.id.rename_tree_reason_action_min);
