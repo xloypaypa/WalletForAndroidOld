@@ -1,5 +1,7 @@
 package com.example.lt.walletforandroid;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.support.v7.app.ActionBarActivity;
 import android.app.Activity;
 import android.support.v7.app.ActionBar;
@@ -276,10 +278,21 @@ public class NavigationDrawerFragment extends Fragment {
         }
 
         if (item.getItemId() == R.id.action_example) {
-            new User().backup();
-            Toast.makeText(getActivity(), "back.up success", Toast.LENGTH_SHORT)
+            new AlertDialog.Builder(this.getActivity())
+                    .setTitle("message")
+                    .setMessage("Are you sure?")
+                    .setPositiveButton("ok",new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            new User().backup();
+                            Toast.makeText(getActivity(), "back.up success", Toast.LENGTH_SHORT)
+                                    .show();
+                            MainActivity.repaint();
+                        }
+                    })
+                    .setNegativeButton("cancel",null)
                     .show();
-            MainActivity.repaint();
+
             return true;
         }
 

@@ -70,7 +70,7 @@ public class ReasonFragment extends Fragment {
 	}
 	
 	private void loadTree(){
-		FragmentManager fragmentManager=this.getActivity().getSupportFragmentManager();
+		FragmentManager fragmentManager=this.getChildFragmentManager();
 		fragmentManager.beginTransaction()
 		.replace(R.id.reason_tree_container, new ReasonTreeFragment()).commit();
 	}

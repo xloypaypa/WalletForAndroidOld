@@ -195,6 +195,8 @@ public class MainActivity extends ActionBarActivity implements
                     User.login(s1, s2);
                     onSectionAttached(1);
                     lgad.getDialog().dismiss();
+                    StatusChartFragment.canDraw=true;
+                    StatusChartFragment.draw();
                 }else{
                     Toast.makeText(MainActivity.this, "user name or password wrong!", Toast.LENGTH_SHORT).show();
                 }
@@ -226,9 +228,9 @@ public class MainActivity extends ActionBarActivity implements
             case 1:
                 mTitle = getString(R.string.title_status);
                 pos=1;
-                StatusFragment sf=new StatusFragment();
+                StatusPageFragment spf=new StatusPageFragment();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, sf).commit();
+                        .replace(R.id.container, spf).commit();
                 break;
             case 2:
                 mTitle = getString(R.string.title_debt);
@@ -247,9 +249,10 @@ public class MainActivity extends ActionBarActivity implements
             case 4:
                 mTitle = getString(R.string.title_reason);
                 pos=4;
-                ReasonFragment rf=new ReasonFragment();
+//                ReasonFragment rf=new ReasonFragment();
+                ReasonPageFragment rp=new ReasonPageFragment();
                 fragmentManager.beginTransaction()
-                        .replace(R.id.container, rf).commit();
+                        .replace(R.id.container, rp).commit();
                 break;
             case 5:
                 mTitle = getString(R.string.title_setting);

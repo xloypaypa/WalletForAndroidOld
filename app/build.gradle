@@ -7,7 +7,7 @@ android {
         applicationId "com.example.lt.walletforandroid"
         minSdkVersion 15
         targetSdkVersion 22
-        versionName '1.4.0'
+        versionName '1.4.1'
         versionCode 1
     }
     buildTypes {
