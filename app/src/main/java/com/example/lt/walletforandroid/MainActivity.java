@@ -182,8 +182,8 @@ public class MainActivity extends ActionBarActivity implements
                                  final ActionDialog rgad) {
         Button login=(Button) lgad.getView().findViewById(R.id.user_action_login);
         Button register=(Button) lgad.getView().findViewById(R.id.user_action_register);
-        final TextView name=(TextView) lgad.getView().findViewById(R.id.register_action_name);
-        final TextView pass=(TextView) lgad.getView().findViewById(R.id.register_action_password);
+        final TextView name=(TextView) lgad.getView().findViewById(R.id.login_action_name);
+        final TextView pass=(TextView) lgad.getView().findViewById(R.id.login_action_password);
 
         login.setOnClickListener(new OnClickListener() {
             @Override
@@ -193,6 +193,7 @@ public class MainActivity extends ActionBarActivity implements
                 s2=pass.getText().toString();
                 if (User.checkUser(s1, s2)){
                     User.login(s1, s2);
+                    Toast.makeText(MainActivity.this, "success", Toast.LENGTH_SHORT).show();
                     onSectionAttached(1);
                     lgad.getDialog().dismiss();
                     StatusChartFragment.canDraw=true;

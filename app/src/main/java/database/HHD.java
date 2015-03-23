@@ -239,4 +239,26 @@ public class HHD {
 		File file=new File(path);
 		return file.length();
 	}
+
+    public static void deleteFile(String path){
+        File file=new File(path);
+        file.delete();
+    }
+
+    public static void deleteFolder(String path){
+        File file=new File(path);
+        if (file.isFile()){
+            deleteFile(path);
+        }else{
+            File[] kid=file.listFiles();
+            for (int i=0;i<kid.length;i++){
+                if (kid[i].isFile()){
+                    deleteFile(kid[i].getPath());
+                }else{
+                    deleteFolder(kid[i].getPath());
+                }
+            }
+        }
+        file.delete();
+    }
 }
