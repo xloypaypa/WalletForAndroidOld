@@ -18,6 +18,11 @@ public class TestCase extends ActivityInstrumentationTestCase2<MainActivity> {
     protected static Activity activity;
     protected static Solo solo;
 
+    public static void submit(){
+        solo.clickOnButton("submit");
+        solo.waitForDialogToClose();
+    }
+
     @Override
     public void setUp() throws Exception {
         super.setUp();

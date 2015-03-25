@@ -36,11 +36,18 @@ public class TransferAction implements DialogInterface.OnClickListener {
 
         try{
             val=Double.valueOf(value.getText().toString());
-            user.transfer(from.getSelectedItem().toString(), to.getSelectedItem().toString(), val);
-            Toast.makeText(context, "transfer saved!", Toast.LENGTH_SHORT).show();
-            MainActivity.repaint();
         }catch(NumberFormatException error){
             Toast.makeText(context, "please input number!", Toast.LENGTH_SHORT).show();
+            return ;
         }
+
+        if (user.getMoney(from.getSelectedItem().toString())<val){
+            Toast.makeText(context, "don't have enough money!", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
+        user.transfer(from.getSelectedItem().toString(), to.getSelectedItem().toString(), val);
+        Toast.makeText(context, "transfer saved!", Toast.LENGTH_SHORT).show();
+        MainActivity.repaint();
     }
 }

@@ -4,6 +4,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.lt.walletforandroid.reasonTest.ReasonTest;
+import com.example.lt.walletforandroid.settingTest.SettingTest;
+import com.example.lt.walletforandroid.settingTest.TypeAddTest;
 import com.example.lt.walletforandroid.userTest.LoginTest;
 import com.example.lt.walletforandroid.baseTool.MainPageTest;
 import com.example.lt.walletforandroid.R;

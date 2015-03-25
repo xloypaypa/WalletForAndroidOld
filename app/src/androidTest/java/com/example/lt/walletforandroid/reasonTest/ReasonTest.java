@@ -37,11 +37,6 @@ public class ReasonTest extends TestCase {
         solo.waitForDialogToOpen();
     }
 
-    public static void submit(){
-        solo.clickOnButton("submit");
-        solo.waitForDialogToClose();
-    }
-
     public static void checkNormalCell(int row,String name,double income,double expenditure){
         TableLayout table= (TableLayout) solo.getView(R.id.reason_normal_table);
         TableRow cell= (TableRow) table.getChildAt(row);
