@@ -15,13 +15,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <Switch
-        android:id="@+id/use_action_in_or_out"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checked="false"
-        android:textOff="@string/use_action_expenditure"
-        android:textOn="@string/use_action_income" />
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/use_action_expenditure"
+            android:id="@+id/use_action_expenditure"
+            android:checked="true"
+            android:clickable="false" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/use_action_income"
+            android:id="@+id/use_action_income"
+            android:clickable="false" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/web_ip"

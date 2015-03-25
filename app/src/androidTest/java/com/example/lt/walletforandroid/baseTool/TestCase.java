@@ -1,8 +1,9 @@
-package com.example.lt.walletforandroid;
+package com.example.lt.walletforandroid.baseTool;
 
 import android.app.Activity;
 import android.test.ActivityInstrumentationTestCase2;
 
+import com.example.lt.walletforandroid.MainActivity;
 import com.robotium.solo.Solo;
 
 /**
@@ -14,8 +15,8 @@ public class TestCase extends ActivityInstrumentationTestCase2<MainActivity> {
         super(MainActivity.class);
     }
 
-    static Activity activity;
-    static Solo solo;
+    protected static Activity activity;
+    protected static Solo solo;
 
     @Override
     public void setUp() throws Exception {

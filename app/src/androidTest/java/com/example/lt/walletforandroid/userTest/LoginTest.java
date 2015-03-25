@@ -1,6 +1,10 @@
-package com.example.lt.walletforandroid;
+package com.example.lt.walletforandroid.userTest;
 
 import android.support.v4.view.ViewPager;
+
+import com.example.lt.walletforandroid.R;
+import com.example.lt.walletforandroid.baseTool.TestCase;
+import com.example.lt.walletforandroid.userTest.RegisterTest;
 
 /**
  * Created by LT on 2015/3/23.
@@ -38,7 +42,7 @@ public class LoginTest extends TestCase {
     }
 
     public static void createUserAndLogin(){
-        RegisterTest.register("name","pass","tree");
+        RegisterTest.register("name", "pass", "tree");
         login("name","pass");
     }
 

@@ -1,6 +1,9 @@
-package com.example.lt.walletforandroid;
+package com.example.lt.walletforandroid.reasonTest;
 
-import android.widget.Spinner;
+import com.example.lt.walletforandroid.R;
+import com.example.lt.walletforandroid.baseTool.TestCase;
+
+import junit.framework.Assert;
 
 /**
  * Created by LT on 2015/3/23.
@@ -9,32 +12,31 @@ import android.widget.Spinner;
 public class ReasonAddTest extends ReasonTest {
 
     public static void setFather(int index){
-        solo.pressSpinnerItem(0, index);
+        TestCase.solo.pressSpinnerItem(0, index);
     }
 
     public static void enterName(String name){
-        solo.clearEditText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_name));
-        solo.enterText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_name),name);
+        TestCase.solo.clearEditText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_name));
+        TestCase.solo.enterText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_name),name);
     }
 
     public static void enterMin(String min){
-        solo.clearEditText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_min));
-        solo.enterText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_min),min);
+        TestCase.solo.clearEditText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_min));
+        TestCase.solo.enterText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_min),min);
     }
 
     public static void enterMax(String max){
-        solo.clearEditText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_max));
-        solo.enterText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_max),max);
+        TestCase.solo.clearEditText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_max));
+        TestCase.solo.enterText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_max),max);
     }
 
     public static void enterRank(String rank){
-        solo.clearEditText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_rank));
-        solo.enterText((android.widget.EditText) solo.getView(R.id.add_tree_reason_action_rank),rank);
+        TestCase.solo.clearEditText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_rank));
+        TestCase.solo.enterText((android.widget.EditText) TestCase.solo.getView(R.id.add_tree_reason_action_rank),rank);
     }
 
     public static void addReason(){
-        solo.clickOnButton("submit");
-        solo.waitForDialogToClose();
+        submit();
     }
 
     public static void addReason(int father,String name,String min,String max,String rank){
@@ -60,8 +62,8 @@ public class ReasonAddTest extends ReasonTest {
         enterMin("1");
         enterMax("2");
         enterRank("3");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("please input name"));
+        TestCase.solo.clickOnButton("submit");
+        Assert.assertTrue(TestCase.solo.waitForText("please input name"));
     }
 
     public void testBadName(){
@@ -71,8 +73,8 @@ public class ReasonAddTest extends ReasonTest {
         enterMin("1");
         enterMax("2");
         enterRank("3");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("Please don't use '['"));
+        TestCase.solo.clickOnButton("submit");
+        Assert.assertTrue(TestCase.solo.waitForText("Please don't use '['"));
     }
 
     public void testRootName(){
@@ -82,8 +84,8 @@ public class ReasonAddTest extends ReasonTest {
         enterMin("1");
         enterMax("2");
         enterRank("3");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("This reason have exist!"));
+        TestCase.solo.clickOnButton("submit");
+        Assert.assertTrue(TestCase.solo.waitForText("This reason have exist!"));
     }
 
     public void testExistName(){
@@ -97,8 +99,8 @@ public class ReasonAddTest extends ReasonTest {
         enterMin("1");
         enterMax("2");
         enterRank("3");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("This reason have exist!"));
+        TestCase.solo.clickOnButton("submit");
+        Assert.assertTrue(TestCase.solo.waitForText("This reason have exist!"));
     }
 
     public void testNumberError(){
@@ -108,8 +110,8 @@ public class ReasonAddTest extends ReasonTest {
         enterMin("a");
         enterMax("b");
         enterRank("c");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("please input number!"));
+        TestCase.solo.clickOnButton("submit");
+        Assert.assertTrue(TestCase.solo.waitForText("please input number!"));
     }
 
     public void testBigRankAndFatherChoose(){
@@ -129,8 +131,8 @@ public class ReasonAddTest extends ReasonTest {
         enterMin("-1");
         enterMax("0");
         enterRank("0");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("value should be more than zero."));
+        TestCase.solo.clickOnButton("submit");
+        Assert.assertTrue(TestCase.solo.waitForText("value should be more than zero."));
 
         ReasonTest.toAdd();
         setFather(0);
@@ -138,7 +140,7 @@ public class ReasonAddTest extends ReasonTest {
         enterMin("2");
         enterMax("1");
         enterRank("0");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("min expenditure should be lower than the max."));
+        TestCase.solo.clickOnButton("submit");
+        Assert.assertTrue(TestCase.solo.waitForText("min expenditure should be lower than the max."));
     }
 }

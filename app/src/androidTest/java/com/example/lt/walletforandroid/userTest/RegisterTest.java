@@ -1,8 +1,8 @@
-package com.example.lt.walletforandroid;
+package com.example.lt.walletforandroid.userTest;
 
-import android.test.ActivityInstrumentationTestCase2;
+import com.example.lt.walletforandroid.R;
+import com.example.lt.walletforandroid.baseTool.TestCase;
 
-import database.HHD;
 import logic.User;
 
 /**

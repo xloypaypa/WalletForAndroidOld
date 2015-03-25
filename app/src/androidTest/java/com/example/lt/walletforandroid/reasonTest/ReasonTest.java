@@ -1,8 +1,13 @@
-package com.example.lt.walletforandroid;
+package com.example.lt.walletforandroid.reasonTest;
 
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.example.lt.walletforandroid.userTest.LoginTest;
+import com.example.lt.walletforandroid.baseTool.MainPageTest;
+import com.example.lt.walletforandroid.R;
+import com.example.lt.walletforandroid.baseTool.TestCase;
 
 /**
  * Created by LT on 2015/3/23.
@@ -30,6 +35,11 @@ public class ReasonTest extends TestCase {
     public static void toRemove(){
         solo.clickOnButton("remove");
         solo.waitForDialogToOpen();
+    }
+
+    public static void submit(){
+        solo.clickOnButton("submit");
+        solo.waitForDialogToClose();
     }
 
     public static void checkNormalCell(int row,String name,double income,double expenditure){
@@ -66,5 +76,10 @@ public class ReasonTest extends TestCase {
         assertEquals(r,rank);
         assertEquals(i,min,1e-8);
         assertEquals(a,max,1e-8);
+    }
+
+    public static int getReasonCount(){
+        TableLayout table= (TableLayout) solo.getView(R.id.reason_normal_table);
+        return table.getChildCount();
     }
 }

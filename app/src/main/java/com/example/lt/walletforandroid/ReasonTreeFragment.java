@@ -28,7 +28,6 @@ public class ReasonTreeFragment extends Fragment {
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
 		loadItem();
-		loadAction();
 		loadData();
 	}
 
@@ -52,11 +51,6 @@ public class ReasonTreeFragment extends Fragment {
 
             status.addView(row);
         }
-	}
-
-	private void loadAction() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	private void loadItem() {

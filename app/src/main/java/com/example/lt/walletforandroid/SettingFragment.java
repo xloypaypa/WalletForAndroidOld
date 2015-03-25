@@ -26,6 +26,7 @@ import android.widget.Toast;
 import Action.TypeAddAction;
 import Action.TypeRemoveAction;
 import Action.TypeRnameAction;
+import interfaceTool.DataLoader;
 import logic.User;
 
 public class SettingFragment extends Fragment {
@@ -112,6 +113,8 @@ public class SettingFragment extends Fragment {
                 Spinner past= (Spinner) ad.getView().findViewById(R.id.rename_type_action_name);
                 EditText name= (EditText) ad.getView().findViewById(R.id.rename_type_action_new_name);
 
+                DataLoader.loadAllType(SettingFragment.this.getActivity(),past);
+
 				ad.setPositiveButton("submit", new TypeRnameAction(ad.getView().getContext(),past,name));
 				ad.setNegativeButton("cancel", null);
 				ad.create();
@@ -128,6 +131,8 @@ public class SettingFragment extends Fragment {
 				ad.build();
 
                 Spinner name= (Spinner) ad.getView().findViewById(R.id.remove_type_action_name);
+
+                DataLoader.loadAllType(SettingFragment.this.getActivity(),name);
 
 				ad.setPositiveButton("submit", new TypeRemoveAction(ad.getView().getContext(),name));
 				ad.setNegativeButton("cancel", null);
@@ -169,14 +174,10 @@ public class SettingFragment extends Fragment {
     private ServiceConnection conn = new ServiceConnection() {
 
         @Override
-        public void onServiceDisconnected(ComponentName name) {
-            // TODO Auto-generated method stub
-
-        }
+        public void onServiceDisconnected(ComponentName name) {}
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            // TODO Auto-generated method stub
             server=((WebServer.MyBinder)service).getService();
         }
     };
