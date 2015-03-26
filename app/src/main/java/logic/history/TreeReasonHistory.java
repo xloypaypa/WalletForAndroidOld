@@ -3,7 +3,6 @@ package logic.history;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
 import java.util.Vector;
 
 import org.afree.data.general.DefaultPieDataset;
@@ -244,6 +243,15 @@ public class TreeReasonHistory extends ReasonHistory {
 		}
 	}
 	
+	public boolean haveFather(String reason,String father){
+		int now=super.findReasonIndex(reason);
+		while (now!=-1){
+			now=((ReasonTreeNodeType) allReason.get(now)).getFatherPos();
+			if (allReason.get(now).getName().equals(father)) return true;
+		}
+		return false;
+	}
+	
 	public void doDetail(DetailType now){
 		if (now.getEvent().equals("add reason tree node")){
 			this.checkExtra(now, "past father");
@@ -350,7 +358,7 @@ public class TreeReasonHistory extends ReasonHistory {
 	}
 
 	private void saveTreeNode(ReasonTreeNodeType now, DetailType dt) {
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		dt.addExtra("past father", now.getFather());
 		dt.addExtra("past name", now.getName());
 		dt.addExtra("past min", now.getMin()+"");
@@ -363,7 +371,7 @@ public class TreeReasonHistory extends ReasonHistory {
 	
 	private ReasonTreeNodeType solveDetail(DetailType last) {
 		String name=last.getExtraMessage("past name");
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd",Locale.getDefault());
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		double in=Double.valueOf(last.getExtraMessage("past income"));
 		double out=Double.valueOf(last.getExtraMessage("past expenditure"));
 		double min=Double.valueOf(last.getExtraMessage("past min"));

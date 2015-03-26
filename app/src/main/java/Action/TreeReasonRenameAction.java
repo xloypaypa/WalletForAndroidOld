@@ -71,6 +71,11 @@ public class TreeReasonRenameAction implements DialogInterface.OnClickListener {
             return ;
         }
 
+        if (trh.haveFather(root, pas)){
+            Toast.makeText(context, "the father of node shouldn't be it's child.", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
         trh.changeReason(pas, root, sname, minValue, maxValue, rankValue);
         MainActivity.repaint(4);
     }

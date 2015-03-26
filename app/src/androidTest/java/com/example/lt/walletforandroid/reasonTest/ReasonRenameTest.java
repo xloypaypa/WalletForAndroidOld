@@ -200,4 +200,21 @@ public class ReasonRenameTest extends ReasonTest {
         solo.clickOnButton("submit");
         assertTrue(solo.waitForText("value should be more than zero."));
     }
+
+    public void testLoop(){
+        ReasonTest.toAdd();
+        ReasonAddTest.addReason(0,"reason one","0","1","2");
+        ReasonTest.toAdd();
+        ReasonAddTest.addReason(1,"reason two","0","1","2");
+
+        ReasonTest.toChange();
+        setReason(0);
+        setFather(2);
+        enterNewName("reason one");
+        enterNewMin("0");
+        enterNewMax("1");
+        enterNewRank("2");
+        solo.clickOnButton("submit");
+        assertTrue(solo.waitForText("the father of node shouldn't be it's child."));
+    }
 }
