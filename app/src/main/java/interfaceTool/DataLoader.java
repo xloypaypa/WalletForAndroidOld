@@ -6,24 +6,23 @@ import java.util.Vector;
 
 import logic.history.ReasonHistory;
 import logic.wallet.Money;
-import logic.wallet.Wallet;
 import android.app.Activity;
 import android.content.Context;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class DataLoader {
-	public static void loadAllType(Context context,Spinner spinner){
-		List<String> list=new ArrayList<String>();
-		Vector <String> type=new Money().getAllTypeName();
-		for (int i=0;i<type.size();i++){
-			list.add(type.get(i));
-		}
-		ArrayAdapter<String> ad=new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
-		ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+    public static void loadAllType(Context context,Spinner spinner){
+        List<String> list=new ArrayList<String>();
+        Vector <String> type=new Money().getAllTypeName();
+        for (int i=0;i<type.size();i++){
+            list.add(type.get(i));
+        }
+        ArrayAdapter<String> ad=new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, list);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(ad);
-		spinner.setSelection(0);
-	}
+        spinner.setSelection(0);
+    }
 
     public static void loadAllReason(Context context, Spinner spinner){
         List<String> list=new ArrayList<String>();
@@ -60,14 +59,14 @@ public class DataLoader {
         spinner.setAdapter(ad);
         spinner.setSelection(0);
     }
-	
-	public static void loadAllUserType(Activity activity,Spinner spinner){
-		List<String> list=new ArrayList<String>();
-		list.add("normal");
-		list.add("tree");
-		ArrayAdapter<String> ad=new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item, list);
-		ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		spinner.setAdapter(ad);
-		spinner.setSelection(0);
-	}
+
+    public static void loadAllUserType(Activity activity,Spinner spinner){
+        List<String> list=new ArrayList<String>();
+        list.add("normal");
+        list.add("tree");
+        ArrayAdapter<String> ad=new ArrayAdapter<String>(activity, android.R.layout.simple_spinner_item, list);
+        ad.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(ad);
+        spinner.setSelection(0);
+    }
 }

@@ -8,6 +8,7 @@ import logic.wallet.Money;
 
 /**
  * Created by xlo on 2015/3/21.
+ *
  */
 public class TypeRemoveAction implements DialogInterface.OnClickListener {
     Context context;

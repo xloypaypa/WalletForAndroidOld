@@ -3,8 +3,6 @@ package logic.history;
 import java.util.Date;
 import java.util.Vector;
 
-import org.afree.data.general.DefaultPieDataset;
-
 import database.DetailDB;
 import database.HHD;
 import database.ReasonDB;
@@ -117,24 +115,6 @@ public class ReasonHistory extends History {
 		allDetail.addElement(dt);
 		new ReasonDB(username, passWord).updateReason(pastName, rt);
 		new DetailDB(username, passWord).addDetail(dt);
-	}
-	
-	public DefaultPieDataset getReasonIncomeChartData(){
-		DefaultPieDataset ans=new DefaultPieDataset();
-		for (int i=0;i<allReason.size();i++){
-			ReasonType rt=allReason.get(i);
-			ans.setValue(rt.getName(), rt.getIncome());
-		}
-		return ans;
-	}
-	
-	public DefaultPieDataset getReasonExpenditureChartData(){
-		DefaultPieDataset ans=new DefaultPieDataset();
-		for (int i=0;i<allReason.size();i++){
-			ReasonType rt=allReason.get(i);
-			ans.setValue(rt.getName(), rt.getExpenditure());
-		}
-		return ans;
 	}
 	
 	public void backup(DetailType last){

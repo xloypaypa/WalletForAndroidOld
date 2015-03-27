@@ -32,8 +32,6 @@ public class Client {
 		out.flush();
 		out.close();
 		client.close();
-
-        if (node.path=="shutdown") return node;
 		
 		if (node.part>=0){
 			fc=new FileClient();

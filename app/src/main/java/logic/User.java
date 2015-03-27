@@ -27,6 +27,8 @@ public class User {
 	protected static Vector <DetailType> allDetail=new Vector<DetailType>();
 	protected static Vector <UserMessage> allUser=new Vector<UserMessage>();
 	
+	private static LogicListener userListener;
+	
 	public static void loadUser(){
 		allUser=new DataBase("", "").loadAllUser();
 	}
@@ -142,7 +144,21 @@ public class User {
 		}
 	}
 	
+	public void setUserListener(LogicListener listener){
+		userListener=listener;
+	}
+	
 	public void checkExtra(DetailType now,String check){
+		if (userListener==null){
+			return ;
+		}
+		
+		if (now.extraExist(check)) return ;
+		
+		CheckExtraMessageListener l=(CheckExtraMessageListener) userListener;
+		l.setDetail(now);
+		l.setCheck(check);
+		l.logicAction();
 	}
 	
 	protected void setDetailTime(DetailType dt) {

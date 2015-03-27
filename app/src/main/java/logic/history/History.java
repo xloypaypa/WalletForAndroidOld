@@ -3,7 +3,6 @@ package logic.history;
 import java.util.*;
 
 import logic.User;
-import logic.wallet.Detail;
 import database.ReasonDB;
 import type.*;
 
@@ -12,7 +11,7 @@ public class History extends User {
 	static Vector <ReasonType> allReason=new Vector<ReasonType>();
 	
 	public void loadHistory(){
-		moneyhistory=new Detail().getHistoricalType();
+		moneyhistory=new MoneyHistory().getHistoricalType();
 		allReason=new ReasonDB(username, passWord).loadReason();
 	}
 	

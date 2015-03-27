@@ -5,14 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
-import org.afree.data.general.DefaultPieDataset;
-
 import database.DetailDB;
 import database.HHD;
 import database.ReasonDB;
 import type.DetailType;
 import type.ReasonTreeNodeType;
-import type.ReasonType;
 
 public class TreeReasonHistory extends ReasonHistory {
 	
@@ -28,6 +25,7 @@ public class TreeReasonHistory extends ReasonHistory {
 	}
 	
 	public boolean checkExpenditure(String reason, double value){
+		if (reason.equals("root")) return false;
 		int now=findReasonIndex(reason);
 		while (now!=-1){
 			((ReasonTreeNodeType) allReason.get(now)).update();
@@ -191,32 +189,6 @@ public class TreeReasonHistory extends ReasonHistory {
 	}
 	
 	@Override
-	public DefaultPieDataset getReasonIncomeChartData(){
-		DefaultPieDataset ans=new DefaultPieDataset();
-		for (int i=0;i<allReason.size();i++){
-			ReasonType rt=allReason.get(i);
-			double value=solveIncome((ReasonTreeNodeType) rt);
-			if (value>=0.01){
-				ans.setValue(rt.getName(), value);
-			}
-		}
-		return ans;
-	}
-
-	@Override
-	public DefaultPieDataset getReasonExpenditureChartData(){
-		DefaultPieDataset ans=new DefaultPieDataset();
-		for (int i=0;i<allReason.size();i++){
-			ReasonType rt=allReason.get(i);
-			double value=solveExpenditure((ReasonTreeNodeType) rt);
-			if (value>=0.01){
-				ans.setValue(rt.getName(), value);
-			}
-		}
-		return ans;
-	}
-	
-	@Override
 	public void backup(DetailType last){
 		if (last.getEvent().equals("add reason tree node")){
 			allReason.remove(super.findReasonIndex(last.getReason()));
@@ -244,10 +216,12 @@ public class TreeReasonHistory extends ReasonHistory {
 	}
 	
 	public boolean haveFather(String reason,String father){
+		if (reason.equals("root")) return false;
 		int now=super.findReasonIndex(reason);
+		now=((ReasonTreeNodeType) allReason.get(now)).getFatherPos();
 		while (now!=-1){
-			now=((ReasonTreeNodeType) allReason.get(now)).getFatherPos();
 			if (allReason.get(now).getName().equals(father)) return true;
+			now=((ReasonTreeNodeType) allReason.get(now)).getFatherPos();
 		}
 		return false;
 	}
@@ -289,7 +263,7 @@ public class TreeReasonHistory extends ReasonHistory {
 		}
 	}
 	
-	private double solveIncome(ReasonTreeNodeType node) {
+	public double solveIncome(ReasonTreeNodeType node) {
 		double ans=node.getIncome();
 		Vector <Integer> kids=node.getKid();
 		for (int i=0;i<kids.size();i++){
@@ -299,7 +273,7 @@ public class TreeReasonHistory extends ReasonHistory {
 		return ans;
 	}
 	
-	private double solveExpenditure(ReasonTreeNodeType node) {
+	public double solveExpenditure(ReasonTreeNodeType node) {
 		double ans=node.getExpenditure();
 		Vector <Integer> kids=node.getKid();
 		for (int i=0;i<kids.size();i++){

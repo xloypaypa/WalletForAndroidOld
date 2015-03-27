@@ -2,6 +2,13 @@
 <items version="2" >
 
     <item
+        jar="E:\android workspace\WalletForAndroid\app\libs\jxl.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="7faf62e0697f7a88954622dfe8c8de33ed142ac7">
+        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\jxl-028cb9375280f1f28ddd64812dc7b10132a9af89.jar" />
+    </item>
+    <item
         jar="E:\android workspace\WalletForAndroid\app\libs\afreechart-0.0.4.jar"
         jumboMode="false"
         revision="22.0.0"
@@ -23,6 +30,13 @@
         <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-40a4e0257a2d084a64964cae361aabb64cd69749.jar" />
     </item>
     <item
+        jar="E:\android workspace\WalletForAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
+        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\classes-ac7c722790aaeb739a0d15afb738b434a04261d8.jar" />
+    </item>
+    <item
         jar="E:\android workspace\WalletForAndroid\app\libs\robotium-solo-5.3.1.jar"
         jumboMode="false"
         revision="22.0.0"
@@ -35,13 +49,6 @@
         revision="22.0.0"
         sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
         <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\classes-594767f3e1c9688cada1466ab57793fdb20c0f8a.jar" />
-    </item>
-    <item
-        jar="E:\android workspace\WalletForAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\classes-ac7c722790aaeb739a0d15afb738b434a04261d8.jar" />
     </item>
 
 </items>

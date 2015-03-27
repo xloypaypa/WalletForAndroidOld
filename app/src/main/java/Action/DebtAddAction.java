@@ -18,6 +18,7 @@ import logic.wallet.Debt;
 
 /**
  * Created by LT on 2015/3/21.
+ *
  */
 public class DebtAddAction implements DialogInterface.OnClickListener {
 

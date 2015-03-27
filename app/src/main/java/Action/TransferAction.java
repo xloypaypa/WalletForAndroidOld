@@ -12,6 +12,7 @@ import logic.wallet.Cost;
 
 /**
  * Created by LT on 2015/3/21.
+ *
  */
 public class TransferAction implements DialogInterface.OnClickListener {
     Spinner from,to;

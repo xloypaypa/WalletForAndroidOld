@@ -52,6 +52,10 @@ public class Web extends User {
 //				"E:/test_space/"+username+"/reason.txt"};
 	}
 	
+	public static void clearTemp(){
+		HHD.deleteFolder(DataBase.Root+"/temp");
+	}
+	
 	public static void setIP(String ip){
 		Web.ip=ip;
 	}

@@ -2,6 +2,8 @@ package logic.wallet;
 
 import java.util.*;
 
+import jxl.write.WritableCellFormat;
+import jxl.write.WritableFont;
 import database.*;
 import type.*;
 
@@ -17,39 +19,6 @@ public class Detail extends Wallet {
 			DetailType now=allDetail.get(i);
 			if (from.before(now.getTime())&&to.after(now.getTime())){
 				ans.add(now);
-			}
-		}
-		return ans;
-	}
-	public Vector <MoneyHistoryType> getHistoricalType(){
-		return getHistoricalType(allDetail);
-	}
-	public Vector <MoneyHistoryType> getHistoricalType(Vector<DetailType> detail){
-		Vector <MoneyHistoryType> ans=new Vector<MoneyHistoryType>();
-		for (int i=0;i<detail.size();i++){
-			DetailType now=detail.get(i);
-			if (now.getEvent().equals("add money type")||now.getEvent().equals("pack money type")){
-				MoneyHistoryType mht=new MoneyHistoryType(now.getType(), now.getValue());
-				mht.addHistory(now);
-				ans.addElement(mht);
-			}else if (now.getEvent().equals("rename type")){
-				int pos=getAimType(now.getExtraMessage("past name"),ans);
-				ans.get(pos).addHistory(now);
-			}else if (now.getEvent().equals("transfer")){
-				int pos=getAimType(now.getType(), ans);
-				DetailType tod=new DetailType();
-				tod.setEvent("transfer in"); tod.setValue(now.getValue()); tod.setType(now.getType());
-				tod.setTime(now.getTime());
-				ans.get(pos).addHistory(tod);
-				
-				DetailType fromd=new DetailType();
-				pos=getAimType(now.getExtraMessage("from type"), ans);
-				fromd.setEvent("transfer out"); fromd.setValue(now.getValue()); fromd.setType(now.getType());
-				fromd.setTime(now.getTime());
-				ans.get(pos).addHistory(fromd);
-			}else{
-				int pos=getAimType(now.getType(),ans); if (pos==-1) continue;
-				ans.get(pos).addHistory(now);
 			}
 		}
 		return ans;
@@ -98,6 +67,43 @@ public class Detail extends Wallet {
 		}
 	}
 	
+	public void getExcel(String path){
+		try {
+			ExcelWriter ew=new ExcelWriter(path);
+			int p=ew.createPage("detail");
+			ew.setMergeCells(p, 0, 0, 4, 0);
+			ew.setRowHeight(p, 0, 600);
+			ew.setColumnWidth(p, 0, 15);
+			ew.setColumnWidth(p, 1, 20);
+			ew.setColumnWidth(p, 2, 15);
+			ew.setColumnWidth(p, 3, 15);
+			ew.setColumnWidth(p, 4, 50);
+			WritableFont bold = new WritableFont(WritableFont.ARIAL,20,WritableFont.BOLD);
+			WritableCellFormat titleFormate = new WritableCellFormat(bold);
+			titleFormate.setAlignment(jxl.format.Alignment.CENTRE);
+		    titleFormate.setVerticalAlignment(jxl.format.VerticalAlignment.CENTRE);
+			ew.addCell(p, 0, 0, "all details table",titleFormate);
+			ew.addCell(p, 0, 1, "time");
+			ew.addCell(p, 1, 1, "event");
+			ew.addCell(p, 2, 1, "money type");
+			ew.addCell(p, 3, 1, "money value");
+			ew.addCell(p, 4, 1, "reason");
+			
+			for (int i=0;i<allDetail.size();i++){
+				DetailType now=allDetail.get(i);
+				ew.addCell(p, 0, i+2, now.getTime().getTime());
+				ew.addCell(p, 1, i+2, now.getEvent());
+				ew.addCell(p, 2, i+2, now.getType());
+				ew.addCell(p, 3, i+2, now.getValue());
+				ew.addCell(p, 4, i+2, now.getReason());
+			}
+			
+			ew.writeEnd();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void sort(){
 		DetailType[] a = new DetailType[allDetail.size()];
 		allDetail.toArray(a);
@@ -113,13 +119,6 @@ public class Detail extends Wallet {
 		for (int i=0;i<a.length;i++){
 			allDetail.addElement(a[i]);
 		}
-	}
-	
-	protected int getAimType(String type, Vector <MoneyHistoryType> history){
-		for (int i=0;i<history.size();i++){
-			if (history.get(i).getName().equals(type)) return i;
-		}
-		return -1;
 	}
 	
 }

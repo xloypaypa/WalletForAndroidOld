@@ -49,8 +49,6 @@ public class Server {
 				node.solve(ans);
 				in.close();
 				socket.close();
-
-                if (node.path.equals("shutdown")) break;
 				
 				if (node.part>=0) {
 					fs=new FileServer();
