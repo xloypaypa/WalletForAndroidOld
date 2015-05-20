@@ -8,15 +8,18 @@ public class MoneyType extends Type implements TypeInterface {
 	double value;
 	public MoneyType(){
 		type=new String();
+		this.id=type;
 		value=0;
 	}
 	public MoneyType(String type,double value){
 		this.type=new String(type);
+		this.id=type;
 		this.value=value;
 	}
 	
 	public void setType(String type){
 		this.type=type;
+		this.id=type;
 	}
 	public void setValue(double value){
 		this.value=value;
@@ -61,6 +64,7 @@ public class MoneyType extends Type implements TypeInterface {
 			String body=message.get(i+1);
 			if(title.equals("[money type]")){
 				this.type=body;
+				this.id=type;
 			}else if (title.equals("[money value]")){
 				this.value=Double.valueOf(body);
 			}

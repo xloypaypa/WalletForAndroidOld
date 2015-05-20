@@ -6,11 +6,11 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.lt.walletforandroid.MainActivity;
+import com.example.xlo.walletforandroid.MainActivity;
 
-import logic.User;
-import logic.wallet.Debt;
-import logic.wallet.Money;
+import database.viewer.DebtViewer;
+import logic.Operator;
+import type.DebtType;
 
 /**
  * Created by LT on 2015/3/21.
@@ -18,10 +18,10 @@ import logic.wallet.Money;
  */
 public class DebtRepayAction implements DialogInterface.OnClickListener {
     Context context;
-    Spinner type;
-    EditText id,value;
+    Spinner type, id;
+    EditText value;
 
-    public DebtRepayAction(Context context, Spinner type, EditText id, EditText value){
+    public DebtRepayAction(Context context, Spinner type, Spinner id, EditText value){
         this.context=context;
         this.type=type;
         this.id=id;
@@ -30,34 +30,24 @@ public class DebtRepayAction implements DialogInterface.OnClickListener {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        Debt debt=new Debt();
-        int did;
+        int pos;
         double val;
         try{
-            did=Integer.valueOf(id.getText().toString());
+            pos=Integer.valueOf(id.getSelectedItem().toString());
             val=Double.valueOf(value.getText().toString());
-        }catch(NumberFormatException e){
-            Toast.makeText(context, "please input number!", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(context, "Please input right.", Toast.LENGTH_SHORT).show();
             return ;
         }
 
-        if (!debt.debtExist(did)){
-            Toast.makeText(context, "Debt not exist!", Toast.LENGTH_SHORT).show();
-            return ;
+        DebtViewer debt=new DebtViewer();
+        debt.loadData("debt");
+        DebtType now=(DebtType) debt.getItem(id.getSelectedItem().toString());
+        if (now.getDebtType().equals("borrowing")){
+            Operator.repayBorrowing(pos, val, type.getSelectedItem().toString());
+        }else{
+            Operator.repayLoan(pos, val, type.getSelectedItem().toString());
         }
-
-        if (debt.getDebtByID(did).getMaxRepay()<val){
-            Toast.makeText(context, "Debt only need "+debt.getDebtByID(did).getMaxRepay()+".", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-
-        if (new Money().getMoney(type.getSelectedItem().toString())<val){
-            Toast.makeText(context, "don't have enough money!", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-
-        debt.repay(did, val, type.getSelectedItem().toString());
-        Toast.makeText(context, "Repay saved!", Toast.LENGTH_SHORT).show();
-        MainActivity.repaint(2);
+        MainActivity.repaint();
     }
 }

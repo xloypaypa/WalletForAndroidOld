@@ -35,8 +35,9 @@ public class MoneyHistoryType extends Type {
 	}
 	
 	public void addHistory(DetailType detail){
-		changeAndSetValue(detail);
-		this.history.addElement(detail);
+		DetailType now=new DetailType(detail);
+		changeAndSetValue(now);
+		this.history.add(now);
 	}
 	
 	public double getValueBeforTime(Date time){

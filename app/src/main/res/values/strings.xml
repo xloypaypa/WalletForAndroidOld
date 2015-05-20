@@ -41,6 +41,9 @@
     <string name="debt_creditor">creditor</string>
     <string name="debt_value">value</string>
     <string name="debt_deadline">deadline</string>
+    <string name="debt_type">debt type</string>
+    <string name="loan">loan</string>
+    <string name="borrowing">borrowing</string>
 
     <string name="debt_action_add">add debt</string>
     <string name="debt_action_repay">repay</string>

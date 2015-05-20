@@ -6,9 +6,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.lt.walletforandroid.MainActivity;
+import com.example.xlo.walletforandroid.MainActivity;
 
-import logic.wallet.Cost;
+import logic.Operator;
 
 /**
  * Created by LT on 2015/3/21.
@@ -28,27 +28,14 @@ public class TransferAction implements DialogInterface.OnClickListener {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        Cost user=new Cost();
-        double val;
-        if (from.getSelectedItem().toString().equals(to.getSelectedItem().toString())){
-            Toast.makeText(context, "two type should not same!", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-
+        double v=0;
         try{
-            val=Double.valueOf(value.getText().toString());
-        }catch(NumberFormatException error){
-            Toast.makeText(context, "please input number!", Toast.LENGTH_SHORT).show();
+            v=Double.valueOf(value.getText().toString());
+        }catch (Exception e){
+            Toast.makeText(context, "Please input number.", Toast.LENGTH_SHORT).show();
             return ;
         }
-
-        if (user.getMoney(from.getSelectedItem().toString())<val){
-            Toast.makeText(context, "don't have enough money!", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-
-        user.transfer(from.getSelectedItem().toString(), to.getSelectedItem().toString(), val);
-        Toast.makeText(context, "transfer saved!", Toast.LENGTH_SHORT).show();
+        Operator.transfer(from.getSelectedItem().toString(),to.getSelectedItem().toString(),v);
         MainActivity.repaint();
     }
 }

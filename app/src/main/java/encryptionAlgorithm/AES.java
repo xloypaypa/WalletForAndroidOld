@@ -27,7 +27,7 @@ public class AES {
 		if (passWord.length()>16){
 			char[] a=passWord.toCharArray();
 			passWord=new String();
-			for (int i=0;i<32;i++) passWord+=a[i];
+			for (int i=0;i<16;i++) passWord+=a[i];
 		}else if (passWord.length()<16){
 			while (passWord.length()<16){
 				passWord+="x";

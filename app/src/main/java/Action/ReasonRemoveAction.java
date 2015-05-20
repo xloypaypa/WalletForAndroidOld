@@ -4,9 +4,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Spinner;
 
-import com.example.lt.walletforandroid.MainActivity;
+import com.example.xlo.walletforandroid.MainActivity;
 
-import logic.history.ReasonHistory;
+import logic.Operator;
 
 /**
  * Created by LT on 2015/3/21.
@@ -23,8 +23,7 @@ public class ReasonRemoveAction implements DialogInterface.OnClickListener {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        ReasonHistory reason=new ReasonHistory();
-        reason.removeReason(name.getSelectedItem().toString());
-        MainActivity.repaint(4);
+        Operator.removeReason(name.getSelectedItem().toString());
+        MainActivity.repaint();
     }
 }

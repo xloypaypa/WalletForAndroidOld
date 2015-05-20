@@ -4,6 +4,7 @@ import java.util.Vector;
 
 public class Type implements TypeInterface {
 	
+	String id; 
 	Vector <ExtraType> extra=new Vector<ExtraType>();
 	
 	public Vector <ExtraType> getExtra(){
@@ -20,11 +21,25 @@ public class Type implements TypeInterface {
 		}
 		return false;
 	}
-	public String getExtraMessage(String title){
-		for (int i=0;i<extra.size();i++){
-			if (extra.get(i).getTitle().equals(title)) return extra.get(i).getMessage();
+	
+	public void removeExtra(String title){
+		int pos=getIndex(title);
+		if (pos!=-1){
+			extra.remove(pos);
 		}
-		return new String();
+	}
+	
+	public String getExtraMessage(String title){
+		int pos=getIndex(title);
+		if (pos!=-1) return extra.get(pos).getMessage();
+		else return new String();
+	}
+	
+	private int getIndex(String title){
+		for (int i=0;i<extra.size();i++){
+			if (extra.get(i).getTitle().equals(title)) return i;
+		}
+		return -1;
 	}
 
 	@Override
@@ -33,6 +48,16 @@ public class Type implements TypeInterface {
 		for (int i=0;i<extra.size();i++){
 			ans+=extra.get(i).format();
 		}
+		return ans;
+	}
+	
+	public String getTypeMessage(String typeName){
+		String ans=new String();
+		ans+="[begin]\r\n";
+		ans+="[type name]\r\n";
+		ans+=typeName+"\r\n";
+		ans+="[type item]\r\n";
+		ans+=this.getTypeNumber()+"\r\n";
 		return ans;
 	}
 
@@ -69,5 +94,9 @@ public class Type implements TypeInterface {
 	@Override
 	public String getAllMessage() {
 		return this.getTypeMessage()+this.format()+"[end]\r\n";
+	}
+	
+	public String getTypeID(){
+		return this.id;
 	}
 }

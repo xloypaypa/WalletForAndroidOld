@@ -1,5 +1,5 @@
 package database;
-d
+
 import java.io.*;
 import java.nio.channels.FileChannel;
 import java.util.*;
@@ -70,6 +70,17 @@ public class HHD {
     }
 
     public static void addWriteFile(String path, String message) {
+    	if (!HHD.fileExiste(path)) {
+            String d = new String(), f = new String();
+            int len = path.length(), pos = 0;
+            for (pos = len - 1; pos >= 0; pos--) {
+                if (path.toCharArray()[pos] == '/') break;
+            }
+            for (int i = 0; i <= pos; i++) d += path.toCharArray()[i];
+            for (int i = pos + 1; i < len; i++) f += path.toCharArray()[i];
+            HHD.createFile(d, f);
+        }
+    	
         try {
             FileWriter fos = new FileWriter(new File(path), true);
             PrintWriter pw = new PrintWriter(fos);
@@ -261,7 +272,7 @@ public class HHD {
             deleteFile(path);
         } else {
             File[] kid = file.listFiles();
-            for (int i = 0; i < kid.length; i++) {
+            if (kid!=null) for (int i = 0; i < kid.length; i++) {
                 if (kid[i].isFile()) {
                     deleteFile(kid[i].getPath());
                 } else {

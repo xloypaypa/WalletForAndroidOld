@@ -5,8 +5,8 @@ import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-import web.Node;
 import database.HHD;
+import web.Node;
 
 public class FileMessageServer extends Thread {
 	Node need;
@@ -20,7 +20,7 @@ public class FileMessageServer extends Thread {
 		try {
 			server=new ServerSocket(need.port);
 			Socket socket=server.accept();
-			need.length=HHD.getFileLength(need.path);
+			need.length= HHD.getFileLength(need.path);
 			
 			OutputStream out=socket.getOutputStream();
 			out.write(need.toString().getBytes());

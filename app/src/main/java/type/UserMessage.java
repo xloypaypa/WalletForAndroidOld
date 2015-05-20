@@ -6,17 +6,20 @@ public class UserMessage extends Type implements TypeInterface {
 	String userName, passWord, userReason;
 	public UserMessage(){
 		this.userName=new String();
+		this.id=userName;
 		this.passWord=new String();
 		this.userReason=new String("normal");
 	}
 	public UserMessage(String userName, String passWord, String userReason){
 		this.userName=new String(userName);
+		this.id=userName;
 		this.passWord=new String(passWord);
 		this.userReason=new String(userReason);
 	}
 	
 	public void setName(String name){
 		this.userName=new String(name);
+		this.id=userName;
 	}
 	public void setPassWord(String pass){
 		this.passWord=new String(pass);
@@ -67,6 +70,7 @@ public class UserMessage extends Type implements TypeInterface {
 			String body=message.get(i+1);
 			if(title.equals("[user name]")){
 				this.userName=body;
+				this.id=userName;
 			}else if (title.equals("[pass word]")){
 				this.passWord=body;
 			}else if (title.equals("[user reason type]")){

@@ -9,22 +9,26 @@ public class ReasonType extends Type implements TypeInterface {
 	
 	public ReasonType(){
 		this.name=new String();
+		this.id=name;
 		this.income=this.expenditure=0;
 	}
 	
 	public ReasonType(String name){
 		this.name=new String(name);
+		this.id=name;
 		this.income=this.expenditure=0;
 	}
 	
 	public ReasonType(String name, double income, double expenditure){
 		this.name=new String(name);
+		this.id=name;
 		this.income=income;
 		this.expenditure=expenditure;
 	}
 	
 	public void setName(String name){
 		this.name=new String(name);
+		this.id=name;
 	}
 	
 	public void setIncome(double income){
@@ -83,6 +87,7 @@ public class ReasonType extends Type implements TypeInterface {
 			String body=message.get(i+1);
 			if(title.equals("[reason name]")){
 				this.name=body;
+				this.id=name;
 			}else if (title.equals("[reason income]")){
 				this.income=Double.valueOf(body);
 			}else if (title.equals("[reason expenditure]")){
@@ -90,6 +95,11 @@ public class ReasonType extends Type implements TypeInterface {
 			}
 		}
 		super.solveTypeMessage(message);
+	}
+
+	public void update() {
+		this.expenditure=0;
+		this.income=0;
 	}
 	
 }

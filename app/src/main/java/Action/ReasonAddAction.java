@@ -5,9 +5,9 @@ import android.content.DialogInterface;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.lt.walletforandroid.MainActivity;
+import com.example.xlo.walletforandroid.MainActivity;
 
-import logic.history.ReasonHistory;
+import logic.Operator;
 
 /**
  * Created by LT on 2015/3/22.
@@ -24,19 +24,7 @@ public class ReasonAddAction implements DialogInterface.OnClickListener  {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        String reason=name.getText().toString();
-        ReasonHistory rh=new ReasonHistory();
-        if (rh.reasonExist(reason)){
-            Toast.makeText(context, "This reason have exist!", Toast.LENGTH_SHORT).show();
-            return ;
-        }else if (reason.contains("[")){
-            Toast.makeText(context, "Please don't use '['", Toast.LENGTH_SHORT).show();
-            return ;
-        }else if (reason.length()==0){
-            Toast.makeText(context, "Please input name", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-        rh.addReason(reason);
-        MainActivity.repaint(4);
+        Operator.addReason(name.getText().toString());
+        MainActivity.repaint();
     }
 }

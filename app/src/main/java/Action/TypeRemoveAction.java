@@ -3,8 +3,10 @@ package Action;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.widget.Spinner;
-import android.widget.Toast;
-import logic.wallet.Money;
+
+import com.example.xlo.walletforandroid.MainActivity;
+
+import logic.Operator;
 
 /**
  * Created by xlo on 2015/3/21.
@@ -21,10 +23,7 @@ public class TypeRemoveAction implements DialogInterface.OnClickListener {
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
-        if (new Money().getMoney().size()==0){
-            Toast.makeText(context, "No type for remove!", Toast.LENGTH_SHORT).show();
-            return ;
-        }
-        new Money().removeType(name.getSelectedItem().toString());
+        Operator.removeMoneyType(name.getSelectedItem().toString());
+        MainActivity.repaint();
     }
 }

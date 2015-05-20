@@ -21,15 +21,10 @@
         android:layout_height="wrap_content"
         android:text="@string/repay_debt_id" />
 
-    <EditText
+    <Spinner
         android:id="@+id/repay_debt_action_id"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="number" >
-
-        <requestFocus />
-    </EditText>
+        android:layout_height="wrap_content" />
 
     <TextView
         android:id="@+id/textView3"
