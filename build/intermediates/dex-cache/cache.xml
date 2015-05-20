@@ -2,53 +2,53 @@
 <items version="2" >
 
     <item
-        jar="E:\android workspace\WalletForAndroid\app\libs\jxl.jar"
+        jar="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/classes.jar"
         jumboMode="false"
-        revision="22.0.0"
+        revision="22.0.1"
+        sha1="c95ba8152923e4872e86a82cfcba9a51c0214328">
+        <dex dex="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/pre-dexed/debug/classes-ea188e5a470fc89b82c6df4c4b58ae0eeeddf5c5.jar" />
+    </item>
+    <item
+        jar="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/libs/jxl.jar"
+        jumboMode="false"
+        revision="22.0.1"
         sha1="7faf62e0697f7a88954622dfe8c8de33ed142ac7">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\jxl-028cb9375280f1f28ddd64812dc7b10132a9af89.jar" />
+        <dex dex="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/pre-dexed/debug/jxl-1d5701d3743f9e7feb5e1a0582f6a07f821d3ea2.jar" />
     </item>
     <item
-        jar="E:\android workspace\WalletForAndroid\app\libs\afreechart-0.0.4.jar"
+        jar="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/libs/robotium-solo-5.3.1.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="a620cc3b8d3e12d9e7b0ce3435254279390fd4ef">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\afreechart-0.0.4-dadcd66795b29eb794d4408305c676fbcd415ddf.jar" />
-    </item>
-    <item
-        jar="D:\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\22.0.0\support-annotations-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="685d0b2c590447e85284ed84712cb363ba04eff8">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\support-annotations-22.0.0-9c7f0f00a3d76e88d03ff501363eae75a59facb5.jar" />
-    </item>
-    <item
-        jar="E:\android workspace\WalletForAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\libs\internal_impl-22.0.0.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="b5b92f469d515a13d778900f6d50c03d12f35504">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\internal_impl-22.0.0-40a4e0257a2d084a64964cae361aabb64cd69749.jar" />
-    </item>
-    <item
-        jar="E:\android workspace\WalletForAndroid\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.0.0\classes.jar"
-        jumboMode="false"
-        revision="22.0.0"
-        sha1="d84409890828e07d344a3b9b1da545dba9897b51">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\classes-ac7c722790aaeb739a0d15afb738b434a04261d8.jar" />
-    </item>
-    <item
-        jar="E:\android workspace\WalletForAndroid\app\libs\robotium-solo-5.3.1.jar"
-        jumboMode="false"
-        revision="22.0.0"
+        revision="22.0.1"
         sha1="e6e664ab1b59d2504c3529f128747c13487f96ca">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\robotium-solo-5.3.1-5f1ee0d45309d4e1a52896a662f4f430ec1289a0.jar" />
+        <dex dex="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/pre-dexed/debug/robotium-solo-5.3.1-83cc19aea331f574cd8c7cccc76135bb1502e1f6.jar" />
     </item>
     <item
-        jar="E:\android workspace\WalletForAndroid\app\build\intermediates\exploded-aar\com.android.support\support-v4\22.0.0\classes.jar"
+        jar="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.1.1/jars/libs/internal_impl-22.1.1.jar"
         jumboMode="false"
-        revision="22.0.0"
-        sha1="4e86306289ace4aa0cfec44a05ed2b410d36989d">
-        <dex dex="E:\android workspace\WalletForAndroid\app\build\intermediates\pre-dexed\debug\classes-594767f3e1c9688cada1466ab57793fdb20c0f8a.jar" />
+        revision="22.0.1"
+        sha1="9e070ad32b2700b0343e8e0cccc437733d91ba3a">
+        <dex dex="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/pre-dexed/debug/internal_impl-22.1.1-9f01d531c52cfbf81cb19ec35b56c5d392b47003.jar" />
+    </item>
+    <item
+        jar="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.1.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a3ff3c506644c820eb2bdf06e8339f72be578551">
+        <dex dex="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/pre-dexed/debug/classes-9a1c26ec69a9b5457800d6f055611ec25ccfb1d9.jar" />
+    </item>
+    <item
+        jar="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/libs/afreechart-0.0.4.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="a620cc3b8d3e12d9e7b0ce3435254279390fd4ef">
+        <dex dex="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/pre-dexed/debug/afreechart-0.0.4-d79c6183e21ff97d321f715addcdde90d4911074.jar" />
+    </item>
+    <item
+        jar="/opt/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.1.1/support-annotations-22.1.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="01d051a6bfb1218b1db2d3a5af0480ac2c25c42a">
+        <dex dex="/home/xlo/Documents/AndroidStudioProjects/WalletForAndroid/app/build/intermediates/pre-dexed/debug/support-annotations-22.1.1-95370336b0504b03bcead0b6de5ace764a9e3299.jar" />
     </item>
 
 </items>
