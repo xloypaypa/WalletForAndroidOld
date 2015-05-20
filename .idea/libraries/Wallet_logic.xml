@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Wallet_logic">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/Wallet_logic.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
