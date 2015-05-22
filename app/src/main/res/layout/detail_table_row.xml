@@ -3,12 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical">
-
         <TextView
             android:id="@+id/detail_time"
             android:layout_width="0dp"
@@ -40,7 +34,5 @@
             android:layout_weight="0.5"
             android:background="@drawable/text_view_edging"
             android:textAppearance="?android:attr/textAppearanceSmall" />
-
-    </LinearLayout>
 
 </TableRow>

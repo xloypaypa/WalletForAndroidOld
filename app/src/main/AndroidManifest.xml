@@ -28,7 +28,7 @@
             android:name=".WebServer"
             android:permission="android.permission.INTERNET" >
             <intent-filter>
-                <action android:name="com.example.lt.walletforandroid.WebServer" />
+                <action android:name="com.example.xlo.walletforandroid.WebServer" />
             </intent-filter>
         </service>
 

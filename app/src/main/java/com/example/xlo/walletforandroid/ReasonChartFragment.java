@@ -9,7 +9,14 @@ import android.widget.ImageView;
 
 import org.afree.data.general.DefaultPieDataset;
 
+import java.util.Vector;
+
+import database.viewer.DataViewer;
+import database.viewer.TreeReasonViewer;
 import interfaceTool.ReasonChart;
+import type.ReasonTreeNodeType;
+import type.ReasonType;
+import type.Type;
 
 /**
  * Created by LT on 2015/3/22.
@@ -38,12 +45,39 @@ public class ReasonChartFragment extends Fragment {
     }
 
     private DefaultPieDataset getReasonIncomeChartData(){
-        //TODO get income chart
-        return null;
+        TreeReasonViewer tree=new TreeReasonViewer(); tree.loadData("reason");
+        Vector<ReasonType> allReason=loadReason();
+        DefaultPieDataset ans=new DefaultPieDataset();
+        for (int i=0;i<allReason.size();i++){
+            ReasonType rt=allReason.get(i);
+            double value=tree.solveIncome((ReasonTreeNodeType) rt);
+            if (value>=0.01){
+                ans.setValue(rt.getName(), value);
+            }
+        }
+        return ans;
     }
 
     private DefaultPieDataset getReasonExpenditureChartData(){
-        //TODO get expenditure chart
-        return null;
+        TreeReasonViewer tree=new TreeReasonViewer(); tree.loadData("reason");
+        Vector <ReasonType> allReason=loadReason();
+        DefaultPieDataset ans=new DefaultPieDataset();
+        for (int i=0;i<allReason.size();i++){
+            ReasonType rt=allReason.get(i);
+            double value=tree.solveExpenditure((ReasonTreeNodeType) rt);
+            if (value>=0.01){
+                ans.setValue(rt.getName(), value);
+            }
+        }
+        return ans;
+    }
+
+    private Vector<ReasonType> loadReason() {
+        DataViewer viewer=new DataViewer();
+        viewer.loadData("reason");
+        Vector <Type> allType=viewer.getAllItem();
+        Vector <ReasonType> allReason=new Vector<>();
+        for (int i=0;i<allType.size();i++) allReason.addElement((ReasonType) allType.get(i));
+        return allReason;
     }
 }

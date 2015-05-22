@@ -6,14 +6,14 @@
     <TextView
         android:id="@+id/status_money_type"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="@drawable/text_view_edging"
         android:layout_weight="1" />
 
 	<TextView
 	    android:id="@+id/status_money_type_value"
 	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:background="@drawable/text_view_edging"
 	    android:layout_weight="1" />
 

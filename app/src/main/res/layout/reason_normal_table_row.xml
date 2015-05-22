@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/reason_name"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_view_edging"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -14,7 +14,7 @@
 	<TextView
 	    android:id="@+id/reason_income"
 	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:layout_weight="0.5"
 	    android:background="@drawable/text_view_edging"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -22,7 +22,7 @@
 	<TextView
 	    android:id="@+id/reason_expenditure"
 	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:layout_weight="0.5"
 	    android:background="@drawable/text_view_edging"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />

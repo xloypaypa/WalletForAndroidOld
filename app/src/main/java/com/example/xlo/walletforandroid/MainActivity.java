@@ -175,6 +175,8 @@ public class MainActivity extends ActionBarActivity implements
                 Operator.login(name.getText().toString(),pass.getText().toString());
                 if (!logicMessage.getErrorFlag()){
                     lgad.getDialog().dismiss();
+                    StatusChartFragment.canDraw=true;
+                    StatusChartFragment.draw();
                     repaint();
                 }
             }

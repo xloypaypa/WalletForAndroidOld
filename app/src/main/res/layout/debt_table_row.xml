@@ -5,7 +5,7 @@
     <TextView
         android:id="@+id/debt_id"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="0.5"
         android:background="@drawable/text_view_edging"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -13,7 +13,7 @@
     <TextView
         android:id="@+id/debt_creditor"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_view_edging"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -21,7 +21,7 @@
     <TextView
         android:id="@+id/debt_value"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="0.75"
         android:background="@drawable/text_view_edging"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -29,7 +29,7 @@
     <TextView
         android:id="@+id/debt_deadline"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_view_edging"
         android:textAppearance="?android:attr/textAppearanceSmall" />

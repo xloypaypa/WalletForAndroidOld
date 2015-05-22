@@ -6,7 +6,7 @@
     <TextView
         android:id="@+id/reason_father"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:background="@drawable/text_view_edging"
         android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -14,7 +14,7 @@
 	<TextView
 	    android:id="@+id/reason_name2"
 	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:layout_weight="1"
 	    android:background="@drawable/text_view_edging"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -22,7 +22,7 @@
 	<TextView
 	    android:id="@+id/reason_rank"
 	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:layout_weight="0.4"
 	    android:background="@drawable/text_view_edging"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -30,7 +30,7 @@
 	<TextView
 	    android:id="@+id/reason_min"
 	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:layout_weight="0.75"
 	    android:background="@drawable/text_view_edging"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
@@ -38,7 +38,7 @@
 	<TextView
 	    android:id="@+id/reason_max"
 	    android:layout_width="0dp"
-	    android:layout_height="wrap_content"
+	    android:layout_height="match_parent"
 	    android:layout_weight="0.75"
 	    android:background="@drawable/text_view_edging"
 	    android:textAppearance="?android:attr/textAppearanceSmall" />
