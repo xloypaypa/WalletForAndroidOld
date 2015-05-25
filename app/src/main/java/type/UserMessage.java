@@ -1,31 +1,38 @@
 package type;
 
-import java.util.Vector;
+import org.dom4j.Element;
 
-public class UserMessage extends Type implements TypeInterface {
+public class UserMessage extends Type {
+	
 	String userName, passWord, userReason;
+	
+	private Element usernameElement, passwordElement, reasonElement;
+	
 	public UserMessage(){
-		this.userName=new String();
-		this.id=userName;
-		this.passWord=new String();
-		this.userReason=new String("normal");
+		buildElement();
+		setName("");
+		setPassWord("");
+		setReason("normal");
 	}
 	public UserMessage(String userName, String passWord, String userReason){
-		this.userName=new String(userName);
-		this.id=userName;
-		this.passWord=new String(passWord);
-		this.userReason=new String(userReason);
+		buildElement();
+		setName(userName);
+		setPassWord(passWord);
+		setReason(userReason);
 	}
 	
 	public void setName(String name){
 		this.userName=new String(name);
-		this.id=userName;
+		usernameElement.setText(name);
+		setTypeId(name);
 	}
 	public void setPassWord(String pass){
 		this.passWord=new String(pass);
+		passwordElement.setText(pass);
 	}
 	public void setReason(String reason){
 		this.userReason=new String(reason);
+		reasonElement.setText(reason);
 	}
 	public String getName(){
 		return new String(this.userName);
@@ -38,45 +45,20 @@ public class UserMessage extends Type implements TypeInterface {
 	}
 	
 	@Override
-	public String format() {
-		String ans=new String();
-		ans+="[user name]\r\n";
-		ans+=this.userName+"\r\n";
-		ans+="[pass word]\r\n";
-		ans+=this.passWord+"\r\n";
-		ans+="[user reason type]\r\n";
-		ans+=this.userReason+"\r\n";
-		ans+=super.format();
-		return ans;
-	}
-	@Override
-	public String getTypeMessage() {
-		String ans=new String();
-		ans+="[begin]\r\n";
-		ans+="[type name]\r\n";
-		ans+="user message\r\n";
-		ans+="[type item]\r\n";
-		ans+=this.getTypeNumber()+"\r\n";
-		return ans;
-	}
-	@Override
-	public int getTypeNumber() {
-		return 3+super.getTypeNumber();
-	}
-	@Override
-	public void solveTypeMessage(Vector <String> message) {
-		for (int i=0;i<message.size();i+=2){
-			String title=message.get(i);
-			String body=message.get(i+1);
-			if(title.equals("[user name]")){
-				this.userName=body;
-				this.id=userName;
-			}else if (title.equals("[pass word]")){
-				this.passWord=body;
-			}else if (title.equals("[user reason type]")){
-				this.userReason=body;
-			}
-		}
+	public void solveTypeMessage(Element message) {
 		super.solveTypeMessage(message);
+		usernameElement = root.element("username");
+		passwordElement = root.element("password");
+		reasonElement = root.element("reason");
+		
+		userName = usernameElement.getText();
+		passWord = passwordElement.getText();
+		userReason = reasonElement.getText();
+	}
+	
+	private void buildElement() {
+		usernameElement = root.addElement("username");
+		passwordElement = root.addElement("password");
+		reasonElement = root.addElement("reason");
 	}
 }

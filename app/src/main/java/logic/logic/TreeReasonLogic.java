@@ -2,7 +2,7 @@ package logic.logic;
 
 import java.util.Date;
 
-import database.operator.IDDataKeeper;
+import database.operator.IDDataOperator;
 import logic.action.detail.DetailSaveTreeReasonAction;
 import logic.action.detail.WriteDetailAction;
 import logic.action.reason.AddTreeReasonAction;
@@ -37,7 +37,7 @@ public class TreeReasonLogic extends ReasonLogic {
 		maxVsc.setValue(max);
 		
 		ExistCheck ec=new ExistCheck();
-		ec.setKeeper((IDDataKeeper) data.getData("reason"));
+		ec.setKeeper((IDDataOperator) data.getData("reason"));
 		ec.setID(name);
 		
 		
@@ -72,7 +72,7 @@ public class TreeReasonLogic extends ReasonLogic {
 		
 		if (!past.equals(name)){
 			ExistCheck ec=new ExistCheck();
-			ec.setKeeper((IDDataKeeper) data.getData("reason"));
+			ec.setKeeper((IDDataOperator) data.getData("reason"));
 			ec.setID(name);
 			event.addCheck(ec);
 		}

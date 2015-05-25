@@ -1,11 +1,8 @@
 package type;
 
-import java.util.*;
+import org.dom4j.Element;
 
 public interface TypeInterface {
 	public String format();
-	public String getTypeMessage();
-	public String getAllMessage();
-	public int getTypeNumber();
-	public void solveTypeMessage(Vector<String> message);
+	public void solveTypeMessage(Element node);
 }

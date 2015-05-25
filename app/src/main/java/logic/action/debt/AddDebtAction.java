@@ -3,8 +3,8 @@ package logic.action.debt;
 import java.util.Date;
 import java.util.Vector;
 
-import database.operator.DebtKeeper;
-import database.operator.TypeKeeper;
+import database.operator.DebtOperator;
+import database.operator.TypeOperator;
 import logic.action.AbstractAction;
 import type.DebtType;
 import type.Type;
@@ -31,7 +31,7 @@ public abstract class AddDebtAction extends AbstractAction {
 
 	public static int getNewID() {
 		int max=-1;
-		Vector <Type> ret=((TypeKeeper) data.getData("debt")).getAllItem();
+		Vector <Type> ret=((TypeOperator) data.getData("debt")).getAllItem();
 		for (int i=0;i<ret.size();i++){
 			DebtType now=(DebtType) ret.get(i);
 			if (max<now.getID()) max=now.getID();
@@ -39,7 +39,7 @@ public abstract class AddDebtAction extends AbstractAction {
 		return max+1;
 	}
 
-	protected void setDebtMessage(DebtKeeper keeper, DebtType debt) {
+	protected void setDebtMessage(DebtOperator keeper, DebtType debt) {
 		debt.setCreditor(creditor);
 		debt.setDeadline(deadline);
 		debt.setRate(rateType, rate);

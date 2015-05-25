@@ -21,7 +21,7 @@ public class PublicDataBase extends NoPasswordDataBase implements IDDataBase {
 			if (now.get(i).getTypeID().equals(id)){
 				continue;
 			}else{
-				ans+=now.get(i).getAllMessage()+"\r\n";
+				ans+=now.get(i).format()+"\r\n";
 			}
 		}
 		HHD.writeFile(aimPath, ans);
@@ -33,9 +33,9 @@ public class PublicDataBase extends NoPasswordDataBase implements IDDataBase {
 		String ans=new String();
 		for (int i=0;i<now.size();i++){
 			if (now.get(i).getTypeID().equals(id)){
-				ans+=type.getAllMessage()+"\r\n";
+				ans+=type.format()+"\r\n";
 			}else{
-				ans+=now.get(i).getAllMessage()+"\r\n";
+				ans+=now.get(i).format()+"\r\n";
 			}
 		}
 		HHD.writeFile(aimPath, ans);

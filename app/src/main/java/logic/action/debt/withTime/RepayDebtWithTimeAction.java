@@ -2,7 +2,7 @@ package logic.action.debt.withTime;
 
 import java.util.Date;
 
-import database.operator.DebtKeeper;
+import database.operator.DebtOperator;
 import type.DebtType;
 import logic.action.debt.RepayDebtAction;
 
@@ -16,7 +16,7 @@ public class RepayDebtWithTimeAction extends RepayDebtAction {
 
 	@Override
 	public void run() {
-		DebtKeeper keeper=(DebtKeeper) data.getData("debt");
+		DebtOperator keeper=(DebtOperator) data.getData("debt");
 		DebtType debt=(DebtType) keeper.getItem(id+"");
 		debt.repayment(value, time);
 		if (debt.getMaxRepay()>1e-3) keeper.update(id+"", debt);

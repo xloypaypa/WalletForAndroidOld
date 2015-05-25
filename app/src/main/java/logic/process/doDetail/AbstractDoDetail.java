@@ -1,6 +1,6 @@
 package logic.process.doDetail;
 
-import database.operator.DetailKeeper;
+import database.operator.DetailOperator;
 import logic.logicListener.LogicDoDetailListener;
 import logic.process.AbstractProcess;
 
@@ -19,7 +19,7 @@ public abstract class AbstractDoDetail extends AbstractProcess {
 	public void process() {
 		this.solveDetail();
 		
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		keeper.add(detail);
 	}
 	

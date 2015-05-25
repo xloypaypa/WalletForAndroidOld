@@ -1,6 +1,6 @@
 package logic.action.debt;
 
-import database.operator.DebtKeeper;
+import database.operator.DebtOperator;
 import type.DebtType;
 import logic.ListenerManager;
 import logic.action.AbstractAction;
@@ -21,7 +21,7 @@ public class RepayDebtAction extends AbstractAction {
 	
 	@Override
 	public void run() {
-		DebtKeeper keeper=(DebtKeeper) data.getData("debt");
+		DebtOperator keeper=(DebtOperator) data.getData("debt");
 		DebtType debt=(DebtType) keeper.getItem(id+"");
 		debt.repayment(value);
 		if (debt.getMaxRepay()>1e-3) keeper.update(id+"", debt);

@@ -2,6 +2,10 @@ package database.password;
 
 import java.util.Vector;
 
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+
 import type.Type;
 import database.AbstractDataBase;
 import database.HHD;
@@ -13,40 +17,30 @@ public abstract class PasswordDataBase extends AbstractDataBase {
 	@Override
 	public Vector<Type> load() {
 		Vector <Type> ans=new Vector <>();
-		Vector <Vector <String>> file=this.loadFile(aimPath);
+		Vector<String> file = HHD.readFile(aimPath, passWord);
 		
 		for (int i=0;i<file.size();i++){
-			Type aim=getNewType();
-			aim.solveTypeMessage(file.get(i));
-			ans.add(aim);
+			if (file.get(i).length()==0) continue;
+			try {
+				Element now = DocumentHelper.parseText(file.get(i)).getRootElement();
+				Type aim=getNewType();
+				aim.solveTypeMessage(now);
+				ans.add(aim);
+			} catch (DocumentException e) {
+				System.out.println("error: "+file.get(i));
+				e.printStackTrace();
+			}
 		}
 		return ans;
 	}
 	
 	@Override
 	public void addItem(Type type) {
-		HHD.addWriteFile(aimPath, type.getAllMessage(), passWord);
+		HHD.addWriteFile(aimPath, type.format(), passWord);
 	}
 	
 	public void setPassword(String passWord){
 		this.passWord=passWord;
-	}
-	
-	protected Vector<Vector<String>> loadFile(String path){
-		Vector <String> file=HHD.readFile(aimPath, passWord);
-		Vector < Vector <String> > ans=new Vector<Vector<String>>();
-		Vector <String> message=new Vector<String>();
-		for (int i=0;i<file.size();i++){
-			if (file.get(i).equals("[end]")){
-				ans.add(message);
-				message=new Vector<String>();
-			}else if (file.get(i).equals("[begin]")){
-				message=new Vector<String>();
-			}else{
-				message.add(file.get(i));
-			}
-		}
-		return ans;
 	}
 
 }

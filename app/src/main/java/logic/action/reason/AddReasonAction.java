@@ -1,6 +1,6 @@
 package logic.action.reason;
 
-import database.operator.ReasonKeeper;
+import database.operator.ReasonOperator;
 import logic.ListenerManager;
 import logic.action.AbstractAction;
 import type.ReasonType;
@@ -19,7 +19,7 @@ public class AddReasonAction extends AbstractAction {
 
 	@Override
 	public void run() {
-		ReasonKeeper keeper=(ReasonKeeper) data.getData("reason");
+		ReasonOperator keeper=(ReasonOperator) data.getData("reason");
 		ReasonType reason=new ReasonType();
 		reason.setName(name); reason.setExpenditure(0); reason.setIncome(0);
 		keeper.add(reason);

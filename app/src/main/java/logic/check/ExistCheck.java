@@ -1,13 +1,13 @@
 package logic.check;
 
-import database.operator.IDDataKeeper;
+import database.operator.IDDataOperator;
 import logic.ListenerManager;
 import logic.event.AbstractSteep;
 
 public class ExistCheck extends AbstractSteep {
 	
 	String id;
-	IDDataKeeper keeper;
+	IDDataOperator keeper;
 	
 	public ExistCheck() {
 		super("exist");
@@ -17,7 +17,7 @@ public class ExistCheck extends AbstractSteep {
 		this.id=id;
 	}
 	
-	public void setKeeper(IDDataKeeper keeper){
+	public void setKeeper(IDDataOperator keeper){
 		this.keeper=keeper;
 	}
 

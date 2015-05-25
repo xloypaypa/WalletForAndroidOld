@@ -2,7 +2,7 @@ package database.viewer;
 
 import java.util.Vector;
 
-import database.operator.DetailKeeper;
+import database.operator.DetailOperator;
 import type.DetailType;
 import type.MoneyHistoryType;
 import type.Type;
@@ -11,7 +11,7 @@ import logic.Logic;
 public class MoneyHistoryViewer extends Logic {
 	
 	public Vector <MoneyHistoryType> getHistoricalType(){
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		return getHistoricalType(keeper.getAllItem());
 	}
 	public Vector <MoneyHistoryType> getHistoricalType(Vector<Type> detail){

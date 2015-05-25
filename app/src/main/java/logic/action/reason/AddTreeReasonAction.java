@@ -1,6 +1,6 @@
 package logic.action.reason;
 
-import database.operator.TreeReasonKeeper;
+import database.operator.TreeReasonOperator;
 import logic.ListenerManager;
 import type.ReasonTreeNodeType;
 
@@ -19,7 +19,7 @@ public class AddTreeReasonAction extends AddReasonAction {
 
 	@Override
 	public void run() {
-		TreeReasonKeeper keeper=(TreeReasonKeeper) data.getData("reason");
+		TreeReasonOperator keeper=(TreeReasonOperator) data.getData("reason");
 		ReasonTreeNodeType reason=new ReasonTreeNodeType();
 		reason.setFatherName(father);
 		reason.setMax(max);

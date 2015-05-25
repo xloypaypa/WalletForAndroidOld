@@ -2,7 +2,7 @@ package logic.action.detail;
 
 import java.text.SimpleDateFormat;
 
-import database.operator.DebtKeeper;
+import database.operator.DebtOperator;
 import type.DebtType;
 
 public class DetailSaveDebtAction extends WriteDetailAction {
@@ -26,7 +26,7 @@ public class DetailSaveDebtAction extends WriteDetailAction {
 	}
 
 	protected DebtType getDebt(String id){
-		DebtKeeper keeper=(DebtKeeper) data.getData("debt");
+		DebtOperator keeper=(DebtOperator) data.getData("debt");
 		DebtType debt=(DebtType) keeper.getItem(id);
 		return debt;
 	}

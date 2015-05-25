@@ -13,7 +13,7 @@ public abstract class DetailDataBase extends PasswordDataBase {
 		
 		String ans=new String();
 		for (int i=0;i<all.size()-1;i++) {
-			ans+=all.get(i).getAllMessage();
+			ans+=all.get(i).format();
 		}
 		HHD.writeFile(aimPath, ans, passWord);
 	}

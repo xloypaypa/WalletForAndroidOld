@@ -1,9 +1,8 @@
 package logic.process.backup.reason;
 
-import java.util.Vector;
+import org.dom4j.Element;
 
-import database.operator.TreeReasonKeeper;
-import type.ExtraType;
+import database.operator.TreeReasonOperator;
 import type.ReasonTreeNodeType;
 import logic.action.reason.AddTreeReasonAction;
 import logic.action.reason.RenameTreeReasonAction;
@@ -36,11 +35,12 @@ public class RemoveTreeReasonBackup extends AbstractBackup {
 		tria.run();
 		
 		RenameTreeReasonAction rtra=new RenameTreeReasonAction();
-		TreeReasonKeeper keeper=(TreeReasonKeeper) data.getData("reason");
-		Vector <ExtraType> all=detail.getExtra();
-		for (int i=0;i<all.size();i++){
-			if (all.get(i).getTitle().equals("have kid reason")){
-				ReasonTreeNodeType reason=(ReasonTreeNodeType) keeper.getItem(all.get(i).getMessage());
+		TreeReasonOperator keeper=(TreeReasonOperator) data.getData("reason");
+		Element all = detail.getExtra();
+		for (int i=0;i<all.elements().size();i++){
+			Element now = (Element) all.elements().get(i);
+			if (now.getName().equals("have_kid_reason")) {
+				ReasonTreeNodeType reason=(ReasonTreeNodeType) keeper.getItem(now.getText());
 				rtra.setValue(reason.getName(), reason.getName());
 				rtra.setValue(detail.getExtraMessage("past reason name"), 
 						reason.getMin(), reason.getMax(), reason.getRank());

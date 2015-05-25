@@ -34,6 +34,7 @@ public class TestCase extends ActivityInstrumentationTestCase2<MainActivity> {
 
     @Override
     public void tearDown() throws Exception {
+        Thread.sleep(3000);
         super.tearDown();
     }
 }

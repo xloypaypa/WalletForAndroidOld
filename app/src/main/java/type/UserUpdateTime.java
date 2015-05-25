@@ -4,31 +4,36 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Vector;
+
+import org.dom4j.Element;
 
 public class UserUpdateTime extends Type {
+	
 	String type;
 	Date nextTime;
 	
+	private Element typeElement, nextTimeElement;
+	
 	public UserUpdateTime(){
-		type="month";
+		buildElemet();
+		setType("month");
 		Calendar c=Calendar.getInstance();
 		c.set(1917, 11, 27);
-		nextTime=c.getTime();
+		setNextTime(c.getTime());
 		this.setMonth(1);
 	}
 	
 	public void setMonth(int day){
 		this.removeExtra("month");
 		this.removeExtra("day");
-		this.type="month";
+		setType("month");
 		this.addExtra("day", day+"");
 	}
 	
 	public void setYear(int month,int day){
 		this.removeExtra("month");
 		this.removeExtra("day");
-		this.type="year";
+		setType("year");
 		this.addExtra("month", month+"");
 		this.addExtra("day", day+"");
 		
@@ -74,12 +79,12 @@ public class UserUpdateTime extends Type {
 				ans.set(Calendar.MONTH, nextMonth-1);
 				
 				if (ans.getTime().after(last)){
-					nextTime=ans.getTime();
+					setNextTime(ans.getTime());
 					return this.nextTime;
 				}
 				
 				ans.set(Calendar.YEAR, ans.get(Calendar.YEAR)+1);
-				nextTime=ans.getTime();
+				setNextTime(ans.getTime());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
@@ -92,47 +97,33 @@ public class UserUpdateTime extends Type {
 	}
 	
 	@Override
-	public String format(){
-		String ans=new String();
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		ans+="[update type]\r\n"+type+"\r\n";
-		ans+="[update next date]\r\n"+sdf.format(nextTime)+"\r\n";
-		ans+=super.format();
-		return ans;
-	}
-	
-	@Override
-	public String getTypeMessage() {
-		String ans=new String();
-		ans+="[begin]\r\n";
-		ans+="[type name]\r\n";
-		ans+="user update time\r\n";
-		ans+="[type item]\r\n";
-		ans+=this.getTypeNumber()+"\r\n";
-		return ans;
-	}
-	
-	@Override
-	public int getTypeNumber() {
-		return super.getTypeNumber()+2;
-	}
-	
-	@Override
-	public void solveTypeMessage(Vector<String> message) {
-		for (int i=0;i<message.size();i+=2){
-			String title=message.get(i);
-			String body=message.get(i+1);
-			if(title.equals("[update type]")){
-				this.type=body;
-			}else if (title.equals("[update next date]")){
-				SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-				try {
-					this.nextTime=sdf.parse(body);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			}
-		}
+	public void solveTypeMessage(Element message) {
 		super.solveTypeMessage(message);
+		typeElement = root.element("type");
+		nextTimeElement = root.element("next_time");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		type = typeElement.getText();
+		try {
+			nextTime = sdf.parse(nextTimeElement.getText());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	protected void setType(String type) {
+		this.type = type;
+		typeElement.setText(type);
+	}
+	
+	protected void setNextTime(Date nextTime) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		this.nextTime = nextTime;
+		nextTimeElement.setText(sdf.format(nextTime));
+	}
+	
+	private void buildElemet() {
+		typeElement = root.addElement("type");
+		nextTimeElement = root.addElement("next_time");
 	}
 }

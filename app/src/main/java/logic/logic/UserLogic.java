@@ -2,7 +2,7 @@ package logic.logic;
 
 import logic.ListenerManager;
 import database.operator.UserPublicData;
-import translater.translater.Strings;
+import translater.Strings;
 import type.UserMessage;
 import encryptionAlgorithm.MD5;
 

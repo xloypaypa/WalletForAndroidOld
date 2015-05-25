@@ -3,42 +3,57 @@ package type;
 import java.text.*;
 import java.util.*;
 
-public class DetailType extends Type implements TypeInterface {
+import org.dom4j.Element;
+
+public class DetailType extends Type {
 	Date time;
 	String event,reason,type;
 	double value;
 	
+	private Element timeElement;
+	private Element eventElement, reasonElement, typeElement;
+	private Element valueElement;
+	
 	public DetailType() {
-		time = new Date();
-		event = new String();
-		reason = new String();
-		type = new String();
-		value = 0;
+		buildElement();
+		time=new Date();
+		setTime(new Date());
+		setEvent("");
+		setReason("");
+		setType("");
+		setValue(0);
 	}
 	public DetailType(DetailType other){
+		buildElement();
 		time = new Date();
-		time.setTime(other.getTime().getTime());
-		event = new String(other.getEvent());
-		reason = new String(other.getReason());
-		type = new String(other.getType());
-		value = other.getValue();
-		this.extra=new Vector<>(other.extra);
+		setTime(other.getTime());
+		setEvent(other.getEvent());
+		setReason(other.getReason());
+		setType(other.getType());
+		setValue(other.getValue());
 	}
 	
 	public void setTime(Date date){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		time.setTime(date.getTime());
+		timeElement.setText(sdf.format(date));
 	}
 	public void setEvent(String event){
 		this.event = event;
+		eventElement.setText(event);
 	}
 	public void setReason(String reason){
 		this.reason = reason;
+		reasonElement.setText(reason);
 	}
 	public void setType(String type){
 		this.type = type;
+		typeElement.setText(type);
 	}
 	public void setValue(double value){
+		DecimalFormat df = new DecimalFormat("0.00");
 		this.value = value;
+		valueElement.setText(df.format(value));
 	}
 	public Date getTime(){
 		Date ans=new Date();
@@ -59,62 +74,31 @@ public class DetailType extends Type implements TypeInterface {
 	}
 
 	@Override
-	public String format() {
-		String ans=new String();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		DecimalFormat df = new DecimalFormat("0.00");
-		ans+="[detail time]\r\n";
-		ans+=sdf.format(time.getTime())+"\r\n";
-		ans+="[detail event]\r\n";
-		ans+=event+"\r\n";
-		ans+="[detail value]\r\n";
-		ans+=df.format(value)+"\r\n";
-		ans+="[detail type]\r\n";
-		ans+=type+"\r\n";
-		ans+="[detail reason]\r\n";
-		ans+=reason+"\r\n";
-		ans+=super.format();
-		return ans;
-	}
-
-	@Override
-	public String getTypeMessage() {
-		String ans=new String();
-		ans+="[begin]\r\n";
-		ans+="[type name]\r\n";
-		ans+="detail type\r\n";
-		ans+="[type item]\r\n";
-		ans+=this.getTypeNumber()+"\r\n";
-		return ans;
-	}
-
-	@Override
-	public int getTypeNumber() {
-		return 5+super.getTypeNumber();
-	}
-
-	@Override
-	public void solveTypeMessage(Vector<String> message) {
-		for (int i=0;i<message.size();i+=2){
-			String title=message.get(i);
-			String body=message.get(i+1);
-			if (title.equals("[detail time]")){
-				try {
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-					time.setTime(sdf.parse(body).getTime());
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			}else if (title.equals("[detail event]")){
-				event=body;
-			}else if (title.equals("[detail value]")){
-				value = Double.valueOf(body);
-			}else if (title.equals("[detail type]")){
-				type = body;
-			}else if (title.equals("[detail reason]")){
-				reason = body;
-			}
-		}
+	public void solveTypeMessage(Element message) {
 		super.solveTypeMessage(message);
+		timeElement = message.element("time");
+		eventElement = message.element("event");
+		reasonElement = message.element("reason");
+		typeElement = message.element("type");
+		valueElement = message.element("value");
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		try {
+			time = sdf.parse(timeElement.getText());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		event = eventElement.getText();
+		reason = reasonElement.getText();
+		type = typeElement.getText();
+		value= Double.valueOf(valueElement.getText());
+	}
+	
+	private void buildElement() {
+		timeElement = root.addElement("time");
+		eventElement = root.addElement("event");
+		reasonElement = root.addElement("reason");
+		typeElement = root.addElement("type");
+		valueElement = root.addElement("value");
 	}
 }

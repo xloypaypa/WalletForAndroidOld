@@ -2,7 +2,7 @@ package logic.logic;
 
 import java.util.Vector;
 
-import database.operator.DetailKeeper;
+import database.operator.DetailOperator;
 import database.operator.UserPublicData;
 import type.DetailType;
 import type.Type;
@@ -49,7 +49,7 @@ public class DoDetailLogic extends ProcessLogic {
 	}
 	
 	public void setPath(String path){
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		keeper.load(path);
 		doDetail(new Vector<>(keeper.getAllItem()));
 	}

@@ -1,6 +1,6 @@
 package logic.action.detail;
 
-import database.operator.MoneyKeeper;
+import database.operator.MoneyOperator;
 import type.MoneyType;
 
 public class DetailSaveMoneyAction extends WriteDetailAction {
@@ -16,7 +16,7 @@ public class DetailSaveMoneyAction extends WriteDetailAction {
 	}
 
 	private MoneyType getMoney(String name) {
-		MoneyKeeper keeper=(MoneyKeeper) data.getData("money");
+		MoneyOperator keeper=(MoneyOperator) data.getData("money");
 		return (MoneyType) keeper.getItem(name);
 	}
 

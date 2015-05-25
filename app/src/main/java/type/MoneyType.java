@@ -1,28 +1,36 @@
 package type;
 
 import java.text.DecimalFormat;
-import java.util.Vector;
+
+import org.dom4j.Element;
 
 public class MoneyType extends Type implements TypeInterface {
+	
 	String type;
 	double value;
+	
+	private Element typeElement, valueElement;
+	
 	public MoneyType(){
-		type=new String();
-		this.id=type;
-		value=0;
+		buildElement();
+		setType("");
+		setValue(0);
 	}
 	public MoneyType(String type,double value){
-		this.type=new String(type);
-		this.id=type;
-		this.value=value;
+		buildElement();
+		setType(type);
+		setValue(value);
 	}
 	
 	public void setType(String type){
 		this.type=type;
-		this.id=type;
+		typeElement.setText(type);
+		setTypeId(type);
 	}
 	public void setValue(double value){
+		DecimalFormat df = new DecimalFormat("0.00");
 		this.value=value;
+		valueElement.setText(df.format(value));
 	}
 	
 	public String getType(){
@@ -33,42 +41,17 @@ public class MoneyType extends Type implements TypeInterface {
 	}
 	
 	@Override
-	public String format() {
-		String ans=new String();
-		DecimalFormat df = new DecimalFormat("0.00");
-		ans+="[money type]\r\n";
-		ans+=this.type+"\r\n";
-		ans+="[money value]\r\n";
-		ans+=df.format(this.value)+"\r\n";
-		ans+=super.format();
-		return ans;
-	}
-	@Override
-	public String getTypeMessage() {
-		String ans=new String();
-		ans+="[begin]\r\n";
-		ans+="[type name]\r\n";
-		ans+="money type\r\n";
-		ans+="[type item]\r\n";
-		ans+=this.getTypeNumber()+"\r\n";
-		return ans;
-	}
-	@Override
-	public int getTypeNumber() {
-		return 2+super.getTypeNumber();
-	}
-	@Override
-	public void solveTypeMessage(Vector <String> message) {
-		for (int i=0;i<message.size();i+=2){
-			String title=message.get(i);
-			String body=message.get(i+1);
-			if(title.equals("[money type]")){
-				this.type=body;
-				this.id=type;
-			}else if (title.equals("[money value]")){
-				this.value=Double.valueOf(body);
-			}
-		}
+	public void solveTypeMessage(Element message) {
 		super.solveTypeMessage(message);
+		typeElement = message.element("type");
+		valueElement = message.element("value");
+		
+		type = typeElement.getText();
+		value = Double.valueOf(valueElement.getText());
+	}
+	
+	private void buildElement() {
+		typeElement = root.addElement("type");
+		valueElement = root.addElement("value");
 	}
 }

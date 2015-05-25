@@ -2,8 +2,8 @@ package logic.analysis;
 
 import java.util.Vector;
 
-import database.operator.MoneyKeeper;
-import database.operator.TreeReasonKeeper;
+import database.operator.MoneyOperator;
+import database.operator.TreeReasonOperator;
 import database.viewer.TreeReasonViewer;
 import type.MoneyType;
 import type.ReasonTreeNodeType;
@@ -12,12 +12,12 @@ import logic.Logic;
 
 public class Analyst extends Logic {
 	
-	TreeReasonKeeper keeper=(TreeReasonKeeper) data.getData("reason");
+	TreeReasonOperator keeper=(TreeReasonOperator) data.getData("reason");
 	int level;
 	int day[]=new int[6];
 	
 	public void solve(){
-		MoneyKeeper keeper=(MoneyKeeper) data.getData("money");
+		MoneyOperator keeper=(MoneyOperator) data.getData("money");
 		Vector<Type> allTypes=keeper.getAllItem();
 		double money=0;
 		for (int i=0;i<allTypes.size();i++){

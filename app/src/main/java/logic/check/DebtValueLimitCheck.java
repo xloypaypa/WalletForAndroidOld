@@ -1,6 +1,6 @@
 package logic.check;
 
-import database.operator.DebtKeeper;
+import database.operator.DebtOperator;
 import logic.ListenerManager;
 import logic.event.AbstractSteep;
 import type.DebtType;
@@ -20,7 +20,7 @@ public class DebtValueLimitCheck extends AbstractSteep {
 
 	@Override
 	public boolean action() {
-		DebtKeeper keeper=(DebtKeeper) data.getData("debt");
+		DebtOperator keeper=(DebtOperator) data.getData("debt");
 		DebtType debt=(DebtType) keeper.getItem(id+"");
 		if (debt.getMaxRepay()<value){
 			ListenerManager.setDebtRepayLimitError(debt.getMaxRepay());

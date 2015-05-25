@@ -2,7 +2,7 @@ package database.viewer;
 
 import java.util.Vector;
 
-import database.operator.IDDataKeeper;
+import database.operator.IDDataOperator;
 import type.Type;
 
 public class IDDataViewer extends DataViewer {
@@ -17,7 +17,7 @@ public class IDDataViewer extends DataViewer {
 	}
 	
 	public Type getItem(String id){
-		return ((IDDataKeeper) keeper).getItem(id);
+		return ((IDDataOperator) keeper).getItem(id);
 	}
 
 }

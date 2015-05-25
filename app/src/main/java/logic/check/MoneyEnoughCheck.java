@@ -1,6 +1,6 @@
 package logic.check;
 
-import database.operator.MoneyKeeper;
+import database.operator.MoneyOperator;
 import logic.ListenerManager;
 import logic.event.AbstractSteep;
 import type.MoneyType;
@@ -20,7 +20,7 @@ public class MoneyEnoughCheck extends AbstractSteep {
 
 	@Override
 	public boolean action() {
-		MoneyKeeper keeper=(MoneyKeeper) data.getData("money");
+		MoneyOperator keeper=(MoneyOperator) data.getData("money");
 		MoneyType money=(MoneyType) keeper.getItem(type);
 		if (money.getValue()<value){
 			ListenerManager.setErrorMessage("Don't have enough money.");

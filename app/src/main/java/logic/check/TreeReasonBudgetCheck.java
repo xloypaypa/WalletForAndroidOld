@@ -1,6 +1,6 @@
 package logic.check;
 
-import database.operator.TreeReasonKeeper;
+import database.operator.TreeReasonOperator;
 import logic.ListenerManager;
 import logic.event.AbstractSteep;
 import type.ReasonTreeNodeType;
@@ -21,7 +21,7 @@ public class TreeReasonBudgetCheck extends AbstractSteep {
 	@Override
 	public boolean action() {
 		if (name.equals("root")) return false;
-		TreeReasonKeeper keeper=(TreeReasonKeeper) data.getData("reason");
+		TreeReasonOperator keeper=(TreeReasonOperator) data.getData("reason");
 		ReasonTreeNodeType now=(ReasonTreeNodeType) keeper.getItem(name);
 		while (true){
 			if (now.getExpenditure()+value > now.getMax()){

@@ -1,6 +1,6 @@
 package logic.action.money;
 
-import database.operator.MoneyKeeper;
+import database.operator.MoneyOperator;
 import logic.ListenerManager;
 import logic.action.AbstractAction;
 
@@ -18,7 +18,7 @@ public class RemoveTypeAction extends AbstractAction {
 
 	@Override
 	public void run() {
-		MoneyKeeper keeper=(MoneyKeeper) data.getData("money");
+		MoneyOperator keeper=(MoneyOperator) data.getData("money");
 		keeper.delete(type);
 		ListenerManager.setOKMessage();
 	}

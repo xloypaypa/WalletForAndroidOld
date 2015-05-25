@@ -11,11 +11,11 @@ import logic.logic.TreeReasonLogic;
 import logic.logic.TypeLogic;
 import logic.logic.UserLogic;
 import database.HHD;
-import database.operator.DebtKeeper;
-import database.operator.DetailKeeper;
-import database.operator.MoneyKeeper;
-import database.operator.ReasonKeeper;
-import database.operator.TreeReasonKeeper;
+import database.operator.DebtOperator;
+import database.operator.DetailOperator;
+import database.operator.MoneyOperator;
+import database.operator.ReasonOperator;
+import database.operator.TreeReasonOperator;
 import database.operator.UserData;
 import database.operator.UserPublicData;
 
@@ -31,9 +31,9 @@ public class Operator extends Logic {
 	public static void login(String name,String pass){
 		if (UserLogic.login(name, pass)){
 			data=new UserData();
-			data.addDataKeeper(new MoneyKeeper());
-			data.addDataKeeper(new DebtKeeper());
-			data.addDataKeeper(new DetailKeeper());
+			data.addDataKeeper(new MoneyOperator());
+			data.addDataKeeper(new DebtOperator());
+			data.addDataKeeper(new DetailOperator());
 			
 			type=new TypeLogic();
 			cost=new CostLogic();
@@ -43,10 +43,10 @@ public class Operator extends Logic {
 			
 			if (UserPublicData.getUserReason(name).equals("tree")){
 				reason=new TreeReasonLogic();
-				data.addDataKeeper(new TreeReasonKeeper());
+				data.addDataKeeper(new TreeReasonOperator());
 			}else{
 				reason=new ReasonLogic();
-				data.addDataKeeper(new ReasonKeeper());
+				data.addDataKeeper(new ReasonOperator());
 			}
 			
 			data.loadAllData();
@@ -127,13 +127,13 @@ public class Operator extends Logic {
 	
 	public static void export(String path){
 		HHD.cleanFile(path+"/detail.txt");
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		keeper.export(path+"/detail.txt");
 	}
 	
 	public static void exportExcel(String path){
 		HHD.cleanFile(path+"/detail.xls");
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		keeper.exportExcel(path+"/detail.xls");
 	}
 	

@@ -5,84 +5,105 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class DebtType extends Type implements TypeInterface {
+import org.dom4j.Element;
+
+public class DebtType extends Type {
 	protected int debtID;
 	protected String creditor,debtType;
 	protected double value;
 	protected Date deadline,startingTime,lastUpdateTime;
 	protected RateType rate;
 	
+	private Element debtIDElement;
+	private Element creditorElement, debtTypeElement;
+	private Element valueElement;
+	private Element deadlineElement, startingTimeElement, lastUpdateElement;
+	
 	public DebtType(){
-		this.debtID=-1;
-		this.id="-1";
-		this.creditor=new String("null");
-		this.debtType="borrow";
-		this.value=0;
-		this.deadline=new Date();
-		this.rate=new RateType();
-		this.startingTime=new Date();
-		this.lastUpdateTime=new Date();
+		createElemet();
+		setID(-1);
+		setCreditor("null");
+		setDebtType("borrow");
+		setValue(0);
+		setDeadline(new Date());
+		this.rate=new RateType(this);
+		setStartingTime(new Date());
+		setLastUpdateTime(new Date());
 	}
-	public DebtType(String debtee,double val){
-		this.debtID=-1;
-		this.id="-1";
-		this.creditor=new String(debtee);
-		this.debtType="borrow";
-		this.value=val; this.rate=new RateType();
-		this.deadline=new Date();
-		this.startingTime=new Date();
-		this.lastUpdateTime=new Date();
+	public DebtType(String creditor,double val){
+		createElemet();
+		setID(-1);
+		setCreditor(creditor);
+		setDebtType("borrow");
+		setValue(val);
+		setDeadline(new Date());
+		this.rate=new RateType(this);
+		setStartingTime(new Date());
+		setLastUpdateTime(new Date());
 	}
-	public DebtType(String debtee,double val,Date deadline){
-		this.debtID=-1;
-		this.id="-1";
-		this.creditor=new String(debtee);
-		this.debtType="borrow";
-		this.value=val; this.rate=new RateType();
-		this.deadline=new Date();
-		this.deadline.setTime(deadline.getTime());
-		this.startingTime=new Date();
-		this.lastUpdateTime=new Date();
+	public DebtType(String creditor,double val,Date deadline){
+		createElemet();
+		setID(-1);
+		setCreditor(creditor);
+		setDebtType("borrow");
+		setValue(val);
+		setDeadline(deadline);
+		this.rate=new RateType(this);
+		setStartingTime(new Date());
+		setLastUpdateTime(new Date());
 	}
-	public DebtType(String debtee,double val,Date deadline,String type,double rate){
-		this.debtID=-1;
-		this.id="-1";
-		this.creditor=new String(debtee);
-		this.debtType="borrow";
-		this.value=val; this.rate=new RateType(type, rate);
-		this.deadline=new Date();
-		this.deadline.setTime(deadline.getTime());
-		this.startingTime=new Date();
-		this.lastUpdateTime=new Date();
+	public DebtType(String creditor,double val,Date deadline,String type,double rate){
+		createElemet();
+		setID(-1);
+		setCreditor(creditor);
+		setDebtType("borrow");
+		setValue(val);
+		setDeadline(deadline);
+		this.rate=new RateType(this,type, rate);
+		setStartingTime(new Date());
+		setLastUpdateTime(new Date());
 	}
 	
 	public void setRate(String type,double rate){
-		this.rate=new RateType(type, rate);
+		this.rate=new RateType(this, type, rate);
 	}
 	public void setDeadline(Date deadline){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		this.deadline.setTime(deadline.getTime());
+		deadlineElement.setText(sdf.format(deadline));
 	}
 	public void setValue(double val){
+		DecimalFormat df = new DecimalFormat("0.00");
 		this.value=val;
+		valueElement.setText(df.format(value));
 	}
 	public void setCreditor(String s){
 		this.creditor=s;
+		creditorElement.setText(creditor);
 	}
 	public void setDebtType(String type){
 		this.debtType=type;
+		debtTypeElement.setText(debtType);
 	}
 	public void setID(int id){
 		this.debtID=id;
-		this.id=id+"";
+		debtIDElement.setText(debtID+"");
+		setTypeId(id+"");
 	}
 	public void updateLastUpdateTime(){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		this.lastUpdateTime=new Date();
+		lastUpdateElement.setText(sdf.format(lastUpdateTime));
 	}
 	public void setLastUpdateTime(Date time){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		this.lastUpdateTime.setTime(time.getTime());
+		lastUpdateElement.setText(sdf.format(lastUpdateTime));
 	}
 	public void setStartingTime(Date val){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		this.startingTime.setTime(val.getTime());
+		startingTimeElement.setText(sdf.format(startingTime));
 	}
 	public String getCreditor(){
 		return this.creditor;
@@ -117,7 +138,6 @@ public class DebtType extends Type implements TypeInterface {
 	
 	public boolean beExceed(){ 
 		Date now=new Date();
-		
 		if (now.after(deadline)) return true;
 		else return false;
 	}
@@ -139,73 +159,42 @@ public class DebtType extends Type implements TypeInterface {
 	}
 	
 	@Override
-	public String format(){
-		String ans=new String();
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		DecimalFormat df2 = new DecimalFormat("0.00");
-		ans="[debt id]\r\n"+this.debtID+"\r\n";
-		ans+="[debt creditor]\r\n"+this.creditor+"\r\n";
-		ans+="[debt value]\r\n"+df2.format(this.value)+"\r\n";
-		ans+="[debt type]\r\n"+this.debtType+"\r\n";
-		ans+="[debt starting time]\r\n"+df.format(this.startingTime.getTime())+"\r\n";
-		ans+="[debt last update time]\r\n"+df.format(this.lastUpdateTime.getTime())+"\r\n";
-		ans+="[debt deadline]\r\n"+df.format(this.deadline.getTime())+"\r\n";
-		ans+=this.rate.format();
-		ans+=super.format();
-		return ans;
-	}
-	@Override
-	public String getTypeMessage() {
-		return super.getTypeMessage("debt type");
-	}
-	@Override
-	public int getTypeNumber() {
-		return 7+this.rate.getTypeNumber()+super.getTypeNumber();
-	}
-	@Override
-	public void solveTypeMessage(Vector <String> message) {
-		for (int i=0;i<message.size();i+=2){
-			String title=message.get(i);
-			String body=message.get(i+1);
-			if (title.equals("[debt id]")){
-				this.debtID=Integer.valueOf(body);
-				this.id=""+this.debtID;
-			}else if (title.equals("[debt creditor]")){
-				this.creditor=body;
-			}else if (title.equals("[debt value]")){
-				this.value=Double.valueOf(body);
-			}else if (title.equals("[debt starting time]")){
-				try {
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					Date date=new Date();
-					date=sdf.parse(body);
-					this.startingTime.setTime(date.getTime());
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			}else if (title.equals("[debt last update time]")){
-				try {
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					Date date=new Date();
-					date=sdf.parse(body);
-					this.lastUpdateTime.setTime(date.getTime());
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			}else if (title.equals("[debt deadline]")){
-				try {
-					SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-					Date date=new Date();
-					date=sdf.parse(body);
-					this.deadline.setTime(date.getTime());
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
-			}else if (title.equals("[debt type]")){
-				this.debtType=body;
-			}
-		}
-		this.rate.solveTypeMessage(message);
+	public void solveTypeMessage(Element message) {
 		super.solveTypeMessage(message);
+		debtIDElement = message.element("debt_id");
+		creditorElement = message.element("creditor");
+		debtTypeElement = message.element("debt_type");
+		valueElement = message.element("value");
+		deadlineElement = message.element("deadline");
+		startingTimeElement = message.element("starting_time");
+		lastUpdateElement = message.element("last_update_time");
+		
+		debtID = Integer.valueOf(debtIDElement.getText());
+		creditor = creditorElement.getText();
+		debtType = debtTypeElement.getText();
+		value = Double.valueOf(valueElement.getText());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			deadline = sdf.parse(deadlineElement.getText());
+			startingTime = sdf.parse(startingTimeElement.getText());
+			lastUpdateTime = sdf.parse(lastUpdateElement.getText());
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		rate.loadData();
+	}
+	
+	private void createElemet() {
+		debtIDElement = root.addElement("debt_id");
+		creditorElement = root.addElement("creditor");
+		debtTypeElement = root.addElement("debt_type");
+		valueElement = root.addElement("value");
+		deadlineElement = root.addElement("deadline");
+		startingTimeElement = root.addElement("starting_time");
+		lastUpdateElement = root.addElement("last_update_time");
+		
+		deadline = new Date();
+		startingTime = new Date();
+		lastUpdateTime = new Date();
 	}
 }

@@ -2,7 +2,7 @@ package logic.logic;
 
 import java.util.Date;
 
-import database.operator.IDDataKeeper;
+import database.operator.IDDataOperator;
 import logic.Logic;
 import logic.action.detail.DetailSaveMoneyAction;
 import logic.action.detail.WriteDetailAction;
@@ -26,7 +26,7 @@ public class TypeLogic extends Logic {
 		event.addCheck(nc);
 		
 		ExistCheck ec=new ExistCheck();
-		ec.setKeeper((IDDataKeeper) data.getData("money"));
+		ec.setKeeper((IDDataOperator) data.getData("money"));
 		ec.setID(type);
 		event.addCheck(ec);
 		
@@ -50,7 +50,7 @@ public class TypeLogic extends Logic {
 		
 		ExistCheck ec=new ExistCheck();
 		ec.setID(name);
-		ec.setKeeper((IDDataKeeper) data.getData("money"));
+		ec.setKeeper((IDDataOperator) data.getData("money"));
 		event.addCheck(ec);
 		
 		WriteDetailAction detail=new WriteDetailAction();

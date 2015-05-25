@@ -2,7 +2,7 @@ package logic.action.reason;
 
 import java.util.Vector;
 
-import database.operator.ReasonKeeper;
+import database.operator.ReasonOperator;
 import logic.ListenerManager;
 import type.ReasonTreeNodeType;
 import type.Type;
@@ -22,7 +22,7 @@ public class RenameTreeReasonAction extends RenameReasonAction {
 
 	@Override
 	public void run() {
-		ReasonKeeper keeper=(ReasonKeeper) data.getData("reason");
+		ReasonOperator keeper=(ReasonOperator) data.getData("reason");
 		ReasonTreeNodeType reason=(ReasonTreeNodeType) keeper.getItem(past);
 		reason.setFatherName(father);
 		reason.setMax(max);

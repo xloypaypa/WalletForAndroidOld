@@ -9,15 +9,6 @@ public abstract class AbstractDataBase {
 	static public String root;
 	protected String aimPath;
 	
-	public static String getTypeMessage(Vector <String> message){
-		for (int i=0;i<message.size();i++){
-			if (message.get(i).equals("[type name]")){
-				return message.get(i+1);
-			}
-		}
-		return null;
-	}
-	
 	public void setAimFile(String file){
 		this.aimPath=AbstractDataBase.root+"/"+file;
 	}

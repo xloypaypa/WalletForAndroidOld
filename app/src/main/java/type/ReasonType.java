@@ -1,42 +1,53 @@
 package type;
 
 import java.text.DecimalFormat;
-import java.util.Vector;
 
-public class ReasonType extends Type implements TypeInterface {
+import org.dom4j.Element;
+
+public class ReasonType extends Type {
+	
 	String name;
 	double income,expenditure;
 	
+	private Element nameElement, incomeElement, expenditureElement;
+	
 	public ReasonType(){
-		this.name=new String();
-		this.id=name;
-		this.income=this.expenditure=0;
+		buildElement();
+		setName("");
+		setIncome(0);
+		setExpenditure(0);
 	}
 	
 	public ReasonType(String name){
-		this.name=new String(name);
-		this.id=name;
-		this.income=this.expenditure=0;
+		buildElement();
+		setName(name);
+		setIncome(0);
+		setExpenditure(0);
 	}
 	
 	public ReasonType(String name, double income, double expenditure){
-		this.name=new String(name);
-		this.id=name;
-		this.income=income;
-		this.expenditure=expenditure;
+		buildElement();
+		setName(name);
+		setIncome(income);
+		setExpenditure(expenditure);
 	}
 	
 	public void setName(String name){
 		this.name=new String(name);
-		this.id=name;
+		nameElement.setText(name);
+		setTypeId(name);
 	}
 	
 	public void setIncome(double income){
+		DecimalFormat df = new DecimalFormat("0.00");
 		this.income=income;
+		incomeElement.setText(df.format(income));
 	}
 	
 	public void setExpenditure(double expenditure){
+		DecimalFormat df = new DecimalFormat("0.00");
 		this.expenditure=expenditure;
+		expenditureElement.setText(df.format(expenditure));
 	}
 	
 	public String getName(){
@@ -50,56 +61,28 @@ public class ReasonType extends Type implements TypeInterface {
 	public double getExpenditure(){
 		return this.expenditure;
 	}
-
-	@Override
-	public String format() {
-		String ans=new String();
-		DecimalFormat df = new DecimalFormat("0.00");
-		ans+="[reason name]\r\n";
-		ans+=this.name+"\r\n";
-		ans+="[reason income]\r\n";
-		ans+=df.format(this.income)+"\r\n";
-		ans+="[reason expenditure]\r\n";
-		ans+=df.format(this.expenditure)+"\r\n";
-		return ans;
-	}
-
-	@Override
-	public String getTypeMessage() {
-		String ans=new String();
-		ans+="[begin]\r\n";
-		ans+="[type name]\r\n";
-		ans+="reason type\r\n";
-		ans+="[type item]\r\n";
-		ans+=this.getTypeNumber()+"\r\n";
-		return ans;
-	}
-
-	@Override
-	public int getTypeNumber() {
-		return 3+super.getTypeNumber();
-	}
-
-	@Override
-	public void solveTypeMessage(Vector<String> message) {
-		for (int i=0;i<message.size();i+=2){
-			String title=message.get(i);
-			String body=message.get(i+1);
-			if(title.equals("[reason name]")){
-				this.name=body;
-				this.id=name;
-			}else if (title.equals("[reason income]")){
-				this.income=Double.valueOf(body);
-			}else if (title.equals("[reason expenditure]")){
-				this.expenditure=Double.valueOf(body);
-			}
-		}
-		super.solveTypeMessage(message);
-	}
-
+	
 	public void update() {
-		this.expenditure=0;
-		this.income=0;
+		setExpenditure(0);
+		setIncome(0);
+	}
+
+	@Override
+	public void solveTypeMessage(Element message) {
+		super.solveTypeMessage(message);
+		nameElement = root.element("name");
+		incomeElement = root.element("income");
+		expenditureElement = root.element("expenditure");
+		
+		name = nameElement.getText();
+		income = Double.valueOf(incomeElement.getText());
+		expenditure = Double.valueOf(expenditureElement.getText());
+	}
+	
+	private void buildElement() {
+		nameElement = root.addElement("name");
+		incomeElement = root.addElement("income");
+		expenditureElement = root.addElement("expenditure");
 	}
 	
 }

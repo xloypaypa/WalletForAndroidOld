@@ -2,7 +2,7 @@ package logic.action.detail;
 
 import java.util.Vector;
 
-import database.operator.TreeReasonKeeper;
+import database.operator.TreeReasonOperator;
 import type.ReasonTreeNodeType;
 import type.Type;
 
@@ -17,7 +17,7 @@ public class DetailSaveTreeReasonAction extends DetailSaveReasonAction {
 		detail.addExtra("past reason max", reason.getMax()+"");
 		detail.addExtra("past reason rank", reason.getRank()+"");
 		
-		TreeReasonKeeper keeper=(TreeReasonKeeper) data.getData("reason");
+		TreeReasonOperator keeper=(TreeReasonOperator) data.getData("reason");
 		Vector <Type> all=keeper.getAllItem();
 		for (int i=0;i<all.size();i++){
 			ReasonTreeNodeType now=(ReasonTreeNodeType) all.get(i);

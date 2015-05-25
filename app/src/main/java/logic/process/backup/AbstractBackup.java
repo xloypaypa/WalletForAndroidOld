@@ -1,6 +1,6 @@
 package logic.process.backup;
 
-import database.operator.DetailKeeper;
+import database.operator.DetailOperator;
 import logic.process.AbstractProcess;
 
 public abstract class AbstractBackup extends AbstractProcess {
@@ -13,7 +13,7 @@ public abstract class AbstractBackup extends AbstractProcess {
 	public void process() {
 		this.backup();
 		
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		keeper.removeLastDetail();
 	}
 	

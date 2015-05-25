@@ -1,6 +1,6 @@
 package logic.check;
 
-import database.operator.ReasonKeeper;
+import database.operator.ReasonOperator;
 import logic.ListenerManager;
 import logic.event.AbstractSteep;
 import type.ReasonTreeNodeType;
@@ -28,7 +28,7 @@ public class TreeReasonLoopCheck extends AbstractSteep {
 			return false;
 		}
 		
-		ReasonKeeper keeper=(ReasonKeeper) data.getData("reason");
+		ReasonOperator keeper=(ReasonOperator) data.getData("reason");
 		
 		ReasonTreeNodeType now=(ReasonTreeNodeType) keeper.getItem(to);
 		if (now.getFather().equals("root")) return true;

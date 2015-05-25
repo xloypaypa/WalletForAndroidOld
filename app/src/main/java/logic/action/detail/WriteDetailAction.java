@@ -2,7 +2,7 @@ package logic.action.detail;
 
 import java.util.Date;
 
-import database.operator.DetailKeeper;
+import database.operator.DetailOperator;
 import type.DetailType;
 import logic.action.AbstractAction;
 
@@ -29,7 +29,7 @@ public class WriteDetailAction extends AbstractAction {
 
 	@Override
 	public void run() {
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		keeper.add(detail);
 	}
 

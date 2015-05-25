@@ -3,6 +3,7 @@ package logic.check;
 import logic.ListenerManager;
 import logic.event.AbstractSteep;
 
+
 public class NameCheck extends AbstractSteep {
 	
 	String value;

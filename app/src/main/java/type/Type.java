@@ -1,102 +1,73 @@
 package type;
 
-import java.util.Vector;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
 
 public class Type implements TypeInterface {
 	
-	String id; 
-	Vector <ExtraType> extra=new Vector<ExtraType>();
+	protected Element root;
 	
-	public Vector <ExtraType> getExtra(){
-		return new Vector <ExtraType>(extra);
+	protected String id;
+	protected Element idElement;
+	
+	public Type() {
+		root=DocumentHelper.createElement("type");
+		
+		id=new String();
+		idElement=root.addElement("id");
+		
+		root.addElement("extra");
 	}
 	
 	public void addExtra(String title,String message){
-		ExtraType et=new ExtraType(title,message);
-		extra.addElement(et);
+		title = title.replace(' ', '_');
+		
+		root.element("extra").addElement(title).setText(message);
 	}
+	
 	public boolean extraExist(String title){
-		for (int i=0;i<extra.size();i++){
-			if (extra.get(i).getTitle().equals(title)) return true;
-		}
-		return false;
+		title = title.replace(' ', '_');
+		return root.element("extra").element(title) != null;
 	}
 	
 	public void removeExtra(String title){
-		int pos=getIndex(title);
-		if (pos!=-1){
-			extra.remove(pos);
-		}
+		title = title.replace(' ', '_');
+		if (!extraExist(title)) return ;
+		root.element("extra").remove(root.element("extra").element(title));
 	}
 	
 	public String getExtraMessage(String title){
-		int pos=getIndex(title);
-		if (pos!=-1) return extra.get(pos).getMessage();
-		else return new String();
-	}
-	
-	private int getIndex(String title){
-		for (int i=0;i<extra.size();i++){
-			if (extra.get(i).getTitle().equals(title)) return i;
-		}
-		return -1;
-	}
-
-	@Override
-	public String format() {
-		String ans=new String();
-		for (int i=0;i<extra.size();i++){
-			ans+=extra.get(i).format();
-		}
-		return ans;
-	}
-	
-	public String getTypeMessage(String typeName){
-		String ans=new String();
-		ans+="[begin]\r\n";
-		ans+="[type name]\r\n";
-		ans+=typeName+"\r\n";
-		ans+="[type item]\r\n";
-		ans+=this.getTypeNumber()+"\r\n";
-		return ans;
-	}
-
-	@Override
-	public String getTypeMessage() {
-		String ans=new String();
-		ans+="[begin]\r\n";
-		ans+="[type name]\r\n";
-		ans+="type\r\n";
-		ans+="[type item]\r\n";
-		ans+=this.getTypeNumber()+"\r\n";
-		return ans;
-	}
-
-	@Override
-	public int getTypeNumber() {
-		return extra.size()*2;
-	}
-
-	@Override
-	public void solveTypeMessage(Vector<String> message) {
-		extra=new Vector<ExtraType>();
-		ExtraType now;
-		for (int i=0;i<message.size();i++){
-			if(message.get(i).equals("[extra title]")){
-				now=new ExtraType();
-				now.setTitle(message.get(i+1));
-				now.setMessage(message.get(i+3));
-				extra.add(now);
-			}
-		}
-	}
-
-	@Override
-	public String getAllMessage() {
-		return this.getTypeMessage()+this.format()+"[end]\r\n";
+		title = title.replace(' ', '_');
+		if (!extraExist(title)) return new String();
+		return root.element("extra").element(title).getText();
 	}
 	
 	public String getTypeID(){
 		return this.id;
+	}
+	
+	public void setTypeId(String id) {
+		this.id = id;
+		idElement.setText(id);
+	}
+	
+	public Element getRoot() {
+		return root;
+	}
+	
+	public Element getExtra() {
+		return root.element("extra");
+	}
+
+	@Override
+	public String format() {
+		return root.asXML()+"\r\n";
+	}
+
+	@Override
+	public void solveTypeMessage(Element message) {
+		this.root = message;
+		idElement=message.element("id");
+		id=idElement.getText();
 	}
 }

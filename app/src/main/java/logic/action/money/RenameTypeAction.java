@@ -1,6 +1,6 @@
 package logic.action.money;
 
-import database.operator.MoneyKeeper;
+import database.operator.MoneyOperator;
 import logic.ListenerManager;
 import logic.action.AbstractAction;
 import type.MoneyType;
@@ -20,7 +20,7 @@ public class RenameTypeAction extends AbstractAction {
 
 	@Override
 	public void run() {
-		MoneyKeeper keeper=(MoneyKeeper) data.getData("money");
+		MoneyOperator keeper=(MoneyOperator) data.getData("money");
 		MoneyType money=(MoneyType) keeper.getItem(past);
 		money.setType(now);
 		keeper.update(past, money);

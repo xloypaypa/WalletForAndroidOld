@@ -1,6 +1,6 @@
 package logic.action.detail;
 
-import database.operator.ReasonKeeper;
+import database.operator.ReasonOperator;
 import type.ReasonType;
 
 public class DetailSaveReasonAction extends WriteDetailAction {
@@ -11,7 +11,7 @@ public class DetailSaveReasonAction extends WriteDetailAction {
 	}
 
 	protected ReasonType getReason(String name) {
-		ReasonKeeper keeper=(ReasonKeeper) data.getData("reason");
+		ReasonOperator keeper=(ReasonOperator) data.getData("reason");
 		ReasonType reason=(ReasonType) keeper.getItem(name);
 		return reason;
 	}

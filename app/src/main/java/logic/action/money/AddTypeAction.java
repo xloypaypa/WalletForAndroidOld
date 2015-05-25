@@ -1,6 +1,6 @@
 package logic.action.money;
 
-import database.operator.MoneyKeeper;
+import database.operator.MoneyOperator;
 import logic.ListenerManager;
 import logic.action.AbstractAction;
 import type.MoneyType;
@@ -19,7 +19,7 @@ public class AddTypeAction extends AbstractAction {
 
 	@Override
 	public void run() {
-		MoneyKeeper keeper=(MoneyKeeper) data.getData("money");
+		MoneyOperator keeper=(MoneyOperator) data.getData("money");
 		MoneyType money=new MoneyType();
 		money.setType(value); money.setValue(0);
 		keeper.add(money);

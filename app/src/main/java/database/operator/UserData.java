@@ -3,9 +3,9 @@ package database.operator;
 import java.util.Vector;
 
 public class UserData {
-	Vector <DataKeeper> allData=new Vector<>();
+	Vector <DataOperator> allData=new Vector<>();
 	
-	public void addDataKeeper(DataKeeper data){
+	public void addDataKeeper(DataOperator data){
 		this.allData.addElement(data);
 	}
 	
@@ -68,7 +68,7 @@ public class UserData {
 		}
 	}
 	
-	public DataKeeper getData(String dataName){
+	public DataOperator getData(String dataName){
 		for (int i=0;i<this.allData.size();i++){
 			if (this.allData.get(i).isThisKeeper(dataName)){
 				return allData.get(i);

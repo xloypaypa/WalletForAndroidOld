@@ -2,7 +2,7 @@ package logic.logic;
 
 import java.util.Date;
 
-import database.operator.IDDataKeeper;
+import database.operator.IDDataOperator;
 import logic.Logic;
 import logic.action.detail.DetailSaveReasonAction;
 import logic.action.detail.WriteDetailAction;
@@ -25,7 +25,7 @@ public class ReasonLogic extends Logic {
 		nc.setName(name);
 		
 		ExistCheck ec=new ExistCheck();
-		ec.setKeeper((IDDataKeeper) data.getData("reason"));
+		ec.setKeeper((IDDataOperator) data.getData("reason"));
 		ec.setID(name);
 		
 		
@@ -51,7 +51,7 @@ public class ReasonLogic extends Logic {
 		nc.setName(past);
 		
 		ExistCheck ec=new ExistCheck();
-		ec.setKeeper((IDDataKeeper) data.getData("reason"));
+		ec.setKeeper((IDDataOperator) data.getData("reason"));
 		ec.setID(name);
 		
 		event.addCheck(ec);

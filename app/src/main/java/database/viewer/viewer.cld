@@ -69,8 +69,8 @@
             <constraint>
               <height>-1</height>
               <width>-1</width>
-              <x>607</x>
-              <y>472</y>
+              <x>569</x>
+              <y>475</y>
             </constraint>
             <sourceConnections>
               <net.java.amateras.uml.classdiagram.model.GeneralizationModel>
@@ -102,8 +102,8 @@
                   <constraint>
                     <height>-1</height>
                     <width>-1</width>
-                    <x>411</x>
-                    <y>225</y>
+                    <x>301</x>
+                    <y>200</y>
                   </constraint>
                   <sourceConnections>
                     <net.java.amateras.uml.classdiagram.model.GeneralizationModel>
@@ -212,8 +212,8 @@
                         <constraint>
                           <height>-1</height>
                           <width>-1</width>
-                          <x>18</x>
-                          <y>448</y>
+                          <x>9</x>
+                          <y>440</y>
                         </constraint>
                         <sourceConnections>
                           <net.java.amateras.uml.classdiagram.model.GeneralizationModel reference="../../.."/>
@@ -419,7 +419,7 @@
                           </net.java.amateras.uml.properties.BooleanPropertyDescriptor>
                         </propertyDescriptors>
                         <stereoType></stereoType>
-                        <name>dataViewer.TreeReasonViewer</name>
+                        <name>database.viewer.TreeReasonViewer</name>
                         <isAbstract>false</isAbstract>
                       </source>
                       <target class="net.java.amateras.uml.classdiagram.model.ClassModel" reference="../../.."/>
@@ -578,7 +578,7 @@
                     </net.java.amateras.uml.properties.BooleanPropertyDescriptor>
                   </propertyDescriptors>
                   <stereoType></stereoType>
-                  <name>dataViewer.IDDataViewer</name>
+                  <name>database.viewer.IDDataViewer</name>
                   <isAbstract>false</isAbstract>
                 </target>
                 <bendpoints/>
@@ -656,7 +656,7 @@
               </net.java.amateras.uml.properties.BooleanPropertyDescriptor>
             </propertyDescriptors>
             <stereoType></stereoType>
-            <name>dataViewer.DebtViewer</name>
+            <name>database.viewer.DebtViewer</name>
             <isAbstract>false</isAbstract>
           </net.java.amateras.uml.classdiagram.model.ClassModel>
           <net.java.amateras.uml.classdiagram.model.ClassModel reference="../net.java.amateras.uml.classdiagram.model.ClassModel[2]/sourceConnections/net.java.amateras.uml.classdiagram.model.GeneralizationModel/target"/>
@@ -664,7 +664,7 @@
             <backgroundColor reference="../../../../backgroundColor"/>
             <foregroundColor reference="../../../../foregroundColor"/>
             <showIcon>true</showIcon>
-            <parent class="net.java.amateras.uml.model.RootModel" reference="../../.."/>
+            <parent class="net.java.amateras.uml.model.RootModel" reference="../../../../../.."/>
             <listeners serialization="custom">
               <java.beans.PropertyChangeSupport>
                 <default>
@@ -677,8 +677,8 @@
             <constraint>
               <height>-1</height>
               <width>-1</width>
-              <x>658</x>
-              <y>208</y>
+              <x>653</x>
+              <y>170</y>
             </constraint>
             <sourceConnections/>
             <targetConnections/>
@@ -800,7 +800,7 @@
               </net.java.amateras.uml.properties.BooleanPropertyDescriptor>
             </propertyDescriptors>
             <stereoType></stereoType>
-            <name>dataViewer.MoneyHistoryViewer</name>
+            <name>database.viewer.MoneyHistoryViewer</name>
             <isAbstract>false</isAbstract>
           </net.java.amateras.uml.classdiagram.model.ClassModel>
           <net.java.amateras.uml.classdiagram.model.ClassModel reference="../net.java.amateras.uml.classdiagram.model.ClassModel[2]/sourceConnections/net.java.amateras.uml.classdiagram.model.GeneralizationModel/target/targetConnections/net.java.amateras.uml.classdiagram.model.GeneralizationModel[2]/source"/>
@@ -819,8 +819,8 @@
       <constraint>
         <height>-1</height>
         <width>-1</width>
-        <x>393</x>
-        <y>59</y>
+        <x>310</x>
+        <y>16</y>
       </constraint>
       <sourceConnections/>
       <targetConnections>
@@ -847,7 +847,7 @@
           </listeners>
           <visibility class="net.java.amateras.uml.classdiagram.model.Visibility$3"/>
           <name>keeper</name>
-          <type>TypeKeeper</type>
+          <type>TypeOperator</type>
           <isStatic>false</isStatic>
         </net.java.amateras.uml.classdiagram.model.AttributeModel>
         <net.java.amateras.uml.classdiagram.model.OperationModel>
@@ -937,12 +937,11 @@
         </net.java.amateras.uml.properties.BooleanPropertyDescriptor>
       </propertyDescriptors>
       <stereoType></stereoType>
-      <name>dataViewer.DataViewer</name>
+      <name>database.viewer.DataViewer</name>
       <isAbstract>false</isAbstract>
     </net.java.amateras.uml.classdiagram.model.ClassModel>
     <net.java.amateras.uml.classdiagram.model.ClassModel reference="../net.java.amateras.uml.classdiagram.model.ClassModel/parent/children/net.java.amateras.uml.classdiagram.model.ClassModel[2]"/>
     <net.java.amateras.uml.classdiagram.model.ClassModel reference="../net.java.amateras.uml.classdiagram.model.ClassModel/parent/children/net.java.amateras.uml.classdiagram.model.ClassModel[2]/sourceConnections/net.java.amateras.uml.classdiagram.model.GeneralizationModel/target"/>
-    <net.java.amateras.uml.classdiagram.model.ClassModel reference="../net.java.amateras.uml.classdiagram.model.ClassModel/parent/children/net.java.amateras.uml.classdiagram.model.ClassModel[4]"/>
     <net.java.amateras.uml.classdiagram.model.ClassModel reference="../net.java.amateras.uml.classdiagram.model.ClassModel/parent/children/net.java.amateras.uml.classdiagram.model.ClassModel[2]/sourceConnections/net.java.amateras.uml.classdiagram.model.GeneralizationModel/target/targetConnections/net.java.amateras.uml.classdiagram.model.GeneralizationModel[2]/source"/>
   </children>
   <filterProperty/>

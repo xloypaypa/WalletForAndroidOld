@@ -2,7 +2,7 @@ package logic;
 
 import java.text.DecimalFormat;
 
-import translater.translater.Strings;
+import translater.Strings;
 import logic.logicListener.LogicMessageListener;
 
 public class ListenerManager {

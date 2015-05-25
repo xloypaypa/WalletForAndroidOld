@@ -2,7 +2,7 @@ package logic.action.reason;
 
 import java.util.Vector;
 
-import database.operator.ReasonKeeper;
+import database.operator.ReasonOperator;
 import logic.ListenerManager;
 import type.ReasonTreeNodeType;
 import type.Type;
@@ -13,7 +13,7 @@ public class RemoveTreeReasonAction extends RemoveReasonAction {
 	public void run() {
 		super.run();
 		
-		ReasonKeeper keeper=(ReasonKeeper) data.getData("reason");
+		ReasonOperator keeper=(ReasonOperator) data.getData("reason");
 		Vector <Type> all=keeper.getAllItem();
 		for (int i=0;i<all.size();i++){
 			ReasonTreeNodeType now=(ReasonTreeNodeType) all.get(i);

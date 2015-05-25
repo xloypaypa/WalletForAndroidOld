@@ -1,6 +1,6 @@
 package logic.logic;
 
-import database.operator.DetailKeeper;
+import database.operator.DetailOperator;
 import database.operator.UserPublicData;
 import type.DetailType;
 import logic.ListenerManager;
@@ -50,7 +50,7 @@ public class BackupLogic extends ProcessLogic {
 	}
 	
 	public void runProcess(){
-		DetailKeeper keeper=(DetailKeeper) data.getData("detail");
+		DetailOperator keeper=(DetailOperator) data.getData("detail");
 		DetailType last=keeper.getLastDetail();
 		boolean flag=false;
 		for (int i=0;i<allProcess.size();i++){
