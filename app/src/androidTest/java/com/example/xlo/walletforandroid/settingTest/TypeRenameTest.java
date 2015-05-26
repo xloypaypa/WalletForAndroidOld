@@ -70,19 +70,6 @@ public class TypeRenameTest extends SettingTest {
         StatusTest.checkStatusCell(0,"type one",0);
     }
 
-    public void testBadName(){
-        SettingTest.toAdd();
-        TypeAddTest.addType("type one");
-        SettingTest.toRename();
-        setPastName(0);
-        enterNewName("type [two]");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("Please don't use '['!"));
-
-        MainPageTest.changeToPage("status");
-        StatusTest.checkStatusCell(0,"type one",0);
-    }
-
     public void testNoTypeForChange(){
         SettingTest.toRename();
         assertTrue(solo.waitForText("No type for rename!"));

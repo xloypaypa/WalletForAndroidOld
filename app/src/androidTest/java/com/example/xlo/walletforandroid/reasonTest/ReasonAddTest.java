@@ -66,17 +66,6 @@ public class ReasonAddTest extends ReasonTest {
         Assert.assertTrue(TestCase.solo.waitForText("Please input type name."));
     }
 
-    public void testBadName(){
-        ReasonTest.toAdd();
-        setFather(0);
-        enterName("[reason one]");
-        enterMin("1");
-        enterMax("2");
-        enterRank("3");
-        TestCase.solo.clickOnButton("submit");
-        Assert.assertTrue(TestCase.solo.waitForText("Please don't use '['!"));
-    }
-
     public void testRootName(){
         ReasonTest.toAdd();
         setFather(0);

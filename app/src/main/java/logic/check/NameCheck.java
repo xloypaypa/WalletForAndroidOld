@@ -22,10 +22,6 @@ public class NameCheck extends AbstractSteep {
 			ListenerManager.setNeedInputError("type name");
 			ListenerManager.UIAction();
 			return false;
-		}else if (value.contains("[")){
-			ListenerManager.setLeftHalfBracketError();
-			ListenerManager.UIAction();
-			return false;
 		}
 		return true;
 	}

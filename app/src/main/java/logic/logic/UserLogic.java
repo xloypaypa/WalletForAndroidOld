@@ -22,7 +22,7 @@ public class UserLogic extends ListenerManager {
 	}
 	
 	public static boolean register(String name,String pass,String repeat,String reason){
-		if (name.contains("[")||pass.contains("[")){
+		if (name.contains("<")||pass.contains("<")){
 			setLeftHalfBracketError();
 			message.UIAction();
 			return false;

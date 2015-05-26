@@ -157,23 +157,6 @@ public class ReasonRenameTest extends ReasonTest {
         assertTrue(solo.waitForText("Please input number."));
     }
 
-    public void testBadName(){
-        ReasonTest.toAdd();
-        ReasonAddTest.addReason(0,"reason one","0","1","2");
-        ReasonTest.checkNormalCell(0,"reason one",0,0);
-        ReasonTest.checkTreeCell(0,"root","reason one",2,0,1);
-
-        ReasonTest.toChange();
-        setReason(0);
-        setFather(0);
-        enterNewName("reason [one]");
-        enterNewMin("1");
-        enterNewMax("2");
-        enterNewRank("3");
-        solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("Please don't use '['"));
-    }
-
     public void testMinMax(){
         ReasonTest.toAdd();
         ReasonAddTest.addReason(0,"reason one","0","1","2");

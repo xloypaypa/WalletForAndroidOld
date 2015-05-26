@@ -86,16 +86,6 @@ public class RegisterTest extends TestCase {
         assertTrue(solo.waitForText("Please input user name."));
     }
 
-    public void testBadUserName(){
-        LoginTest.toRegister();
-        enterUserName("[name]");
-        enterPassword("pass");
-        enterRepeat("pass");
-        selectUserType("tree");
-        register();
-        assertTrue(solo.waitForText("Please don't use '['!"));
-    }
-
     public void testNoPassword(){
         LoginTest.toRegister();
         enterUserName("name");

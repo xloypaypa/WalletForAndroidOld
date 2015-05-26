@@ -22,7 +22,7 @@ public class ListenerManager {
 	
 	public static void setLeftHalfBracketError(){
 		message.setErrorFlag(true);
-		message.setMessage(Strings.getWord("Please don't use '['!"));
+		message.setMessage(Strings.getWord("Please don't use '<'!"));
 	}
 	
 	public static void setExistentError(String name){

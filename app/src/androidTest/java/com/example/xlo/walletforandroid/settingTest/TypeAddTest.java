@@ -32,13 +32,6 @@ public class TypeAddTest extends SettingTest {
         StatusTest.checkStatusCell(0,"type one",0);
     }
 
-    public void testBadName(){
-        SettingTest.toAdd();
-        enterTypeNmae("type [one]");
-        TestCase.solo.clickOnButton("submit");
-        assertTrue(solo.waitForText("Please don't use '['!"));
-    }
-
     public void testNoName(){
         SettingTest.toAdd();
         enterTypeNmae("");
