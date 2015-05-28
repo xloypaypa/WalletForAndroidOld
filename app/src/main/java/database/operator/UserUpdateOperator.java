@@ -1,5 +1,7 @@
 package database.operator;
 
+import java.util.Date;
+
 import type.UserUpdateTime;
 import database.password.UserUpdateDataBase;
 
@@ -11,7 +13,9 @@ public class UserUpdateOperator extends TypeOperator implements DataOperator {
 	
 	public UserUpdateTime getSetting() {
 		if (allType.size()==0) {
-			add(new UserUpdateTime());
+			UserUpdateTime userUpdateTime = new UserUpdateTime();
+			userUpdateTime.getNextTime(new Date());
+			add(userUpdateTime);
 		}
 		return (UserUpdateTime) this.allType.get(0);
 	}

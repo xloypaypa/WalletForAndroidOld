@@ -26,8 +26,10 @@ import android.widget.Toast;
 import Action.TypeAddAction;
 import Action.TypeRemoveAction;
 import Action.TypeRnameAction;
+import database.operator.UserPublicData;
 import database.viewer.DataViewer;
 import interfaceTool.DataLoader;
+import logic.Logic;
 
 public class SettingFragment extends Fragment {
 	Switch web;
@@ -177,7 +179,8 @@ public class SettingFragment extends Fragment {
             }
             Toast.makeText(SettingFragment.this.getActivity(), "server end!", Toast.LENGTH_SHORT).show();
         }
-        //TODO :reload Data
+        Logic.data.reloadAllData();
+        MainActivity.repaint();
     }
 
     private ServiceConnection conn = new ServiceConnection() {

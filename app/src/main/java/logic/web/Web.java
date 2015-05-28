@@ -28,7 +28,8 @@ public class Web extends UserPublicData {
 		phonePath=new String[]{"/storage/sdcard0/Wallet/"+username+"/money.txt",
 				"/storage/sdcard0/Wallet/"+username+"/debt.txt",
 				"/storage/sdcard0/Wallet/"+username+"/detail.txt",
-				"/storage/sdcard0/Wallet/"+username+"/reason.txt"};
+				"/storage/sdcard0/Wallet/"+username+"/reason.txt",
+				"/storage/sdcard0/Wallet/"+username+"/user update.txt"};
 	}
 	
 	public static void clearTemp(){
@@ -102,13 +103,19 @@ public class Web extends UserPublicData {
 		}else{
 			HHD.cleanFile(myPath[3]);
 		}
+		
+		if (HHD.fileExiste(AbstractDataBase.root+"/temp/user update.txt")){
+			HHD.copyFile(AbstractDataBase.root+"/temp/reason.txt", myPath[4]);
+		}else{
+			HHD.cleanFile(myPath[4]);
+		}
 	}
 	
 	public static boolean upload(){
 		Client client=new Client(ip, port);
 		Client.chance=5;
 		
-		for (int i=0;i<4;i++){
+		for (int i=0;i<5;i++){
 			try {
 				Node node,ret;
 				node=new Node(); ret=new Node();
@@ -139,7 +146,7 @@ public class Web extends UserPublicData {
 		Client client=new Client(ip, port);
 		Client.chance=5;
 		
-		for (int i=0;i<4;i++){
+		for (int i=0;i<5;i++){
 			try {
 				Node node,ret;
 				node=new Node(); ret=new Node();
@@ -178,6 +185,7 @@ public class Web extends UserPublicData {
 		myPath=new String[]{AbstractDataBase.root+"/"+name+"/money.txt",
 				AbstractDataBase.root+"/"+name+"/debt.txt",
 				AbstractDataBase.root+"/"+name+"/detail.txt",
-				AbstractDataBase.root+"/"+name+"/reason.txt"};
+				AbstractDataBase.root+"/"+name+"/reason.txt",
+				AbstractDataBase.root+"/"+name+"/user update.txt"};
 	}
 }

@@ -103,7 +103,7 @@ public class DetailOperator extends TypeOperator implements DataOperator {
 			@Override
 			public IDType getNewType() {return null;}
 		};
-		db.setAimFile(this.db.getAimFile()+".back");
+		db.setAimFile("/"+username+"/"+keeperName+".back");
 		db.setPassword(password);
 		for (int i=0;i<allType.size();i++) {
 			DetailType now = (DetailType) allType.get(i);

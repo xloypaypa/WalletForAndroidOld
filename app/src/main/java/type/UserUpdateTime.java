@@ -53,7 +53,7 @@ public class UserUpdateTime extends Type {
 				ans.setTime(sdf.parse(sdf.format(last)));
 				ans.set(Calendar.DAY_OF_MONTH, nextDay);
 				if (ans.getTime().after(last)){
-					nextTime=ans.getTime();
+					setNextTime(ans.getTime());
 					return this.nextTime;
 				}
 				
@@ -64,7 +64,7 @@ public class UserUpdateTime extends Type {
 				}else{
 					ans.set(Calendar.MONTH, month);
 				}
-				nextTime=ans.getTime();
+				setNextTime(ans.getTime());
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
