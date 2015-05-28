@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 import org.dom4j.Element;
 
-public class ReasonType extends Type {
+public class ReasonType extends IDType {
 	
 	String name;
 	double income,expenditure;

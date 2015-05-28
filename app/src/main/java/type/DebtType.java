@@ -7,7 +7,7 @@ import java.util.*;
 
 import org.dom4j.Element;
 
-public class DebtType extends Type {
+public class DebtType extends IDType {
 	protected int debtID;
 	protected String creditor,debtType;
 	protected double value;

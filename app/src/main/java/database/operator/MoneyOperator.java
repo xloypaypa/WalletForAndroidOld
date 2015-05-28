@@ -1,7 +1,7 @@
 package database.operator;
 
 import type.MoneyType;
-import type.Type;
+import type.IDType;
 import database.password.DataBase;
 
 public class MoneyOperator extends IDTypeOperator {
@@ -13,7 +13,7 @@ public class MoneyOperator extends IDTypeOperator {
 	protected void loadDataBase() {
 		DataBase ans=new DataBase() {
 			@Override
-			public Type getNewType() {
+			public IDType getNewType() {
 				return new MoneyType();
 			}
 		};

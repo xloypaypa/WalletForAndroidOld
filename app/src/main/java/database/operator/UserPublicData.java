@@ -51,7 +51,6 @@ public class UserPublicData {
 			if (allUser.get(i).getName().equals(name)){
 				return true;
 			}
-			System.out.println(allUser.get(i).getName());
 		}
 		return false;
 	}

@@ -4,7 +4,7 @@ import java.text.DecimalFormat;
 
 import org.dom4j.Element;
 
-public class MoneyType extends Type implements TypeInterface {
+public class MoneyType extends IDType {
 	
 	String type;
 	double value;

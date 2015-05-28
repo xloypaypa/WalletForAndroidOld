@@ -2,7 +2,7 @@ package type;
 
 import org.dom4j.Element;
 
-public class UserMessage extends Type {
+public class UserMessage extends IDType {
 	
 	String userName, passWord, userReason;
 	

@@ -1,11 +1,11 @@
 package database;
 
-import type.Type;
+import type.IDType;
 
 public interface IDDataBase {
 	
 	public abstract void removeItem(String id);
 	
-	public abstract void updateItem(String id, Type type);
+	public abstract void updateItem(String id, IDType type);
 
 }

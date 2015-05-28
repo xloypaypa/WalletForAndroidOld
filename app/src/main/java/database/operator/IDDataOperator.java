@@ -1,10 +1,10 @@
 package database.operator;
 
-import type.Type;
+import type.IDType;
 
 public interface IDDataOperator extends DataOperator {
 	public void delete(String id);
 	public boolean itemExist(String id);
-	public Type getItem(String id);
-	public void update(String id, Type type);
+	public IDType getItem(String id);
+	public void update(String id, IDType type);
 }

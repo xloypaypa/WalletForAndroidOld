@@ -22,11 +22,7 @@ public class UserLogic extends ListenerManager {
 	}
 	
 	public static boolean register(String name,String pass,String repeat,String reason){
-		if (name.contains("<")||pass.contains("<")){
-			setLeftHalfBracketError();
-			message.UIAction();
-			return false;
-		}else if (name.equals("temp")){
+		if (name.equals("temp")){
 			message.setErrorFlag(true);
 			message.setMessage(Strings.getWord("This user is a system used."));
 			message.UIAction();

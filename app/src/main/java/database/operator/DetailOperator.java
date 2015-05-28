@@ -8,10 +8,12 @@ import java.util.Vector;
 import jxl.write.WritableCellFormat;
 import jxl.write.WritableFont;
 import type.DetailType;
+import type.IDType;
 import type.Type;
 import database.ExcelWriter;
 import database.noPassword.NoPasswordDataBase;
 import database.password.DetailDataBase;
+import database.password.PasswordDataBase;
 
 public class DetailOperator extends TypeOperator implements DataOperator {
 	
@@ -82,7 +84,7 @@ public class DetailOperator extends TypeOperator implements DataOperator {
 	public void export(final String path){
 		NoPasswordDataBase db=new NoPasswordDataBase() {
 			@Override
-			public Type getNewType() {return null;}
+			public IDType getNewType() {return null;}
 			
 			@Override
 			public void addItem(Type type) {
@@ -93,6 +95,20 @@ public class DetailOperator extends TypeOperator implements DataOperator {
 		
 		for (int i=0;i<allType.size();i++){
 			db.addItem(allType.get(i));
+		}
+	}
+	
+	public void saveBackup() {
+		PasswordDataBase db = new PasswordDataBase() {
+			@Override
+			public IDType getNewType() {return null;}
+		};
+		db.setAimFile(this.db.getAimFile()+".back");
+		db.setPassword(password);
+		for (int i=0;i<allType.size();i++) {
+			DetailType now = (DetailType) allType.get(i);
+			if (now.getEvent().equals("pack money type")) continue;
+			db.addItem(now);
 		}
 	}
 	

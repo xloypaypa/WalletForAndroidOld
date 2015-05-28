@@ -6,8 +6,8 @@ import java.util.Vector;
 import logic.Logic;
 import net.client.Client;
 import type.DetailType;
-import net.type.Node;
 import type.Type;
+import net.type.Node;
 import database.AbstractDataBase;
 import database.HHD;
 import database.operator.DetailOperator;
@@ -60,10 +60,8 @@ public class Web extends UserPublicData {
 		DataViewer data=new DataViewer(); data.loadData("detail");
 		Vector<Type> allDetail=data.getAllItem();
 		
-		getPath();
-		
+		loadMyPath(username);
 		if (allDetail.size()==0){
-			loadMyPath(username);
 			copyTempFile();
 		}else if (phone.size()==0) {
 			upload();

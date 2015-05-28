@@ -1,7 +1,7 @@
 package database.operator;
 
 import database.IDDataBase;
-import type.Type;
+import type.IDType;
 
 public abstract class IDTypeOperator extends TypeOperator implements IDDataOperator {
 	
@@ -18,7 +18,7 @@ public abstract class IDTypeOperator extends TypeOperator implements IDDataOpera
 	}
 
 	@Override
-	public void update(String id, Type type) {
+	public void update(String id, IDType type) {
 		int pos=getPos(id);
 		if (pos==-1) return ;
 		
@@ -32,10 +32,10 @@ public abstract class IDTypeOperator extends TypeOperator implements IDDataOpera
 	}
 
 	@Override
-	public Type getItem(String id) {
+	public IDType getItem(String id) {
 		int pos=getPos(id);
 		if (pos!=-1){
-			return allType.get(pos);
+			return (IDType) allType.get(pos);
 		}else{
 			return null;
 		}
@@ -43,7 +43,7 @@ public abstract class IDTypeOperator extends TypeOperator implements IDDataOpera
 	
 	protected int getPos(String id){
 		for (int i=0;i<allType.size();i++){
-			if (allType.get(i).getTypeID().equals(id)) return i;
+			if (((IDType) allType.get(i)).getTypeID().equals(id)) return i;
 		}
 		return -1;
 	}

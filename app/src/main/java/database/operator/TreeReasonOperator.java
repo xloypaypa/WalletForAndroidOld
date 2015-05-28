@@ -1,7 +1,7 @@
 package database.operator;
 
 import type.ReasonTreeNodeType;
-import type.Type;
+import type.IDType;
 import database.password.DataBase;
 
 public class TreeReasonOperator extends ReasonOperator {
@@ -35,7 +35,7 @@ public class TreeReasonOperator extends ReasonOperator {
 	protected void loadDataBase() {
 		DataBase ans=new DataBase() {
 			@Override
-			public Type getNewType() {
+			public IDType getNewType() {
 				return new ReasonTreeNodeType();
 			}
 		};

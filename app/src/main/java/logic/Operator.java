@@ -9,6 +9,7 @@ import logic.logic.DoDetailLogic;
 import logic.logic.ReasonLogic;
 import logic.logic.TreeReasonLogic;
 import logic.logic.TypeLogic;
+import logic.logic.UpdateLogic;
 import logic.logic.UserLogic;
 import database.HHD;
 import database.operator.DebtOperator;
@@ -18,6 +19,7 @@ import database.operator.ReasonOperator;
 import database.operator.TreeReasonOperator;
 import database.operator.UserData;
 import database.operator.UserPublicData;
+import database.operator.UserUpdateOperator;
 
 public class Operator extends Logic {
 	
@@ -34,6 +36,7 @@ public class Operator extends Logic {
 			data.addDataKeeper(new MoneyOperator());
 			data.addDataKeeper(new DebtOperator());
 			data.addDataKeeper(new DetailOperator());
+			data.addDataKeeper(new UserUpdateOperator());
 			
 			type=new TypeLogic();
 			cost=new CostLogic();
@@ -50,6 +53,9 @@ public class Operator extends Logic {
 			}
 			
 			data.loadAllData();
+			
+			UpdateLogic updateLogic = new UpdateLogic();
+			updateLogic.update();
 		}
 	}
 	
