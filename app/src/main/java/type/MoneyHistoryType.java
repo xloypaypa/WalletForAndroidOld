@@ -83,10 +83,14 @@ public class MoneyHistoryType extends Type {
 			this.value+=detail.getValue();
 		}else if (detail.getEvent().equals("transfer out")){
 			this.value-=detail.getValue();
-		}else if (detail.getEvent().equals("add debt")){
+		}else if (detail.getEvent().equals("add borrowing")){
 			this.value+=detail.getValue();
-		}else if (detail.getEvent().equals("repay debt")){
+		}else if (detail.getEvent().equals("repay borrowing")){
 			this.value-=detail.getValue();
+		}else if (detail.getEvent().equals("add loan")){
+			this.value-=detail.getValue();
+		}else if (detail.getEvent().equals("repay loan")){
+			this.value+=detail.getValue();
 		}
 	}
 }
