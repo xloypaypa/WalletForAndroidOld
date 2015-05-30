@@ -180,7 +180,6 @@ public class SettingFragment extends Fragment {
             Toast.makeText(SettingFragment.this.getActivity(), "server end!", Toast.LENGTH_SHORT).show();
         }
         Logic.data.reloadAllData();
-        MainActivity.repaint();
     }
 
     private ServiceConnection conn = new ServiceConnection() {

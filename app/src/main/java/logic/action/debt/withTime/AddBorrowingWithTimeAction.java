@@ -13,7 +13,7 @@ public class AddBorrowingWithTimeAction extends AddDebtWithTimeAction {
 		setDebtMessage(keeper, debt);
 		debt.setStartingTime(time);
 		debt.setLastUpdateTime(time);
-		debt.setDebtType("borrow");
+		debt.setDebtType("borrowing");
 		keeper.add(debt);
 		ListenerManager.setOKMessage();
 	}

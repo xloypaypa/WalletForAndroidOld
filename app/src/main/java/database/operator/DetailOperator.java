@@ -160,10 +160,29 @@ public class DetailOperator extends TypeOperator implements DataOperator {
 			
 			@Override
 			public Vector<Type> load() {
-				aimPath=path;
+				aimPath = path;
 				return super.load();
 			}
 		};
+		allType=db.load();
+	}
+	
+	public void load(final String path, String password) {
+		this.releaseData();
+		PasswordDataBase db=new PasswordDataBase() {
+			
+			@Override
+			public Type getNewType() {
+				return new DetailType();
+			}
+			
+			@Override
+			public Vector<Type> load() {
+				aimPath = path;
+				return super.load();
+			}
+		};
+		db.setPassword(password);
 		allType=db.load();
 	}
 

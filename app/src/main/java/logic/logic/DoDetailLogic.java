@@ -56,7 +56,6 @@ public class DoDetailLogic extends ProcessLogic {
 	
 	public void doDetail(Vector <Type> detail){
 		data.cleanAllData();
-		
 		for (int i=0;i<detail.size();i++){
 			DetailType now=(DetailType) detail.get(i);
 			boolean flag=false;

@@ -8,7 +8,8 @@ public class TreeReasonOperator extends ReasonOperator {
 	
 	@Override
 	public void loadData() {
-		super.loadData();	
+		super.loadData();
+		buildTree();
 	}
 	
 	@Override

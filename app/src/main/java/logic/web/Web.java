@@ -56,7 +56,7 @@ public class Web extends UserPublicData {
 		getPath();
 		download();
 		
-		DetailOperator detail=new DetailOperator(); detail.load(AbstractDataBase.root+"/"+"temp"+"/detail.txt");
+		DetailOperator detail=new DetailOperator(); detail.load(AbstractDataBase.root+"/"+"temp"+"/detail.txt", password);
 		Vector<Type> phone=detail.getAllItem();
 		DataViewer data=new DataViewer(); data.loadData("detail");
 		Vector<Type> allDetail=data.getAllItem();
@@ -105,7 +105,7 @@ public class Web extends UserPublicData {
 		}
 		
 		if (HHD.fileExiste(AbstractDataBase.root+"/temp/user update.txt")){
-			HHD.copyFile(AbstractDataBase.root+"/temp/reason.txt", myPath[4]);
+			HHD.copyFile(AbstractDataBase.root+"/temp/user update.txt", myPath[4]);
 		}else{
 			HHD.cleanFile(myPath[4]);
 		}
