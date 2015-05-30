@@ -12,6 +12,7 @@ import type.Type;
 import database.ExcelWriter;
 import database.noPassword.NoPasswordDataBase;
 import database.password.DetailDataBase;
+import database.password.PasswordDataBase;
 
 public class DetailOperator extends TypeOperator implements DataOperator {
 	
@@ -148,6 +149,25 @@ public class DetailOperator extends TypeOperator implements DataOperator {
 				return super.load();
 			}
 		};
+		allType=db.load();
+	}
+	
+	public void load(final String path, String password){
+		this.releaseData();
+		PasswordDataBase db=new PasswordDataBase() {
+			
+			@Override
+			public Type getNewType() {
+				return new DetailType();
+			}
+			
+			@Override
+			public Vector<Type> load() {
+				aimPath=path;
+				return super.load();
+			}
+		};
+		db.setPassword(password);
 		allType=db.load();
 	}
 

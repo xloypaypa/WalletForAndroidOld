@@ -55,15 +55,13 @@ public class Web extends UserPublicData {
 		getPath();
 		download();
 		
-		DetailOperator detail=new DetailOperator(); detail.load(AbstractDataBase.root+"/"+"temp"+"/detail.txt");
+		DetailOperator detail=new DetailOperator(); detail.load(AbstractDataBase.root+"/"+"temp"+"/detail.txt", password);
 		Vector<Type> phone=detail.getAllItem();
 		DataViewer data=new DataViewer(); data.loadData("detail");
 		Vector<Type> allDetail=data.getAllItem();
 		
-		getPath();
-		
+		loadMyPath(username);
 		if (allDetail.size()==0){
-			loadMyPath(username);
 			copyTempFile();
 		}else if (phone.size()==0) {
 			upload();
