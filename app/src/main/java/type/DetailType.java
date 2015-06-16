@@ -34,7 +34,7 @@ public class DetailType extends Type {
 	}
 	
 	public void setTime(Date date){
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		time.setTime(date.getTime());
 		timeElement.setText(sdf.format(date));
 	}
@@ -82,7 +82,7 @@ public class DetailType extends Type {
 		typeElement = message.element("type");
 		valueElement = message.element("value");
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
 			time = sdf.parse(timeElement.getText());
 		} catch (ParseException e) {
